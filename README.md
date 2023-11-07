@@ -1,15 +1,5 @@
 # tabby-background
 
-To install dependencies:
+Change Tabby background to your favorite picture.
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.9. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+For now only tested on Windows.
