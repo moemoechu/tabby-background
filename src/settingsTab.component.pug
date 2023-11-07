@@ -8,51 +8,52 @@ h3 背景
         [(ngModel)]='config.store.backgroundPlugin.backgroundEnabled',
         (ngModelChange)='apply();',
     )
-.form-line
-    .header
-        .title 背景图片路径
-    input.form-control.w-75(
-        type='text',
-        [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
-        (ngModelChange)='apply();',
-    )
+.content-box(*ngIf='config.store.backgroundPlugin.backgroundEnabled === true')
+    .form-line
+        .header
+            .title 背景图片路径
+        input.form-control.w-75(
+            type='text',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
+            (ngModelChange)='apply();',
+        )
 
-.form-line
-    .header
-        .title 背景透明度(%))
-    input.form-control.font-size-input(
-        type='number',
-        max='100',
-        [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
-        (ngModelChange)='apply();',
-    )
-.form-line
-    .header
-        .title 背景模糊度(px)
-    input.form-control.font-size-input(
-        type='number',
-        max='100',
-        [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
-        (ngModelChange)='apply();',
-    )
-.form-line
-    .header
-        .title 背景亮度(%)
-    input.form-control.font-size-input(
-        type='number',
-        max='100',
-        [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
-        (ngModelChange)='apply();',
-    )
-.form-line
-    .header
-        .title 背景对比度(%)
-    input.form-control.font-size-input(
-        type='number',
-        max='100',
-        [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
-        (ngModelChange)='apply();',
-    )
+    .form-line
+        .header
+            .title 背景透明度(%))
+        input.form-control.font-size-input(
+            type='number',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title 背景模糊度(px)
+        input.form-control.font-size-input(
+            type='number',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title 背景亮度(%)
+        input.form-control.font-size-input(
+            type='number',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title 背景对比度(%)
+        input.form-control.font-size-input(
+            type='number',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
+            (ngModelChange)='apply();',
+        )
 
 //- .content-box
 

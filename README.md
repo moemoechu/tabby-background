@@ -6,7 +6,7 @@ For now only tested on Windows.
 
 ## Usage
 
-Input picture path in textbox, support absolute path and relative path.
+Input picture path into textbox, support absolute path and relative path(for portable mode).
 
 ## Screenshot
 
