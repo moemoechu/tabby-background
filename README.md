@@ -1,11 +1,11 @@
 # tabby-background
 
-Change Tabby background and UI Font.
+Change Tabby background image and UI Font.
 
 ## Features
 
 - Change Tabby background to your favorite picture.
-- Change UI Font to your favorite font, not effect terminal font.
+- Change UI Font to your favorite font, not affect terminal font.
 
 ## Usage
 
