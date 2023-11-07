@@ -1,0 +1,64 @@
+h3 背景
+
+.form-line
+    .header
+        .title 是否启用背景图片
+        .description 
+    toggle(
+        [(ngModel)]='config.store.backgroundPlugin.backgroundEnabled',
+        (ngModelChange)='config.save();switchCss();',
+    )
+.form-line
+    .header
+        .title 背景图片路径
+    input.form-control.w-75(
+        type='text',
+        [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
+        (ngModelChange)='config.save();',
+    )
+
+.form-line
+    .header
+        .title 背景透明度(%))
+    input.form-control.font-size-input(
+        type='number',
+        max='100',
+        [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
+        (ngModelChange)='config.save()',
+    )
+.form-line
+    .header
+        .title 背景模糊度(px)
+    input.form-control.font-size-input(
+        type='number',
+        max='100',
+        [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
+        (ngModelChange)='config.save()',
+    )
+.form-line
+    .header
+        .title 背景亮度(%)
+    input.form-control.font-size-input(
+        type='number',
+        max='100',
+        [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
+        (ngModelChange)='config.save()',
+    )
+.form-line
+    .header
+        .title 背景对比度(%)
+    input.form-control.font-size-input(
+        type='number',
+        max='100',
+        [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
+        (ngModelChange)='config.save()',
+    )
+
+.content-box
+
+    .form-line
+        .header
+            .title 全局自定义CSS
+    textarea.form-control.mb-5(
+        [(ngModel)]='config.store.appearance.css',
+    )
