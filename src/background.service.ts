@@ -7,11 +7,9 @@ const divider = "/* added by tabby-background plugin */";
 export class BackgroundService {
   private logger: Logger;
   private styleElement: HTMLStyleElement;
-  private backgroundCss: string = "";
   constructor(public config: ConfigService, private logService: LogService) {
     this.logger = this.logService.create("tabby-background");
     this.logger.info("BackgroundService ctor.");
-    // console.log(document.querySelector("style#custom-css")!.innerHTML);
     this.styleElement = document.createElement("style");
     this.styleElement.id = "tabby-background";
     this.styleElement.innerHTML = "";
@@ -66,40 +64,16 @@ ${divider}
 `;
   }
 
-  removeCss() {
-    // const css: string = this.config.store?.appearance?.css;
-    const css: string = this.backgroundCss;
-    if (!css) {
-      return;
-    }
-    const divided = css.split(divider);
-    if (divided.length <= 1) {
-      return;
-    }
-    const newCss = divided[0] + divided[2];
-    // this.config.store.appearance.css = newCss.trim();
-    this.backgroundCss = newCss.trim();
-    this.config.save();
-  }
-
-  appendCss() {
-    const append = this.buildCss();
-    // this.config.store.appearance.css += append;
-    this.backgroundCss += append;
-    this.config.save();
-  }
-
   applyCss() {
-    this.removeCss();
-    this.appendCss();
+    this.config.save();
 
-    this.styleElement.innerHTML = this.backgroundCss;
+    this.styleElement.innerHTML = this.buildCss();
     this.logger.info("background applied.");
   }
 
   bootstrap() {
     setTimeout(() => {
       this.applyCss();
-    }, 100);
+    }, 300);
   }
 }
