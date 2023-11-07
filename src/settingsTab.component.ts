@@ -27,8 +27,8 @@ const divider = "/* added by tabby-background plugin */";
 })
 export class BackgroundSettingsTabComponent {
   constructor(public config: ConfigService) {
-    console.log(this.config.store.backgroundPlugin);
-    this.switchCss();
+    // console.log(this.config.store.backgroundPlugin);
+    // this.switchCss();
   }
 
   switchCss() {
