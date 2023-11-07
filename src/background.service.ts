@@ -64,16 +64,18 @@ ${divider}
 `;
   }
 
-  applyCss() {
-    this.config.save();
-
+  applyCss(save: boolean = true) {
+    if (save) {
+      this.config.save();
+      this.logger.info("Config saved.");
+    }
     this.styleElement.innerHTML = this.buildCss();
-    this.logger.info("background applied.");
+    this.logger.info("Background applied.");
   }
 
   bootstrap() {
     setTimeout(() => {
-      this.applyCss();
+      this.applyCss(false);
     }, 300);
   }
 }
