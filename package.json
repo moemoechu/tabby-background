@@ -5,7 +5,7 @@
   "typings": "dist/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "url": "https://github.com/moemoechu/tabby-background"
   },
