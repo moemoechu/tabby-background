@@ -14,7 +14,7 @@ h3 背景
     input.form-control.w-75(
         type='text',
         [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
-        (ngModelChange)='config.save();',
+        (ngModelChange)='config.save();switchCss();',
     )
 
 .form-line
@@ -24,7 +24,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
-        (ngModelChange)='config.save()',
+        (ngModelChange)='config.save();switchCss();',
     )
 .form-line
     .header
@@ -33,7 +33,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
-        (ngModelChange)='config.save()',
+        (ngModelChange)='config.save();switchCss();',
     )
 .form-line
     .header
@@ -42,7 +42,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
-        (ngModelChange)='config.save()',
+        (ngModelChange)='config.save();switchCss();',
     )
 .form-line
     .header
@@ -51,14 +51,14 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
-        (ngModelChange)='config.save()',
+        (ngModelChange)='config.save();switchCss();',
     )
 
-.content-box
+//- .content-box
 
-    .form-line
-        .header
-            .title 全局自定义CSS
-    textarea.form-control.mb-5(
-        [(ngModel)]='config.store.appearance.css',
-    )
+//-     .form-line
+//-         .header
+//-             .title 全局自定义CSS
+//-     textarea.form-control.mb-5(
+//-         [(ngModel)]='config.store.appearance.css',
+//-     )

@@ -54,8 +54,11 @@ export class BackgroundSettingsTabComponent {
   width: 100%;
   height: 100%;
 
-  filter: opacity(${this.config.store.backgroundPlugin.backgroundOpacity}%) blur(${this.config.store.backgroundPlugin.backgroundBlur}px) brightness(${this.config.store.backgroundPlugin.backgroundBrightness}%) contrast(${this.config.store.backgroundPlugin.backgroundContrast}%);
-  background-image: url("${this.config.store.backgroundPlugin.backgroundPath}");
+  filter: opacity(${this.config.store.backgroundPlugin.backgroundOpacity}%)
+  blur(${this.config.store.backgroundPlugin.backgroundBlur}px)
+  brightness(${this.config.store.backgroundPlugin.backgroundBrightness}%)
+  contrast(${this.config.store.backgroundPlugin.backgroundContrast}%);
+  background-image: url("${(this.config.store.backgroundPlugin.backgroundPath as string).replace("\\", "/")}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
