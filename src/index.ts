@@ -1,12 +1,13 @@
-import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import TabbyCoreModule, { ConfigProvider, ConfigService, HotkeyProvider, TabContextMenuItemProvider } from "tabby-core";
+import TabbyCoreModule, { ConfigProvider, ConfigService } from "tabby-core";
 import { SettingsTabProvider } from "tabby-settings";
 
+import { BackgroundService } from "background.service";
 import { BackgroundConfigProvider } from "./configProvider";
-import { BackgroundSettingsTabProvider } from "./settingsTabProvider";
 import { BackgroundSettingsTabComponent } from "./settingsTab.component";
+import { BackgroundSettingsTabProvider } from "./settingsTabProvider";
 
 @NgModule({
   imports: [CommonModule, FormsModule, TabbyCoreModule],
@@ -18,7 +19,7 @@ import { BackgroundSettingsTabComponent } from "./settingsTab.component";
   declarations: [BackgroundSettingsTabComponent],
 })
 export default class BackgroundModule {
-  constructor() {
-    console.log("Angular engaged, cap'n.");
+  constructor(public config: ConfigService, private readonly background: BackgroundService) {
+    this.background.bootstrap();
   }
 }

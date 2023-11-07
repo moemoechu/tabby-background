@@ -6,7 +6,7 @@ h3 背景
         .description 
     toggle(
         [(ngModel)]='config.store.backgroundPlugin.backgroundEnabled',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 .form-line
     .header
@@ -14,7 +14,7 @@ h3 背景
     input.form-control.w-75(
         type='text',
         [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 
 .form-line
@@ -24,7 +24,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 .form-line
     .header
@@ -33,7 +33,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 .form-line
     .header
@@ -42,7 +42,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 .form-line
     .header
@@ -51,7 +51,7 @@ h3 背景
         type='number',
         max='100',
         [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
-        (ngModelChange)='config.save();switchCss();',
+        (ngModelChange)='apply();',
     )
 
 //- .content-box
