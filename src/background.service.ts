@@ -15,7 +15,7 @@ export class BackgroundService {
   buildCss() {
     const { backgroundEnabled, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast } = this.config.store.backgroundPlugin;
     const { uiFontEnable, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.config.store.backgroundPlugin;
-    const backgroundPath = (this.config.store.backgroundPlugin.backgroundPath as string).replace("\\", "/");
+    const backgroundPath = (this.config.store.backgroundPlugin.backgroundPath as string).replaceAll("\\", "/");
     const backgroundCss = `
 .content-tab-active {
   background: none;

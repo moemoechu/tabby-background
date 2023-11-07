@@ -16,7 +16,7 @@
     "noUnusedLocals": false,
     "declaration": true,
     "declarationDir": "dist",
-    "lib": ["dom", "es2015", "es7"]
+    "lib": ["dom", "ESNext"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
