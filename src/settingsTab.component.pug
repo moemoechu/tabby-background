@@ -8,6 +8,7 @@ h3 背景
         [(ngModel)]='config.store.backgroundPlugin.backgroundEnabled',
         (ngModelChange)='apply();',
     )
+
 .content-box(*ngIf='config.store.backgroundPlugin.backgroundEnabled === true')
     .form-line
         .header
@@ -63,3 +64,39 @@ h3 背景
 //-     textarea.form-control.mb-5(
 //-         [(ngModel)]='config.store.appearance.css',
 //-     )
+
+.form-line
+    .header
+        .title 是否启用界面字体替换
+        .description 
+    toggle(
+        [(ngModel)]='config.store.backgroundPlugin.uiFontEnable',
+        (ngModelChange)='apply();',
+    )
+
+.content-box(*ngIf='config.store.backgroundPlugin.uiFontEnable === true')
+    .form-line
+        .header
+            .title 界面字体
+        .input-group.w-75
+           input.form-control(
+               type='text',
+               [(ngModel)]='config.store.backgroundPlugin.uiFontFamily',
+               (ngModelChange)='apply();',
+           )
+           input.form-control.font-size-input(
+               type='number',
+               max='48',
+               [(ngModel)]='config.store.backgroundPlugin.uiFontSize',
+               (ngModelChange)='apply();',
+           )
+    
+
+    .form-line
+        .header
+            .title 修复标签页关闭按钮字体
+            .description 
+        toggle(
+            [(ngModel)]='config.store.backgroundPlugin.uiFontTabBarCloseBtnFix',
+            (ngModelChange)='apply();',
+        )

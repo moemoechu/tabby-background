@@ -13,7 +13,8 @@ export class BackgroundService {
   }
 
   buildCss() {
-    const { backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast } = this.config.store.backgroundPlugin;
+    const { backgroundEnabled, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast } = this.config.store.backgroundPlugin;
+    const { uiFontEnable, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.config.store.backgroundPlugin;
     const backgroundPath = (this.config.store.backgroundPlugin.backgroundPath as string).replace("\\", "/");
     const backgroundCss = `
 .content-tab-active {
@@ -39,33 +40,38 @@ export class BackgroundService {
   background-position: center;
   background-size: cover;
 }`;
+    const uiFontCss = `
+body {
+  font-family: "${uiFontFamily}";
+  font-size: ${uiFontSize}px;
+}
+`;
+    const uiCloseBtnFixCss = `
+app-root>.content .tab-bar>.tabs tab-header button {
+  /*left: 8px;*/
+  font-family: "Source Sans Pro";
+}`;
     return `
 ${divider}
-${backgroundCss}
+${backgroundEnabled ? backgroundCss : ""}
+${uiFontEnable && uiFontTabBarCloseBtnFix ? uiCloseBtnFixCss : ""}
+${uiFontEnable ? uiFontCss : ""}
 ${divider}
 `;
   }
 
-  checkCss() {
+  removeCss() {
     const css: string = this.config.store?.appearance?.css;
     if (!css) {
-      return false;
+      return;
     }
     const divided = css.split(divider);
-    if (divided.length > 1) {
-      return true;
+    if (divided.length <= 1) {
+      return;
     }
-    return false;
-  }
-
-  removeCss() {
-    if (this.checkCss()) {
-      const css: string = this.config.store?.appearance?.css;
-      const divided = css.split(divider);
-      const newCss = divided[0] + divided[2];
-      this.config.store.appearance.css = newCss.trim();
-      this.config.save();
-    }
+    const newCss = divided[0] + divided[2];
+    this.config.store.appearance.css = newCss.trim();
+    this.config.save();
   }
 
   appendCss() {
@@ -75,12 +81,9 @@ ${divider}
   }
 
   applyCss() {
-    if (this.config.store.backgroundPlugin.backgroundEnabled) {
-      this.removeCss();
-      this.appendCss();
-    } else {
-      this.removeCss();
-    }
+    this.removeCss();
+    this.appendCss();
+
     this.logger.info("background applied.");
   }
 
