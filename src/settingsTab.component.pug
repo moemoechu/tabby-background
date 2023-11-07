@@ -13,11 +13,15 @@ h3 背景
     .form-line
         .header
             .title 背景图片路径
-        input.form-control.w-75(
-            type='text',
-            [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
-            (ngModelChange)='apply();',
-        )
+        .input-group.w-75
+            input.form-control.background-input(
+                type='text',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
+                (ngModelChange)='apply();',
+            )
+            .input-group-append
+                button.btn.btn-secondary((click)='pickFile()')
+                    i.fas.fa-folder-open
 
     .form-line
         .header
@@ -79,7 +83,7 @@ h3 背景
         .header
             .title 界面字体
         .input-group.w-75
-           input.form-control(
+           input.form-control.font-family-input(
                type='text',
                [(ngModel)]='config.store.backgroundPlugin.uiFontFamily',
                (ngModelChange)='apply();',

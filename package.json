@@ -5,7 +5,7 @@
   "typings": "dist/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "repository": {
     "url": "https://github.com/moemoechu/tabby-background"
   },
@@ -39,8 +39,9 @@
     "pug-loader": "^2",
     "sass-loader": "13",
     "style-loader": "3",
-    "tabby-core": "^1.0.156",
-    "tabby-settings": "^1.0.156",
+    "tabby-core": "latest",
+    "tabby-electron": "latest",
+    "tabby-settings": "latest",
     "ts-loader": "^9",
     "typescript": "^5",
     "webpack": "^5",
