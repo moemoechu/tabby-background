@@ -9,7 +9,9 @@ Change Tabby background image and UI Font.
 
 ## Usage
 
-Input picture path into textbox, support absolute path and relative path(for portable mode).
+Background: Enter the picture path into textbox or use the file picker, support absolute path and relative path(for portable mode).
+
+UI Font: Enter the font family name into the textbox, can use the font name in [appearance] setting tab.
 
 ## Screenshot
 
