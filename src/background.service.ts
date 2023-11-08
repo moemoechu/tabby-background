@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger } from "tabby-core";
 
-const divider = "/* added by tabby-background plugin */";
-
 @Injectable({ providedIn: "root" })
 export class BackgroundService {
   private logger: Logger;
@@ -48,20 +46,16 @@ export class BackgroundService {
 body {
   font-family: "${uiFontFamily}";
   font-size: ${uiFontSize}px;
-}
-`;
+}`;
     const uiCloseBtnFixCss = `
 app-root>.content .tab-bar>.tabs tab-header button {
   /*left: 8px;*/
   font-family: "Source Sans Pro";
 }`;
-    return `
-${divider}
+    return `/* added by tabby-background plugin */
 ${backgroundEnabled ? backgroundCss : ""}
 ${uiFontEnable && uiFontTabBarCloseBtnFix ? uiCloseBtnFixCss : ""}
-${uiFontEnable ? uiFontCss : ""}
-${divider}
-`;
+${uiFontEnable ? uiFontCss : ""}`;
   }
 
   applyCss(save: boolean = true) {
