@@ -1,6 +1,6 @@
 {
   "name": "tabby-background",
-  "description": "Change Tabby background image and UI Font.",
+  "description": "Change Tabby background image and more...",
   "module": "index.ts",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
