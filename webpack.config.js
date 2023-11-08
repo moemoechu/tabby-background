@@ -11,7 +11,7 @@ module.exports = {
     filename: "index.js",
     pathinfo: true,
     libraryTarget: "umd",
-    devtoolModuleFilenameTemplate: "webpack-tabby-clippy:///[resource-path]",
+    devtoolModuleFilenameTemplate: "webpack-tabby-background:///[resource-path]",
   },
   resolve: {
     modules: [".", "src", "node_modules"].map((x) => path.join(__dirname, x)),
