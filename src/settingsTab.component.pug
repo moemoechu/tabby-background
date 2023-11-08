@@ -28,6 +28,7 @@ h3(translate) Background
             .title(translate) Background opacity(%)
         input.form-control.font-size-input(
             type='number',
+            min='0',
             max='100',
             [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
             (ngModelChange)='apply();',
@@ -37,6 +38,7 @@ h3(translate) Background
             .title(translate) Background blur(px)
         input.form-control.font-size-input(
             type='number',
+            min='0',
             max='100',
             [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
             (ngModelChange)='apply();',
@@ -46,6 +48,7 @@ h3(translate) Background
             .title(translate) Background brightness(%)
         input.form-control.font-size-input(
             type='number',
+            min='0',
             max='100',
             [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
             (ngModelChange)='apply();',
@@ -55,20 +58,13 @@ h3(translate) Background
             .title(translate) Background contrast(%)
         input.form-control.font-size-input(
             type='number',
+            min='0',
             max='100',
             [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
             (ngModelChange)='apply();',
         )
 
-//- .content-box
-
-//-     .form-line
-//-         .header
-//-             .title 全局自定义CSS
-//-     textarea.form-control.mb-5(
-//-         [(ngModel)]='config.store.appearance.css',
-//-     )
-
+h3(translate) UI Font
 .form-line
     .header
         .title(translate) Enable UI font replace
@@ -81,20 +77,21 @@ h3(translate) Background
 .content-box(*ngIf='config.store.backgroundPlugin.uiFontEnable === true')
     .form-line
         .header
-            .title(translate) UI Font
+            .title(translate) UI Font Family
         .input-group.w-75
-           input.form-control.font-family-input(
-               type='text',
-               [(ngModel)]='config.store.backgroundPlugin.uiFontFamily',
-               (ngModelChange)='apply();',
-           )
-           input.form-control.font-size-input(
-               type='number',
-               max='48',
-               [(ngModel)]='config.store.backgroundPlugin.uiFontSize',
-               (ngModelChange)='apply();',
-           )
-    
+            input.form-control.font-family-input(
+                type='text',
+                [(ngModel)]='config.store.backgroundPlugin.uiFontFamily',
+                (ngModelChange)='apply();',
+            )
+            input.form-control.font-size-input(
+                type='number',
+                min='5',
+                max='48',
+                [(ngModel)]='config.store.backgroundPlugin.uiFontSize',
+                (ngModelChange)='apply();',
+            )
+
 
     .form-line
         .header

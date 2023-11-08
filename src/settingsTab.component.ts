@@ -8,16 +8,6 @@ import { ElectronHostWindow, ElectronService } from "tabby-electron";
   template: require("./settingsTab.component.pug"),
   styles: [
     `
-      color-scheme-preview {
-        flex-shrink: 0;
-        margin-bottom: 20px;
-      }
-
-      textarea {
-        font-family: "Source Code Pro", monospace;
-        min-height: 300px;
-      }
-
       .font-size-input {
         width: 100px;
         flex: none;
@@ -48,10 +38,10 @@ export class BackgroundSettingsTabComponent {
         "Background brightness(%)": "背景亮度(%)",
         "Background contrast(%)": "背景对比度(%)",
 
-        
+        "UI Font": "字体",
         "Enable UI font replace": "是否启用界面字体替换",
         "Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration": "不影响终端字体，终端字体仍使用【外观】配置中的字体",
-        "UI Font": "界面字体",
+        "UI Font Family": "界面字体",
         "Fix close button font": "修复标签页关闭按钮字体",
         "After enable, restore the tab closing button to the default style": "启用后将标签页关闭按钮恢复为默认样式",
       },
