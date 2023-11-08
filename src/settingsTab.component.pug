@@ -19,9 +19,8 @@ h3(translate) Background
                 [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
                 (ngModelChange)='apply();',
             )
-            .input-group-append
-                button.btn.btn-secondary((click)='pickFile()')
-                    i.fas.fa-folder-open
+            button.btn.btn-secondary((click)='pickFile()')
+                i.fas.fa-folder-open
 
     .form-line
         .header
