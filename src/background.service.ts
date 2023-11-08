@@ -59,7 +59,7 @@ app-root>.content .tab-bar>.tabs tab-header button {
 
     const tabsFlexMinWidthCss = `
 .flex-width {
-  min-width: ${tabsFixedWidth}px;
+  min-width: ${tabsFlexMinWidth}px;
 }
     `;
 
