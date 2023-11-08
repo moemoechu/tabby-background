@@ -15,4 +15,6 @@ UI Font: Enter the font family name into the textbox, can use the font name in [
 
 ## Screenshot
 
-![Alt text](screenshot.jpg)
+![Alt text](screenshot1.jpg)
+
+![Alt text](screenshot2.jpg)
