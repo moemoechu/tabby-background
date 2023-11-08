@@ -31,6 +31,10 @@ export class BackgroundSettingsTabComponent {
   async pickFile(): Promise<void> {
     const paths = (
       await this.electron.dialog.showOpenDialog(this.hostWindow.getWindow(), {
+        filters: [
+          { name: "Images", extensions: ["jpg", "png", "gif"] },
+          { name: "All Files", extensions: ["*"] },
+        ],
         properties: ["openFile", "showHiddenFiles"],
       })
     ).filePaths;
