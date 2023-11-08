@@ -63,6 +63,17 @@ h3(translate) Background
             [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
             (ngModelChange)='apply();',
         )
+    .form-line
+        .header
+            .title(translate) Group list transparent(%, 0 = disable)
+            .description(translate) Make home page menu and other group list background transparent
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundListGroupTransparent',
+            (ngModelChange)='apply();',
+        )
 
 h3(translate) UI Font
 .form-line

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
+import * as cssBuilder from "./cssBuilder";
 
 @Injectable({ providedIn: "root" })
 export class BackgroundService {
@@ -15,66 +16,33 @@ export class BackgroundService {
   }
 
   buildCss() {
-    const { backgroundEnabled, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast } = this.config.store.backgroundPlugin;
+    const { backgroundEnabled, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast, backgroundListGroupTransparent } = this.config.store.backgroundPlugin;
     const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.config.store.backgroundPlugin;
     const { tabsOverrideEnabled, tabsFlexMinWidth, tabsFixedWidth } = this.config.store.backgroundPlugin;
     const backgroundPath = (this.config.store.backgroundPlugin.backgroundPath as string).replaceAll("\\", "/");
 
-    const backgroundCss = `
-.content-tab-active {
-  background: none;
-}
-.content-tab-active::before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  display: block;
-  width: 100%;
-  height: 100%;
+    let css = `/* added by tabby-background plugin */\n`;
+    if (backgroundEnabled) {
+      css += cssBuilder.background(backgroundPath, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast);
 
-  filter: opacity(${backgroundOpacity}%)
-  blur(${backgroundBlur}px)
-  brightness(${backgroundBrightness}%)
-  contrast(${backgroundContrast}%);
+      if (backgroundListGroupTransparent > 0) {
+        css += cssBuilder.backgroundListGroupTransparent(backgroundListGroupTransparent);
+      }
+    }
 
-  background-image: url("${backgroundPath}");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}`;
+    if (uiFontEnabled) {
+      css += cssBuilder.uiFont(uiFontFamily, uiFontSize);
+      if (uiFontTabBarCloseBtnFix) {
+        css += cssBuilder.uiCloseBtnFix();
+      }
+    }
 
-    const uiFontCss = `
-body {
-  font-family: "${uiFontFamily}";
-  font-size: ${uiFontSize}px;
-}`;
+    if (tabsOverrideEnabled) {
+      css += cssBuilder.tabsFlexMinWidth(tabsFlexMinWidth);
+      css += cssBuilder.tabsFixedWidth(tabsFixedWidth);
+    }
 
-    const uiCloseBtnFixCss = `
-app-root>.content .tab-bar>.tabs tab-header button {
-  /*left: 8px;*/
-  font-family: "Source Sans Pro";
-}`;
-
-    const tabsFlexMinWidthCss = `
-.flex-width {
-  min-width: ${tabsFlexMinWidth}px;
-}
-    `;
-
-    const tabsFixedWidthCss = `
-tab-header {
-  width: ${tabsFixedWidth}px !important;
-}
-        `;
-
-    return `/* added by tabby-background plugin */
-${backgroundEnabled ? backgroundCss : ""}
-${uiFontEnabled && uiFontTabBarCloseBtnFix ? uiCloseBtnFixCss : ""}
-${uiFontEnabled ? uiFontCss : ""}
-${tabsOverrideEnabled ? tabsFlexMinWidthCss : ""}
-${tabsOverrideEnabled ? tabsFixedWidthCss : ""}`;
+    return css;
   }
 
   applyCss() {
@@ -91,10 +59,12 @@ ${tabsOverrideEnabled ? tabsFixedWidthCss : ""}`;
           Background: "背景",
           "Enable background": "是否启用背景图片",
           "Background path": "背景图片路径",
-          "Background opacity(%)": "背景透明度(%)",
+          "Background opacity(%)": "背景不透明度(%)",
           "Background blur(px)": "背景模糊度(px)",
           "Background brightness(%)": "背景亮度(%)",
           "Background contrast(%)": "背景对比度(%)",
+          "Group list transparent(%, 0 = disable)": "分组列表透明度(%, 0 = 禁用)",
+          "Make home page menu and other group list background transparent": "让首页菜单和其他分组列表背景呈现半透明",
 
           "UI Font": "字体",
           "Enable UI font replace": "是否启用界面字体替换",

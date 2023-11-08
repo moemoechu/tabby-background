@@ -10,6 +10,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundBlur: 0,
       backgroundBrightness: 100,
       backgroundContrast: 100,
+      backgroundListGroupTransparent: 0,
       uiFontEnabled: false,
       uiFontFamily: "Source Sans Pro",
       uiFontSize: 14,
