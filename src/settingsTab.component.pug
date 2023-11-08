@@ -71,11 +71,11 @@ h3(translate) UI Font
         .title(translate) Enable UI font replace
         .description(translate) Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration
     toggle(
-        [(ngModel)]='config.store.backgroundPlugin.uiFontEnable',
+        [(ngModel)]='config.store.backgroundPlugin.uiFontEnabled',
         (ngModelChange)='apply();',
     )
 
-.content-box(*ngIf='config.store.backgroundPlugin.uiFontEnable === true')
+.content-box(*ngIf='config.store.backgroundPlugin.uiFontEnabled === true')
     .form-line
         .header
             .title(translate) UI Font Family
@@ -100,5 +100,38 @@ h3(translate) UI Font
             .description(translate) After enable, restore the tab closing button to the default style
         toggle(
             [(ngModel)]='config.store.backgroundPlugin.uiFontTabBarCloseBtnFix',
+            (ngModelChange)='apply();',
+        )
+
+
+h3(translate) Tabs
+.form-line
+    .header
+        .title(translate) Enable Tabs parameter override
+        .description(translate) 
+    toggle(
+        [(ngModel)]='config.store.backgroundPlugin.tabsOverrideEnabled',
+        (ngModelChange)='apply();',
+    )
+
+.content-box(*ngIf='config.store.backgroundPlugin.tabsOverrideEnabled === true')
+    .form-line
+        .header
+            .title(translate) Tabs dynamic width min(px)
+        input.form-control(
+            type='number',
+            min='50',
+            max='1000',
+            [(ngModel)]='config.store.backgroundPlugin.tabsFlexMinWidth',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Tabs fixed width(px)
+        input.form-control(
+            type='number',
+            min='50',
+            max='1000',
+            [(ngModel)]='config.store.backgroundPlugin.tabsFixedWidth',
             (ngModelChange)='apply();',
         )

@@ -16,8 +16,10 @@ export class BackgroundService {
 
   buildCss() {
     const { backgroundEnabled, backgroundOpacity, backgroundBlur, backgroundBrightness, backgroundContrast } = this.config.store.backgroundPlugin;
-    const { uiFontEnable, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.config.store.backgroundPlugin;
+    const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.config.store.backgroundPlugin;
+    const { tabsOverrideEnabled, tabsFlexMinWidth, tabsFixedWidth } = this.config.store.backgroundPlugin;
     const backgroundPath = (this.config.store.backgroundPlugin.backgroundPath as string).replaceAll("\\", "/");
+
     const backgroundCss = `
 .content-tab-active {
   background: none;
@@ -42,20 +44,37 @@ export class BackgroundService {
   background-position: center;
   background-size: cover;
 }`;
+
     const uiFontCss = `
 body {
   font-family: "${uiFontFamily}";
   font-size: ${uiFontSize}px;
 }`;
+
     const uiCloseBtnFixCss = `
 app-root>.content .tab-bar>.tabs tab-header button {
   /*left: 8px;*/
   font-family: "Source Sans Pro";
 }`;
+
+    const tabsFlexMinWidthCss = `
+.flex-width {
+  min-width: ${tabsFixedWidth}px;
+}
+    `;
+
+    const tabsFixedWidthCss = `
+tab-header {
+  width: ${tabsFixedWidth}px !important;
+}
+        `;
+
     return `/* added by tabby-background plugin */
 ${backgroundEnabled ? backgroundCss : ""}
-${uiFontEnable && uiFontTabBarCloseBtnFix ? uiCloseBtnFixCss : ""}
-${uiFontEnable ? uiFontCss : ""}`;
+${uiFontEnabled && uiFontTabBarCloseBtnFix ? uiCloseBtnFixCss : ""}
+${uiFontEnabled ? uiFontCss : ""}
+${tabsOverrideEnabled ? tabsFlexMinWidthCss : ""}
+${tabsOverrideEnabled ? tabsFixedWidthCss : ""}`;
   }
 
   applyCss() {
@@ -83,6 +102,10 @@ ${uiFontEnable ? uiFontCss : ""}`;
           "UI Font Family": "界面字体",
           "Fix close button font": "修复标签页关闭按钮字体",
           "After enable, restore the tab closing button to the default style": "启用后将标签页关闭按钮恢复为默认样式",
+
+          "Enable Tabs parameter override": "启用标签页参数覆盖",
+          "Tabs dynamic width min(px)": "动态标签页宽度最小宽度(px)",
+          "Tabs fixed width(px)": "固定标签页宽度(px)",
         },
         true
       );

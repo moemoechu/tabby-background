@@ -10,10 +10,13 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundBlur: 0,
       backgroundBrightness: 100,
       backgroundContrast: 100,
-      uiFontEnable: false,
+      uiFontEnabled: false,
       uiFontFamily: "Source Sans Pro",
       uiFontSize: 14,
       uiFontTabBarCloseBtnFix: true,
+      tabsOverrideEnabled: false,
+      tabsFlexMinWidth: 200,
+      tabsFixedWidth: 200,
     },
   };
 }
