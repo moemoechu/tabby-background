@@ -6,7 +6,7 @@
   "typings": "dist/index.d.ts",
   "type": "commonjs",
   "license": "MIT",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "url": "https://github.com/moemoechu/tabby-background"
   },
@@ -22,7 +22,7 @@
   "scripts": {
     "build": "rm -rf dist && webpack --progress --color",
     "watch": "webpack --progress --color --watch",
-    "deploy": "bun run build && rm -rf /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && mkdir /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && cp -r ./dist /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background/ && cp package.json /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background/",
+    "deploy": "bun run build && rm -rf /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && mkdir /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && cp -r ./dist package.json /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background/",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
@@ -33,13 +33,13 @@
     "@angular/platform-browser": "^15",
     "@ng-bootstrap/ng-bootstrap": "^14",
     "@types/webpack-env": "^1",
-    "apply-loader": "^2.0.0",
-    "css-loader": "6",
-    "node-sass": "9",
-    "pug": "3",
+    "apply-loader": "^2",
+    "css-loader": "^6",
+    "node-sass": "^9",
+    "pug": "^3",
     "pug-loader": "^2",
-    "sass-loader": "13",
-    "style-loader": "3",
+    "sass-loader": "^13",
+    "style-loader": "^3",
     "tabby-core": "latest",
     "tabby-electron": "latest",
     "tabby-settings": "latest",
