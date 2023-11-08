@@ -40,6 +40,7 @@ h3(translate) Background
             type='number',
             min='0',
             max='100',
+            step='0.1',
             [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
             (ngModelChange)='apply();',
         )
