@@ -15,6 +15,8 @@ Portable Mode: For who use portable mode and want to use relative image path, im
 
 UI Font: Enter the font family name into the textbox, can use the font name in [appearance] setting tab.
 
+Currently tested on Windows and MacOS.
+
 ## Screenshot
 
 ![Alt text](screenshot1.jpg)
