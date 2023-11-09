@@ -25,6 +25,14 @@ export class BackgroundService {
     const backgroundPluginConfig = this.config.store.backgroundPlugin as BackgroundPluginConfig;
     const {
       backgroundEnabled,
+      backgroundShowType,
+      backgroundFullscreenType,
+      backgroundFullscreenRepeatType,
+      backgroundFloatSize,
+      backgroundFloatX,
+      backgroundFloatY,
+      backgroundFloatXAlign,
+      backgroundFloatYAlign,
       backgroundOpacity,
       backgroundBlur,
       backgroundBrightness,
@@ -40,6 +48,14 @@ export class BackgroundService {
     if (backgroundEnabled) {
       css += cssBuilder.background(
         backgroundPath,
+        backgroundShowType,
+        backgroundFullscreenType,
+        backgroundFullscreenRepeatType,
+        backgroundFloatSize,
+        backgroundFloatX,
+        backgroundFloatY,
+        backgroundFloatXAlign,
+        backgroundFloatYAlign,
         backgroundOpacity,
         backgroundBlur,
         backgroundBrightness,

@@ -19,6 +19,14 @@ Currently tested on Windows and MacOS.
 
 ## Screenshot
 
+### Settings
+
 ![Alt text](screenshot1.jpg)
 
+### Fullscreen
+
 ![Alt text](screenshot2.jpg)
+
+### Float
+
+![Alt text](screenshot3.png)

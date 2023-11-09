@@ -21,6 +21,177 @@ h3(translate) Background
             )
             button.btn.btn-secondary((click)='pickFile()')
                 i.fas.fa-folder-open
+    .form-line
+        .header
+            .title(translate) Background show type
+        .btn-group
+            input.btn-check(
+                type='radio',
+                name='backgroundShowType',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundShowType',
+                (ngModelChange)='apply();' 
+                id='showTypeFullscreen',
+                [value]='"fullscreen"'
+            )
+            label.btn.btn-secondary(for='showTypeFullscreen')
+                span(translate) Fullscreen
+            input.btn-check(
+                type='radio',
+                name='backgroundShowType',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundShowType',
+                (ngModelChange)='apply();' 
+                id='showTypeFullscreenFloat',
+                [value]='"float"'
+            )
+            label.btn.btn-secondary(for='showTypeFullscreenFloat')
+                span(translate) Float
+    .content-box(*ngIf='config.store.backgroundPlugin.backgroundShowType === "fullscreen"')
+        .form-line
+            .header
+                .title(translate) Fullscreen type
+            .btn-group
+                input.btn-check(
+                    type='radio',
+                    name='backgroundFullscreenType',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFullscreenType',
+                    (ngModelChange)='apply();' 
+                    id='fullscreenTypeContain',
+                    [value]='"contain"'
+                )
+                label.btn.btn-secondary(for='fullscreenTypeContain')
+                    span(translate) Contain
+                input.btn-check(
+                    type='radio',
+                    name='backgroundFullscreenType',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFullscreenType',
+                    (ngModelChange)='apply();' 
+                    id='fullscreenTypeCover',
+                    [value]='"cover"'
+                )
+                label.btn.btn-secondary(for='fullscreenTypeCover')
+                    span(translate) Cover
+        .form-line(*ngIf='config.store.backgroundPlugin.backgroundFullscreenType === "contain"')
+            .header
+                .title(translate) Repeat type
+            .btn-group
+                input.btn-check(
+                    type='radio',
+                    name='backgroundFullscreenRepeatType',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFullscreenRepeatType',
+                    (ngModelChange)='apply();' 
+                    id='fullscreenRepeatTypeRepeat',
+                    [value]='"repeat"'
+                )
+                label.btn.btn-secondary(for='fullscreenRepeatTypeRepeat')
+                    span(translate) Repeat
+                input.btn-check(
+                    type='radio',
+                    name='backgroundFullscreenRepeatType',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFullscreenRepeatType',
+                    (ngModelChange)='apply();' 
+                    id='fullscreenRepeatTypeNoRepeat',
+                    [value]='"no-repeat"'
+                )
+                label.btn.btn-secondary(for='fullscreenRepeatTypeNoRepeat')
+                    span(translate) No Repeat
+
+    .content-box(*ngIf='config.store.backgroundPlugin.backgroundShowType === "float"')
+        .form-line
+            .header
+                .title(translate) Float size(px)
+            input.form-control.font-size-input(
+                type='number',
+                min='0',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundFloatSize',
+                (ngModelChange)='apply();',
+            )
+        .form-line
+            .header
+                .title(translate) Float X offset(px)
+            input.form-control.font-size-input(
+                type='number',
+                min='0',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundFloatX',
+                (ngModelChange)='apply();',
+            )
+        .form-line
+            .header
+                .title(translate) Float Y offset(px)
+            input.form-control.font-size-input(
+                type='number',
+                min='0',
+                [(ngModel)]='config.store.backgroundPlugin.backgroundFloatY',
+                (ngModelChange)='apply();',
+            )
+
+        .form-line
+            .header
+                .title(translate) Float X align
+            .btn-group
+                input.btn-check(
+                    type='radio',
+                    name='floatXAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatXAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatXAlignLeft',
+                    [value]='"left"'
+                )
+                label.btn.btn-secondary(for='floatXAlignLeft')
+                    span(translate) Left
+                input.btn-check(
+                    type='radio',
+                    name='floatXAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatXAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatXAlignCenter',
+                    [value]='"center"'
+                )
+                label.btn.btn-secondary(for='floatXAlignCenter')
+                    span(translate) Center
+                input.btn-check(
+                    type='radio',
+                    name='floatXAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatXAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatXAlignRight',
+                    [value]='"right"'
+                )
+                label.btn.btn-secondary(for='floatXAlignRight')
+                    span(translate) Right
+        .form-line
+            .header
+                .title(translate) Float Y align
+            .btn-group
+                input.btn-check(
+                    type='radio',
+                    name='floatYAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatYAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatYAlignTop',
+                    [value]='"top"'
+                )
+                label.btn.btn-secondary(for='floatYAlignTop')
+                    span(translate) Top
+                input.btn-check(
+                    type='radio',
+                    name='floatYAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatYAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatYAlignCenter',
+                    [value]='"center"'
+                )
+                label.btn.btn-secondary(for='floatYAlignCenter')
+                    span(translate) Center
+                input.btn-check(
+                    type='radio',
+                    name='floatYAlign',
+                    [(ngModel)]='config.store.backgroundPlugin.backgroundFloatYAlign',
+                    (ngModelChange)='apply();' 
+                    id='floatYAlignBottom',
+                    [value]='"bottom"'
+                )
+                label.btn.btn-secondary(for='floatYAlignBottom')
+                    span(translate) Bottom
 
     .form-line
         .header
