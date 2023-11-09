@@ -1,8 +1,25 @@
 import { ConfigProvider } from "tabby-core";
 
+export type BackgroundPluginConfig = {
+  backgroundEnabled: boolean;
+  backgroundPath: string;
+  backgroundOpacity: number;
+  backgroundBlur: number;
+  backgroundBrightness: number;
+  backgroundContrast: number;
+  backgroundListGroupTransparent: number;
+  uiFontEnabled: boolean;
+  uiFontFamily: string;
+  uiFontSize: number;
+  uiFontTabBarCloseBtnFix: boolean;
+  tabsOverrideEnabled: boolean;
+  tabsFlexMinWidth: number;
+  tabsFixedWidth: number;
+};
+
 /** @hidden */
 export class BackgroundConfigProvider extends ConfigProvider {
-  defaults = {
+  defaults: { backgroundPlugin: BackgroundPluginConfig } = {
     backgroundPlugin: {
       backgroundEnabled: false,
       backgroundPath: "../../../data/background.jpg",
