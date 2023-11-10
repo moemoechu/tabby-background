@@ -50,17 +50,23 @@ export class BackgroundService {
       css += cssBuilder.background(
         backgroundPath,
         backgroundShowType,
-        backgroundFullscreenType,
-        backgroundFullscreenRepeatType,
-        backgroundFloatSize,
-        backgroundFloatX,
-        backgroundFloatY,
-        backgroundFloatXAlign,
-        backgroundFloatYAlign,
-        backgroundOpacity,
-        backgroundBlur,
-        backgroundBrightness,
-        backgroundContrast
+        {
+          fullscreenType: backgroundFullscreenType,
+          fullscreenRepeatType: backgroundFullscreenRepeatType,
+        },
+        {
+          floatSize: backgroundFloatSize,
+          floatX: backgroundFloatX,
+          floatY: backgroundFloatY,
+          floatXAlign: backgroundFloatXAlign,
+          floatYAlign: backgroundFloatYAlign,
+        },
+        {
+          opacity: backgroundOpacity,
+          blur: backgroundBlur,
+          brightness: backgroundBrightness,
+          contrast: backgroundContrast,
+        }
       );
 
       if (backgroundListGroupTransparent > 0) {

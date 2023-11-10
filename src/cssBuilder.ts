@@ -6,21 +6,35 @@ import {
   ShowType,
 } from "configProvider";
 
+export type FullscreenParams = {
+  fullscreenType: FullscreenType;
+  fullscreenRepeatType: FullscreenRepeatType;
+};
+export type FloatParams = {
+  floatSize: number;
+  floatX: number;
+  floatY: number;
+  floatXAlign: FloatXAlign;
+  floatYAlign: FloatYAlign;
+};
+export type FilterParams = {
+  opacity: number;
+  blur: number;
+  brightness: number;
+  contrast: number;
+};
+
 export function background(
   path: string,
   showType: ShowType,
-  fullscreenType: FullscreenType,
-  fullscreenRepeatType: FullscreenRepeatType,
-  floatSize: number,
-  floatX: number,
-  floatY: number,
-  floatXAlign: FloatXAlign,
-  floatYAlign: FloatYAlign,
-  opacity: number,
-  blur: number,
-  brightness: number,
-  contrast: number
+  fullscreenParams: FullscreenParams,
+  floatParams: FloatParams,
+  filterParams: FilterParams
 ) {
+  const { fullscreenType, fullscreenRepeatType } = fullscreenParams;
+  const { floatSize, floatX, floatY, floatXAlign, floatYAlign } = floatParams;
+  const { opacity, blur, brightness, contrast } = filterParams;
+
   const originalBgCss = `
 .content-tab-active {
   background: none;
