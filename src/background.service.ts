@@ -38,6 +38,7 @@ export class BackgroundService {
       backgroundBrightness,
       backgroundContrast,
       backgroundListGroupTransparent,
+      backgroundTerminalToolbarTransparent,
     } = backgroundPluginConfig;
     const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } =
       backgroundPluginConfig;
@@ -64,6 +65,11 @@ export class BackgroundService {
 
       if (backgroundListGroupTransparent > 0) {
         css += cssBuilder.backgroundListGroupTransparent(backgroundListGroupTransparent);
+      }
+      if (backgroundTerminalToolbarTransparent > 0) {
+        css += cssBuilder.backgroundTerminalToolbarTransparent(
+          backgroundTerminalToolbarTransparent
+        );
       }
     }
 

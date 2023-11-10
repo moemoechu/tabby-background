@@ -23,6 +23,7 @@ export type BackgroundPluginConfig = {
   backgroundBrightness: number;
   backgroundContrast: number;
   backgroundListGroupTransparent: number;
+  backgroundTerminalToolbarTransparent: number;
   uiFontEnabled: boolean;
   uiFontFamily: string;
   uiFontSize: number;
@@ -51,6 +52,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundBrightness: 100,
       backgroundContrast: 100,
       backgroundListGroupTransparent: 0,
+      backgroundTerminalToolbarTransparent: 0,
       uiFontEnabled: false,
       uiFontFamily: "Source Sans Pro",
       uiFontSize: 14,

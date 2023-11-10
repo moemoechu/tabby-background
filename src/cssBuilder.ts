@@ -103,6 +103,13 @@ export function backgroundListGroupTransparent(transparent: number) {
 }\n`;
 }
 
+export function backgroundTerminalToolbarTransparent(transparent: number) {
+  return `
+terminal-toolbar {
+  background: color-mix(in srgb, var(--bs-body-bg) ${100 - transparent}%, transparent) !important;
+}\n`;
+}
+
 export function uiFont(family: string, size: number) {
   return `
 body {
