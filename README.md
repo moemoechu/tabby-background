@@ -37,8 +37,8 @@ Currently tested on Windows and MacOS.
 ## Changelog
 
 - 1.2.4: Add terminal toolbar transparent.
-- 1.2.3: Float mode.
-- 1.2.2: Add Group list transparent.
+- 1.2.3: Add float mode.
+- 1.2.2: Add group list transparent.
 - 1.2.0: Add tabs parameter override.
 - 1.1.4: Do not depend on in app global css.
 - 1.1.2: Add image file picker.
