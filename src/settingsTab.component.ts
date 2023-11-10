@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { BackgroundService } from "background.service";
 import { ConfigService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
+import { debounce } from "utils-decorators";
 
 /** @hidden */
 @Component({
@@ -26,7 +27,12 @@ import { ElectronHostWindow, ElectronService } from "tabby-electron";
   ],
 })
 export class BackgroundSettingsTabComponent {
-  constructor(public config: ConfigService, private background: BackgroundService, private electron: ElectronService, private hostWindow: ElectronHostWindow) {}
+  constructor(
+    public config: ConfigService,
+    private background: BackgroundService,
+    private electron: ElectronService,
+    private hostWindow: ElectronHostWindow
+  ) {}
 
   async pickFile(): Promise<void> {
     const paths = (
@@ -44,6 +50,7 @@ export class BackgroundSettingsTabComponent {
     }
   }
 
+  @debounce(500)
   apply() {
     this.config.save();
     this.background.applyCss();
