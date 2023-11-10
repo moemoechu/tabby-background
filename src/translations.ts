@@ -22,7 +22,7 @@ type BackgroundPluginTranslationsText =
   | "Background brightness(%, 100 = unchanged)"
   | "Background contrast(%, 100 = unchanged)"
   | "Background grayscale(%, 0 = unchanged)"
-  | "Background hue-rotate(deg, 0 = unchanged)"
+  | "Background hue rotate(deg, 0 = unchanged)"
   | "Background invert(%, 0 = unchanged)"
   | "Background saturate(%, 100 = unchanged)"
   | "Background sepia(%, 0 = unchanged)"
@@ -69,7 +69,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Background brightness(%, 100 = unchanged)": "背景亮度(%, 100 = 不改变)",
       "Background contrast(%, 100 = unchanged)": "背景对比度(%, 100 = 不改变)",
       "Background grayscale(%, 0 = unchanged)": "背景灰度(%, 0 = 不改变)",
-      "Background hue-rotate(deg, 0 = unchanged)": "背景色相旋转(度, 0 = 不改变)",
+      "Background hue rotate(deg, 0 = unchanged)": "背景色相旋转(度, 0 = 不改变)",
       "Background invert(%, 0 = unchanged)": "背景反转(%, 0 = 不改变)",
       "Background saturate(%, 100 = unchanged)": "背景饱和度(%, 100 = 不改变)",
       "Background sepia(%, 0 = unchanged)": "背景褐色(%, 0 = 不改变)",
