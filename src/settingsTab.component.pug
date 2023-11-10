@@ -110,7 +110,6 @@ h3(translate) Background
                 .title(translate) Float X offset(px)
             input.form-control.font-size-input(
                 type='number',
-                min='0',
                 [(ngModel)]='config.store.backgroundPlugin.backgroundFloatX',
                 (ngModelChange)='apply();',
             )
@@ -119,7 +118,6 @@ h3(translate) Background
                 .title(translate) Float Y offset(px)
             input.form-control.font-size-input(
                 type='number',
-                min='0',
                 [(ngModel)]='config.store.backgroundPlugin.backgroundFloatY',
                 (ngModelChange)='apply();',
             )
