@@ -7,6 +7,7 @@ Change Tabby background image and more...
 - Change background to your favorite picture.
 - Change UI Font to your favorite font, not affect terminal font.
 - All changes applied in pure css, no dynamic javascript.
+- Compatible with builtin black and white skin.
 
 ## Usage
 
@@ -14,7 +15,7 @@ Install: To install, use Tabby builtin plugin manager.
 
 Background: Enter the image file path into textbox or use the file picker.
 
-Portable Mode: For who use portable mode and want to use relative image path, image can be placed in portable **data** directory, the image path must begin with **../../../data/**.
+Portable Mode: For who use portable mode and want to use relative image path, image file can be placed in portable **data** directory, the image path must begin with **../../../data/**.
 
 UI Font: Enter the font family name into the textbox, can use the font name in [appearance] setting tab.
 
@@ -24,15 +25,18 @@ Currently tested on Windows and MacOS.
 
 ### Settings
 
-![Alt text](screenshot1.jpg)
+![Black Settings](screenshots/black_settings.png)
 
 ### Fullscreen
 
-![Alt text](screenshot2.jpg)
+![Black Menu](screenshots/black_menu.png)
+![Black Terminal](screenshots/black_term.png)
+![White Menu](screenshots/white_menu.png)
 
 ### Float
 
-![Alt text](screenshot3.png)
+![White Menu Float](screenshots/white_menu_float.png)
+![Black Term Float](screenshots/black_term_float.png)
 
 ## Changelog
 
