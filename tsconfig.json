@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "module": "es2015",
+    "module": "ES2015",
     "moduleResolution": "node",
-    "target": "es2016",
+    "target": "ES2017",
     "esModuleInterop": true,
     "noImplicitAny": false,
     "removeComments": false,
