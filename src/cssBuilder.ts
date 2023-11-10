@@ -27,41 +27,27 @@ export function background(
 }
 
 .content-tab-active::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -2;
-  display: block;
-  width: 100%;
-  height: 100%;
-
+  content: ""; position: fixed; left: 0; right: 0; z-index: -2; display: block; width: 100%; height: 100%;
   background: var(--body-bg);
 }
 start-page.content-tab-active::after {
   background: var(--theme-bg-more-2);
 }\n`;
 
+  const beforeBaseCss = `content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;`;
+
+  const filterCss = `filter: opacity(${opacity}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%);`;
+
+  const imagePathCss = `background-image: url("${path}");`;
   let css = originalBgCss;
 
   if (showType === "fullscreen") {
     css += `
 .content-tab-active::before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  display: block;
-  width: 100%;
-  height: 100%;
+  ${beforeBaseCss}
+  ${filterCss}
 
-  filter: opacity(${opacity}%)
-  blur(${blur}px)
-  brightness(${brightness}%)
-  contrast(${contrast}%);
-
-  background-image: url("${path}");
+  ${imagePathCss}
   background-repeat: ${fullscreenRepeatType};
   background-position: center;
   background-size: ${fullscreenType};
@@ -69,21 +55,10 @@ start-page.content-tab-active::after {
   } else if (showType === "float") {
     css += `
 .content-tab-active::before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  display: block;
-  width: 100%;
-  height: 100%;
+  ${beforeBaseCss}
+  ${filterCss}
 
-  filter: opacity(${opacity}%)
-  blur(${blur}px)
-  brightness(${brightness}%)
-  contrast(${contrast}%);
-
-  background-image: url("${path}");
+  ${imagePathCss}
   background-repeat: no-repeat;
   background-position: 
   ${floatXAlign === "center" ? floatXAlign : `${floatXAlign} ${floatX}px`} 
