@@ -23,6 +23,8 @@ type BackgroundPluginTranslations = {
   "Background contrast(%)": string;
   "Group list transparent(%, 0 = disable)": string;
   "Make home page menu and other group list background transparent": string;
+  "Terminal toolbar transparent(%, 0 = disable)": string;
+  "Make terminal toolbar background transparent": string;
 
   "UI Font": string;
   "Enable UI font replace": string;
@@ -47,7 +49,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       Fullscreen: "全屏",
       Float: "浮动",
       "Fullscreen type": "全屏类型",
-      Contain: "包含",
+      Contain: "适应",
       Cover: "填充",
       "Repeat type": "重复类型",
       Repeat: "重复",
@@ -65,6 +67,8 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Group list transparent(%, 0 = disable)": "分组列表透明度(%, 0 = 禁用)",
       "Make home page menu and other group list background transparent":
         "让首页菜单和其他分组列表背景呈现半透明",
+      "Terminal toolbar transparent(%, 0 = disable)": "终端工具栏透明度(%, 0 = 禁用)",
+      "Make terminal toolbar background transparent": "让终端工具栏的背景呈现半透明",
 
       "UI Font": "字体",
       "Enable UI font replace": "是否启用界面字体替换",
