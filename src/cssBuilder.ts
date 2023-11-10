@@ -22,6 +22,11 @@ export type FilterParams = {
   blur: number;
   brightness: number;
   contrast: number;
+  grayscale: number;
+  hueRotate: number;
+  invert: number;
+  saturate: number;
+  sepia: number;
 };
 
 export function background(
@@ -33,7 +38,8 @@ export function background(
 ) {
   const { fullscreenType, fullscreenRepeatType } = fullscreenParams;
   const { floatSize, floatX, floatY, floatXAlign, floatYAlign } = floatParams;
-  const { opacity, blur, brightness, contrast } = filterParams;
+  const { opacity, blur, brightness, contrast, grayscale, hueRotate, invert, saturate, sepia } =
+    filterParams;
 
   const originalBgCss = `
 .content-tab-active {
@@ -50,7 +56,7 @@ start-page.content-tab-active::after {
 
   const beforeBaseCss = `content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;`;
 
-  const filterCss = `filter: opacity(${opacity}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%);`;
+  const filterCss = `filter: opacity(${opacity}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hueRotate}deg) invert(${invert}%) saturate(${saturate}%) sepia(${sepia}%);`;
 
   const imagePathCss = `background-image: url("${path}");`;
   let css = originalBgCss;

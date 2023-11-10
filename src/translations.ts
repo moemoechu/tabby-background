@@ -1,42 +1,46 @@
-type BackgroundPluginTranslations = {
-  Background: string;
-  "Enable background": string;
-  "Background path": string;
-  "Background show type": string;
-  Fullscreen: string;
-  Float: string;
-  "Fullscreen type": string;
-  Contain: string;
-  Cover: string;
-  "Repeat type": string;
-  Repeat: string;
-  "No Repeat": string;
-  "Float size(px)": string;
-  "Float X offset(px)": string;
-  "Float Y offset(px)": string;
-  "Float X align": string;
-  Center: string;
-  "Float Y align": string;
-  "Background opacity(%)": string;
-  "Background blur(px)": string;
-  "Background brightness(%)": string;
-  "Background contrast(%)": string;
-  "Group list transparent(%, 0 = disable)": string;
-  "Make home page menu and other group list background transparent": string;
-  "Terminal toolbar transparent(%, 0 = disable)": string;
-  "Make terminal toolbar background transparent": string;
+type BackgroundPluginTranslationsText =
+  | "Background"
+  | "Enable background"
+  | "Background path"
+  | "Background show type"
+  | "Fullscreen"
+  | "Float"
+  | "Fullscreen type"
+  | "Contain"
+  | "Cover"
+  | "Repeat type"
+  | "Repeat"
+  | "No Repeat"
+  | "Float size(px)"
+  | "Float X offset(px)"
+  | "Float Y offset(px)"
+  | "Float X align"
+  | "Center"
+  | "Float Y align"
+  | "Background opacity(%, 100 = unchanged)"
+  | "Background blur(px, 0 = unchanged)"
+  | "Background brightness(%, 100 = unchanged)"
+  | "Background contrast(%, 100 = unchanged)"
+  | "Background grayscale(%, 0 = unchanged)"
+  | "Background hue-rotate(deg, 0 = unchanged)"
+  | "Background invert(%, 0 = unchanged)"
+  | "Background saturate(%, 100 = unchanged)"
+  | "Background sepia(%, 0 = unchanged)"
+  | "Group list transparent(%, 0 = disable)"
+  | "Make home page menu and other group list background transparent"
+  | "Terminal toolbar transparent(%, 0 = disable)"
+  | "Make terminal toolbar background transparent"
+  | "UI Font"
+  | "Enable UI font replace"
+  | "Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration"
+  | "UI Font Family"
+  | "Fix close button font"
+  | "After enable, restore the tab closing button to the default style"
+  | "Enable Tabs parameter override"
+  | "Tabs dynamic width min(px)"
+  | "Tabs fixed width(px)";
 
-  "UI Font": string;
-  "Enable UI font replace": string;
-  "Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration": string;
-  "UI Font Family": string;
-  "Fix close button font": string;
-  "After enable, restore the tab closing button to the default style": string;
-
-  "Enable Tabs parameter override": string;
-  "Tabs dynamic width min(px)": string;
-  "Tabs fixed width(px)": string;
-};
+type BackgroundPluginTranslations = Record<BackgroundPluginTranslationsText, string>;
 
 export const translations: [string, BackgroundPluginTranslations][] = [
   [
@@ -60,10 +64,15 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Float X align": "浮动X对齐",
       Center: "中央",
       "Float Y align": "浮动Y对齐",
-      "Background opacity(%)": "背景不透明度(%)",
-      "Background blur(px)": "背景模糊度(px)",
-      "Background brightness(%)": "背景亮度(%)",
-      "Background contrast(%)": "背景对比度(%)",
+      "Background opacity(%, 100 = unchanged)": "背景不透明度(%, 100 = 不改变)",
+      "Background blur(px, 0 = unchanged)": "背景模糊度(px, 0 = 不改变)",
+      "Background brightness(%, 100 = unchanged)": "背景亮度(%, 100 = 不改变)",
+      "Background contrast(%, 100 = unchanged)": "背景对比度(%, 100 = 不改变)",
+      "Background grayscale(%, 0 = unchanged)": "背景灰度(%, 0 = 不改变)",
+      "Background hue-rotate(deg, 0 = unchanged)": "背景色相旋转(度, 0 = 不改变)",
+      "Background invert(%, 0 = unchanged)": "背景反转(%, 0 = 不改变)",
+      "Background saturate(%, 100 = unchanged)": "背景饱和度(%, 100 = 不改变)",
+      "Background sepia(%, 0 = unchanged)": "背景褐色(%, 0 = 不改变)",
       "Group list transparent(%, 0 = disable)": "分组列表透明度(%, 0 = 禁用)",
       "Make home page menu and other group list background transparent":
         "让首页菜单和其他分组列表背景呈现半透明",

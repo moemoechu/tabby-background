@@ -22,6 +22,11 @@ export type BackgroundPluginConfig = {
   backgroundBlur: number;
   backgroundBrightness: number;
   backgroundContrast: number;
+  backgroundGrayscale: number;
+  backgroundHueRotate: number;
+  backgroundInvert: number;
+  backgroundSaturate: number;
+  backgroundSepia: number;
   backgroundListGroupTransparent: number;
   backgroundTerminalToolbarTransparent: number;
   uiFontEnabled: boolean;
@@ -51,6 +56,11 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundBlur: 0,
       backgroundBrightness: 100,
       backgroundContrast: 100,
+      backgroundGrayscale: 0,
+      backgroundHueRotate: 0,
+      backgroundInvert: 0,
+      backgroundSaturate: 100,
+      backgroundSepia: 0,
       backgroundListGroupTransparent: 0,
       backgroundTerminalToolbarTransparent: 0,
       uiFontEnabled: false,

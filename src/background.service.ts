@@ -37,6 +37,11 @@ export class BackgroundService {
       backgroundBlur,
       backgroundBrightness,
       backgroundContrast,
+      backgroundGrayscale,
+      backgroundHueRotate,
+      backgroundInvert,
+      backgroundSaturate,
+      backgroundSepia,
       backgroundListGroupTransparent,
       backgroundTerminalToolbarTransparent,
     } = backgroundPluginConfig;
@@ -66,6 +71,11 @@ export class BackgroundService {
           blur: backgroundBlur,
           brightness: backgroundBrightness,
           contrast: backgroundContrast,
+          grayscale: backgroundGrayscale,
+          hueRotate: backgroundHueRotate,
+          invert: backgroundInvert,
+          saturate: backgroundSaturate,
+          sepia: backgroundSepia,
         }
       );
 

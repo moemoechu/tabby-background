@@ -193,7 +193,7 @@ h3(translate) Background
 
     .form-line
         .header
-            .title(translate) Background opacity(%)
+            .title(translate) Background opacity(%, 100 = unchanged)
         input.form-control.font-size-input(
             type='number',
             min='0',
@@ -203,7 +203,7 @@ h3(translate) Background
         )
     .form-line
         .header
-            .title(translate) Background blur(px)
+            .title(translate) Background blur(px, 0 = unchanged)
         input.form-control.font-size-input(
             type='number',
             min='0',
@@ -214,22 +214,72 @@ h3(translate) Background
         )
     .form-line
         .header
-            .title(translate) Background brightness(%)
+            .title(translate) Background brightness(%, 100 = unchanged)
         input.form-control.font-size-input(
             type='number',
             min='0',
-            max='100',
+            max='1000',
             [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
             (ngModelChange)='apply();',
         )
     .form-line
         .header
-            .title(translate) Background contrast(%)
+            .title(translate) Background contrast(%, 100 = unchanged)
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='1000',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Background grayscale(%, 0 = unchanged)
         input.form-control.font-size-input(
             type='number',
             min='0',
             max='100',
-            [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundGrayscale',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Background hue-rotate(deg, 0 = unchanged)
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='360',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundHueRotate',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Background invert(%, 0 = unchanged)
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundInvert',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Background saturate(%, 100 = unchanged)
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='1000',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundSaturate',
+            (ngModelChange)='apply();',
+        )
+    .form-line
+        .header
+            .title(translate) Background sepia(%, 0 = unchanged)
+        input.form-control.font-size-input(
+            type='number',
+            min='0',
+            max='100',
+            [(ngModel)]='config.store.backgroundPlugin.backgroundSepia',
             (ngModelChange)='apply();',
         )
     .form-line

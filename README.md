@@ -36,6 +36,7 @@ Currently tested on Windows and MacOS.
 
 ## Changelog
 
+- 1.2.5: Add more background filters.
 - 1.2.4: Add terminal toolbar transparent.
 - 1.2.3: Add float mode.
 - 1.2.2: Add group list transparent.
