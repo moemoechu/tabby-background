@@ -18,8 +18,8 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                     .header
                         .title(translate) Background path
                         .description(translate) Absolute path begins with ../../../data
-                    .input-group.w-75
-                        input.form-control.background-input(
+                    .input-group.w-50
+                        input.form-control(
                             type='text',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundPath',
                             (ngModelChange)='apply();',

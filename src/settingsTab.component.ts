@@ -20,7 +20,7 @@ import { debounce } from "utils-decorators";
       }
 
       .background-input {
-        min-width: 350px;
+        min-width: 300px;
         // flex: none;
       }
     `,
