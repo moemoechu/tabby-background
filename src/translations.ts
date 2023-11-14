@@ -1,63 +1,63 @@
-type BackgroundPluginTranslationsText =
-  | "Absolute path begins with ../../../data"
-  | "After enable, restore the tab closing button to the default style"
-  | "Background"
-  | "Background blur"
-  | "Background brightness"
-  | "Background contrast"
-  | "Background Filters"
-  | "Background grayscale"
-  | "Background hue rotate"
-  | "Background image master switch"
-  | "Background invert"
-  | "Background opacity"
-  | "Background path"
-  | "Background saturate"
-  | "Background sepia"
-  | "Background show type"
-  | "Center"
-  | "Contain"
-  | "Cover"
-  | "Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration"
-  | "Drop shadow blur"
-  | "Drop shadow color"
-  | "Drop Shadow Parameters"
-  | "Drop shadow X offset"
-  | "Drop shadow Y offset"
-  | "Enable background"
-  | "Enable drop shadow"
-  | "Extra Settings"
-  | "Enable tabs parameter override"
-  | "Enable UI font replace"
-  | "Fix close button font"
-  | "Float"
-  | "Float Parameters"
-  | "Float size"
-  | "Float X align"
-  | "Float X offset"
-  | "Float Y align"
-  | "Float Y offset"
-  | "Fullscreen"
-  | "Fullscreen type"
-  | "Group list transparent"
-  | "Make home page menu and other group list background transparent"
-  | "Make terminal toolbar background transparent"
-  | "No Repeat"
-  | "Repeat"
-  | "Repeat type"
-  | "Tabs dynamic width min"
-  | "Tabs fixed width"
-  | "Terminal toolbar transparent"
-  | "UI Font"
-  | "UI Font Family"
-  | "Unit: %, 0 = unchanged"
-  | "Unit: %, 100 = unchanged"
-  | "Unit: degree, 0 = unchanged"
-  | "Unit: px"
-  | "Unit: px, 0 = unchanged"
-  | "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)";
+// type BackgroundPluginTranslationsText =
+//   | "Absolute path begins with ../../../data"
+//   | "After enable, restore the tab closing button to the default style"
+//   | "Background"
+//   | "Background blur"
+//   | "Background brightness"
+//   | "Background contrast"
+//   | "Background Filters"
+//   | "Background grayscale"
+//   | "Background hue rotate"
+//   | "Background image master switch"
+//   | "Background invert"
+//   | "Background opacity"
+//   | "Background path"
+//   | "Background saturate"
+//   | "Background sepia"
+//   | "Background show type"
+//   | "Center"
+//   | "Contain"
+//   | "Cover"
+//   | "Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration"
+//   | "Drop shadow blur"
+//   | "Drop shadow color"
+//   | "Drop Shadow Parameters"
+//   | "Drop shadow X offset"
+//   | "Drop shadow Y offset"
+//   | "Enable background"
+//   | "Enable drop shadow"
+//   | "Extra Settings"
+//   | "Enable tabs parameter override"
+//   | "Enable UI font replace"
+//   | "Fix close button font"
+//   | "Float"
+//   | "Float Parameters"
+//   | "Float size"
+//   | "Float X align"
+//   | "Float X offset"
+//   | "Float Y align"
+//   | "Float Y offset"
+//   | "Fullscreen"
+//   | "Fullscreen type"
+//   | "Group list transparent"
+//   | "Make home page menu and other group list background transparent"
+//   | "Make terminal toolbar background transparent"
+//   | "No Repeat"
+//   | "Repeat"
+//   | "Repeat type"
+//   | "Tabs dynamic width min"
+//   | "Tabs fixed width"
+//   | "Terminal toolbar transparent"
+//   | "UI Font"
+//   | "UI Font Family"
+//   | "Unit: %, 0 = unchanged"
+//   | "Unit: %, 100 = unchanged"
+//   | "Unit: degree, 0 = unchanged"
+//   | "Unit: px"
+//   | "Unit: px, 0 = unchanged"
+//   | "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)";
 
-type BackgroundPluginTranslations = Record<BackgroundPluginTranslationsText, string>;
+type BackgroundPluginTranslations = Record<string, string>;
 
 export const translations: [string, BackgroundPluginTranslations][] = [
   [
@@ -106,9 +106,6 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       Fullscreen: "全屏",
       "Fullscreen type": "全屏类型",
       "Group list transparent": "分组列表透明度",
-      "Make home page menu and other group list background transparent":
-        "让首页菜单和其他分组列表背景呈现半透明",
-      "Make terminal toolbar background transparent": "让终端工具栏的背景呈现半透明",
       "No Repeat": "不重复",
       Repeat: "重复",
       "Repeat type": "重复类型",
@@ -117,6 +114,10 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Terminal toolbar transparent": "终端工具栏透明度",
       "UI Font Family": "界面字体",
       "UI Font": "字体",
+      "Unit: %, 0 = disable, Make home page menu and other group list background transparent":
+        "单位：%，0 = 禁用，让首页菜单和其他分组列表背景呈现半透明",
+      "Unit: %, 0 = disable, Make terminal toolbar background transparent":
+        "单位：%，0 = 禁用，让终端工具栏的背景呈现半透明",
       "Unit: %, 0 = unchanged": "单位：%，0 = 不改变",
       "Unit: %, 100 = unchanged": "单位：%，100 = 不改变",
       "Unit: degree, 0 = unchanged": "单位：度，0 = 不改变",

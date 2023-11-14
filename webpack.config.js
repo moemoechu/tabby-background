@@ -31,6 +31,10 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       { test: /\.pug$/, use: ["apply-loader", "pug-loader"] },
+      {
+        test: /\.po$/,
+        use: [{ loader: "json-loader" }, { loader: "po-gettext-loader" }],
+      },
     ],
   },
   externals: ["fs", "ngx-toastr", /^rxjs/, /^@angular/, /^@ng-bootstrap/, /^tabby-/],
