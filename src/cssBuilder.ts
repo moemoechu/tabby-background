@@ -79,21 +79,37 @@ start-page.content-tab-active::after {
 
   const beforeBaseCss = `content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;`;
 
-  const filterCss = `filter:
-    opacity(${backgroundOpacity}%)
-    blur(${backgroundBlur}px)
-    brightness(${backgroundBrightness}%)
-    contrast(${backgroundContrast}%)
-    grayscale(${backgroundGrayscale}%)
-    hue-rotate(${backgroundHueRotate}deg)
-    invert(${backgroundInvert}%)
-    saturate(${backgroundSaturate}%)
-    sepia(${backgroundSepia}%)
-    ${
-      showType === "float" && backgroundDropShadowEnabled
-        ? `drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
-        : ""
-    };`;
+  const filterCss =
+    "filter:" +
+    (backgroundOpacity === 100 ? "" : ` opacity(${backgroundOpacity}%)`) +
+    (backgroundBlur === 0 ? "" : ` blur(${backgroundBlur}px)`) +
+    (backgroundBrightness === 100 ? "" : ` brightness(${backgroundBrightness}%)`) +
+    (backgroundContrast === 100 ? "" : ` contrast(${backgroundContrast}%)`) +
+    (backgroundGrayscale === 0 ? "" : ` grayscale(${backgroundGrayscale}%)`) +
+    (backgroundHueRotate === 0 ? "" : ` hue-rotate(${backgroundHueRotate}deg)`) +
+    (backgroundInvert === 0 ? "" : ` invert(${backgroundInvert}%)`) +
+    (backgroundSaturate === 100 ? "" : ` saturate(${backgroundSaturate}%)`) +
+    (backgroundSepia === 0 ? "" : ` sepia(${backgroundSepia}%)`) +
+    (showType === "float" && backgroundDropShadowEnabled
+      ? ` drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
+      : "") +
+    ";";
+
+  // const filterCss2 = `filter:
+  //   ${backgroundOpacity === 100 ? "" : `opacity(${backgroundOpacity}%)`}
+  //   ${backgroundBlur === 0 ? "" : `blur(${backgroundBlur}px)`}
+  //   ${backgroundBrightness === 100 ? "" : `brightness(${backgroundBrightness}%)`}
+  //   ${backgroundContrast === 100 ? "" : `contrast(${backgroundContrast}%)`}
+  //   ${backgroundGrayscale === 0 ? "" : `grayscale(${backgroundGrayscale}%)`}
+  //   ${backgroundHueRotate === 0 ? "" : `hue-rotate(${backgroundHueRotate}deg)`}
+  //   ${backgroundInvert === 0 ? "" : `invert(${backgroundInvert}%)`}
+  //   ${backgroundSaturate === 100 ? "" : `saturate(${backgroundSaturate}%)`}
+  //   ${backgroundSepia === 0 ? "" : `sepia(${backgroundSepia}%)`}
+  //   ${
+  //     showType === "float" && backgroundDropShadowEnabled
+  //       ? `drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
+  //       : ""
+  //   };`;
 
   const imagePathCss = `background-image: url("${path}");`;
   let css = originalBgCss;

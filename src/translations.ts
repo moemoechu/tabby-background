@@ -63,7 +63,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
   [
     "zh-CN",
     {
-      "Absolute path begins with ../../../data": "相对路径从../../../data开始",
+      "Relative path begins with ../../../data": "相对路径从../../../data开始",
       "After enable, restore the tab closing button to the default style":
         "启用后将标签页关闭按钮恢复为默认样式",
       Background: "背景",
