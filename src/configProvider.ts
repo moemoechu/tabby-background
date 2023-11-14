@@ -18,6 +18,11 @@ export type BackgroundPluginConfig = {
   backgroundFloatY: number;
   backgroundFloatXAlign: FloatXAlign;
   backgroundFloatYAlign: FloatYAlign;
+  backgroundDropShadowEnabled: boolean;
+  backgroundDropShadowX: number;
+  backgroundDropShadowY: number;
+  backgroundDropShadowBlur: number;
+  backgroundDropShadowColor: string;
   backgroundOpacity: number;
   backgroundBlur: number;
   backgroundBrightness: number;
@@ -52,6 +57,11 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundFloatY: 0,
       backgroundFloatXAlign: "right",
       backgroundFloatYAlign: "bottom",
+      backgroundDropShadowEnabled: false,
+      backgroundDropShadowX: 0,
+      backgroundDropShadowY: 0,
+      backgroundDropShadowBlur: 10,
+      backgroundDropShadowColor: "gray",
       backgroundOpacity: 45,
       backgroundBlur: 0,
       backgroundBrightness: 100,

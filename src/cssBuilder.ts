@@ -1,33 +1,36 @@
-import {
-  FloatXAlign,
-  FloatYAlign,
-  FullscreenRepeatType,
-  FullscreenType,
-  ShowType,
-} from "configProvider";
+import { BackgroundPluginConfig, ShowType } from "configProvider";
 
-export type FullscreenParams = {
-  fullscreenType: FullscreenType;
-  fullscreenRepeatType: FullscreenRepeatType;
-};
-export type FloatParams = {
-  floatSize: number;
-  floatX: number;
-  floatY: number;
-  floatXAlign: FloatXAlign;
-  floatYAlign: FloatYAlign;
-};
-export type FilterParams = {
-  opacity: number;
-  blur: number;
-  brightness: number;
-  contrast: number;
-  grayscale: number;
-  hueRotate: number;
-  invert: number;
-  saturate: number;
-  sepia: number;
-};
+export type FullscreenParams = Pick<
+  BackgroundPluginConfig,
+  "backgroundFullscreenType" | "backgroundFullscreenRepeatType"
+>;
+
+export type FloatParams = Pick<
+  BackgroundPluginConfig,
+  | "backgroundFloatSize"
+  | "backgroundFloatX"
+  | "backgroundFloatY"
+  | "backgroundFloatXAlign"
+  | "backgroundFloatYAlign"
+>;
+
+export type FilterParams = Pick<
+  BackgroundPluginConfig,
+  | "backgroundDropShadowEnabled"
+  | "backgroundDropShadowX"
+  | "backgroundDropShadowY"
+  | "backgroundDropShadowBlur"
+  | "backgroundDropShadowColor"
+  | "backgroundOpacity"
+  | "backgroundBlur"
+  | "backgroundBrightness"
+  | "backgroundContrast"
+  | "backgroundGrayscale"
+  | "backgroundHueRotate"
+  | "backgroundInvert"
+  | "backgroundSaturate"
+  | "backgroundSepia"
+>;
 
 export function background(
   path: string,
@@ -36,10 +39,30 @@ export function background(
   floatParams: FloatParams,
   filterParams: FilterParams
 ) {
-  const { fullscreenType, fullscreenRepeatType } = fullscreenParams;
-  const { floatSize, floatX, floatY, floatXAlign, floatYAlign } = floatParams;
-  const { opacity, blur, brightness, contrast, grayscale, hueRotate, invert, saturate, sepia } =
-    filterParams;
+  const { backgroundFullscreenType, backgroundFullscreenRepeatType } = fullscreenParams;
+  const {
+    backgroundFloatSize,
+    backgroundFloatX,
+    backgroundFloatY,
+    backgroundFloatXAlign,
+    backgroundFloatYAlign,
+  } = floatParams;
+  const {
+    backgroundOpacity,
+    backgroundBlur,
+    backgroundBrightness,
+    backgroundContrast,
+    backgroundGrayscale,
+    backgroundHueRotate,
+    backgroundInvert,
+    backgroundSaturate,
+    backgroundSepia,
+    backgroundDropShadowEnabled,
+    backgroundDropShadowX,
+    backgroundDropShadowY,
+    backgroundDropShadowBlur,
+    backgroundDropShadowColor,
+  } = filterParams;
 
   const originalBgCss = `
 .content-tab-active {
@@ -56,7 +79,21 @@ start-page.content-tab-active::after {
 
   const beforeBaseCss = `content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;`;
 
-  const filterCss = `filter: opacity(${opacity}%) blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hueRotate}deg) invert(${invert}%) saturate(${saturate}%) sepia(${sepia}%);`;
+  const filterCss = `filter:
+    opacity(${backgroundOpacity}%)
+    blur(${backgroundBlur}px)
+    brightness(${backgroundBrightness}%)
+    contrast(${backgroundContrast}%)
+    grayscale(${backgroundGrayscale}%)
+    hue-rotate(${backgroundHueRotate}deg)
+    invert(${backgroundInvert}%)
+    saturate(${backgroundSaturate}%)
+    sepia(${backgroundSepia}%)
+    ${
+      showType === "float" && backgroundDropShadowEnabled
+        ? `drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
+        : ""
+    };`;
 
   const imagePathCss = `background-image: url("${path}");`;
   let css = originalBgCss;
@@ -68,9 +105,9 @@ start-page.content-tab-active::after {
   ${filterCss}
 
   ${imagePathCss}
-  background-repeat: ${fullscreenRepeatType};
+  background-repeat: ${backgroundFullscreenRepeatType};
   background-position: center;
-  background-size: ${fullscreenType};
+  background-size: ${backgroundFullscreenType};
 }\n`;
   } else if (showType === "float") {
     css += `
@@ -81,9 +118,17 @@ start-page.content-tab-active::after {
   ${imagePathCss}
   background-repeat: no-repeat;
   background-position: 
-  ${floatXAlign === "center" ? floatXAlign : `${floatXAlign} ${floatX}px`} 
-  ${floatYAlign === "center" ? floatYAlign : `${floatYAlign} ${floatY}px`}; 
-  background-size: ${floatSize}px;
+  ${
+    backgroundFloatXAlign === "center"
+      ? backgroundFloatXAlign
+      : `${backgroundFloatXAlign} ${backgroundFloatX}px`
+  } 
+  ${
+    backgroundFloatYAlign === "center"
+      ? backgroundFloatYAlign
+      : `${backgroundFloatYAlign} ${backgroundFloatY}px`
+  }; 
+  background-size: ${backgroundFloatSize}px;
 }\n`;
   } else {
     throw new Error("ShowType Error!");

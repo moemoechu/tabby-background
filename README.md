@@ -8,7 +8,7 @@ Change Tabby background image and more...
 - Change UI Font to your favorite font, not affect terminal font.
 - All changes applied in pure css, no dynamic javascript.
 - Compatible with builtin black and white skin.
-- Tested on Windows and MacOS.
+- Tested on Windows and MacOS with Tabby version 1.0.201.
 
 ## Usage
 
@@ -45,6 +45,7 @@ Enter the font family name into the textbox, can use the font name in [appearanc
 
 ## Changelog
 
+- 1.3.0: UI rearrange.
 - 1.2.6: Add drop shadow filter for float mode.
 - 1.2.5: Add more background filters.
 - 1.2.4: Add terminal toolbar transparent.

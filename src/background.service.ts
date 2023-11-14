@@ -33,6 +33,11 @@ export class BackgroundService {
       backgroundFloatY,
       backgroundFloatXAlign,
       backgroundFloatYAlign,
+      backgroundDropShadowEnabled,
+      backgroundDropShadowX,
+      backgroundDropShadowY,
+      backgroundDropShadowBlur,
+      backgroundDropShadowColor,
       backgroundOpacity,
       backgroundBlur,
       backgroundBrightness,
@@ -56,26 +61,31 @@ export class BackgroundService {
         backgroundPath,
         backgroundShowType,
         {
-          fullscreenType: backgroundFullscreenType,
-          fullscreenRepeatType: backgroundFullscreenRepeatType,
+          backgroundFullscreenType,
+          backgroundFullscreenRepeatType,
         },
         {
-          floatSize: backgroundFloatSize,
-          floatX: backgroundFloatX,
-          floatY: backgroundFloatY,
-          floatXAlign: backgroundFloatXAlign,
-          floatYAlign: backgroundFloatYAlign,
+          backgroundFloatSize,
+          backgroundFloatX,
+          backgroundFloatY,
+          backgroundFloatXAlign,
+          backgroundFloatYAlign,
         },
         {
-          opacity: backgroundOpacity,
-          blur: backgroundBlur,
-          brightness: backgroundBrightness,
-          contrast: backgroundContrast,
-          grayscale: backgroundGrayscale,
-          hueRotate: backgroundHueRotate,
-          invert: backgroundInvert,
-          saturate: backgroundSaturate,
-          sepia: backgroundSepia,
+          backgroundOpacity,
+          backgroundBlur,
+          backgroundBrightness,
+          backgroundContrast,
+          backgroundGrayscale,
+          backgroundHueRotate,
+          backgroundInvert,
+          backgroundSaturate,
+          backgroundSepia,
+          backgroundDropShadowEnabled,
+          backgroundDropShadowX,
+          backgroundDropShadowY,
+          backgroundDropShadowBlur,
+          backgroundDropShadowColor,
         }
       );
 
@@ -110,6 +120,8 @@ export class BackgroundService {
   }
 
   bootstrap() {
+    // 启动时延时注入背景和翻译
+    // 目前没有发现更好的方法，等一波探索（如果有时间）
     setTimeout(() => {
       this.applyCss();
       for (const translation of translations) {
