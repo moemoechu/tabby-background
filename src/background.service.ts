@@ -49,6 +49,7 @@ export class BackgroundService {
       backgroundSepia,
       backgroundListGroupTransparent,
       backgroundTerminalToolbarTransparent,
+      backgroundFooterTransparent,
     } = backgroundPluginConfig;
     const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } =
       backgroundPluginConfig;
@@ -89,14 +90,19 @@ export class BackgroundService {
         }
       );
 
-      if (backgroundListGroupTransparent > 0) {
-        css += cssBuilder.backgroundListGroupTransparent(backgroundListGroupTransparent);
-      }
-      if (backgroundTerminalToolbarTransparent > 0) {
-        css += cssBuilder.backgroundTerminalToolbarTransparent(
-          backgroundTerminalToolbarTransparent
-        );
-      }
+      // if (backgroundListGroupTransparent > 0) {
+      //   css += cssBuilder.backgroundListGroupTransparent(backgroundListGroupTransparent);
+      // }
+      // if (backgroundTerminalToolbarTransparent > 0) {
+      //   css += cssBuilder.backgroundTerminalToolbarTransparent(
+      //     backgroundTerminalToolbarTransparent
+      //   );
+      // }
+      css += cssBuilder.backgroundExtraSettings({
+        backgroundListGroupTransparent,
+        backgroundTerminalToolbarTransparent,
+        backgroundFooterTransparent,
+      });
     }
 
     if (uiFontEnabled) {

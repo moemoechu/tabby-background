@@ -32,6 +32,13 @@ export type FilterParams = Pick<
   | "backgroundSepia"
 >;
 
+export type ExtraParams = Pick<
+  BackgroundPluginConfig,
+  | "backgroundListGroupTransparent"
+  | "backgroundTerminalToolbarTransparent"
+  | "backgroundFooterTransparent"
+>;
+
 export function background(
   path: string,
   showType: ShowType,
@@ -164,6 +171,40 @@ export function backgroundTerminalToolbarTransparent(transparent: number) {
 terminal-toolbar {
   background: color-mix(in srgb, var(--bs-body-bg) ${100 - transparent}%, transparent) !important;
 }\n`;
+}
+
+export function backgroundExtraSettings(extraParams: ExtraParams) {
+  const {
+    backgroundListGroupTransparent,
+    backgroundTerminalToolbarTransparent,
+    backgroundFooterTransparent,
+  } = extraParams;
+  let extraCss = "";
+  if (backgroundListGroupTransparent > 0) {
+    extraCss += `
+.list-group {
+  --bs-list-group-bg: color-mix(in srgb, var(--theme-bg-more) ${
+    100 - backgroundListGroupTransparent
+  }%, transparent);
+}\n`;
+  }
+  if (backgroundTerminalToolbarTransparent > 0) {
+    extraCss += `
+terminal-toolbar {
+  background: color-mix(in srgb, var(--bs-body-bg) ${
+    100 - backgroundTerminalToolbarTransparent
+  }%, transparent) !important;
+}\n`;
+  }
+  if (backgroundFooterTransparent !== 50) {
+    extraCss += `
+footer {
+  background: color-mix(in srgb, rgba(0,0,0,1) ${
+    100 - backgroundFooterTransparent
+  }%, transparent) !important;
+}\n`;
+  }
+  return extraCss;
 }
 
 export function uiFont(family: string, size: number) {
