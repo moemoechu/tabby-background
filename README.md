@@ -46,6 +46,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 
 ## Changelog
 
+- 1.3.1: Cleanup and minify.
 - 1.3.0: UI rearrange.
 - 1.2.6: Add drop shadow filter for float mode.
 - 1.2.5: Add more background filters.
