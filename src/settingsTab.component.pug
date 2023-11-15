@@ -106,6 +106,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         .header
                             .title(translate) Float size
                             .description(translate) Unit: px
+                        input.me-3(
+                            type='range',
+                            [(ngModel)]='config.store.backgroundPlugin.backgroundFloatSize',
+                            (mouseup)='apply();',
+                            min='0',
+                            max='1000',
+                            step='1'
+                        )
+                        button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatSize = 300; apply();')
+                            i.fas.fa-solid.fa-rotate-left
                         input.form-control.font-size-input(
                             type='number',
                             min='0',
@@ -116,6 +126,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         .header
                             .title(translate) Float X offset
                             .description(translate) Unit: px
+                        input.me-3(
+                            type='range',
+                            [(ngModel)]='config.store.backgroundPlugin.backgroundFloatX',
+                            (mouseup)='apply();',
+                            min='-100',
+                            max='1000',
+                            step='1'
+                        )
+                        button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatX = 0; apply();')
+                            i.fas.fa-solid.fa-rotate-left
                         input.form-control.font-size-input(
                             type='number',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundFloatX',
@@ -125,6 +145,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         .header
                             .title(translate) Float Y offset
                             .description(translate) Unit: px
+                        input.me-3(
+                            type='range',
+                            [(ngModel)]='config.store.backgroundPlugin.backgroundFloatY',
+                            (mouseup)='apply();',
+                            min='-100',
+                            max='1000',
+                            step='1'
+                        )
+                        button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatY = 0; apply();')
+                            i.fas.fa-solid.fa-rotate-left
                         input.form-control.font-size-input(
                             type='number',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundFloatY',
@@ -214,6 +244,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 .header
                                     .title(translate) Drop shadow X offset
                                     .description(translate) Unit: px
+                                input.me-3(
+                                    type='range',
+                                    [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowX',
+                                    (mouseup)='apply();',
+                                    min='-200',
+                                    max='200',
+                                    step='1'
+                                )
+                                button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowX = 0; apply();')
+                                    i.fas.fa-solid.fa-rotate-left
                                 input.form-control.font-size-input(
                                     type='number',
                                     [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowX',
@@ -223,6 +263,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 .header
                                     .title(translate) Drop shadow Y offset
                                     .description(translate) Unit: px
+                                input.me-3(
+                                    type='range',
+                                    [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowY',
+                                    (mouseup)='apply();',
+                                    min='-200',
+                                    max='200',
+                                    step='1'
+                                )
+                                button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowY = 0; apply();')
+                                    i.fas.fa-solid.fa-rotate-left
                                 input.form-control.font-size-input(
                                     type='number',
                                     [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowY',
@@ -232,6 +282,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 .header
                                     .title(translate) Drop shadow blur
                                     .description(translate) Unit: px
+                                input.me-3(
+                                    type='range',
+                                    [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowBlur',
+                                    (mouseup)='apply();',
+                                    min='0',
+                                    max='100',
+                                    step='0.1'
+                                )
+                                button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowBlur = 0; apply();')
+                                    i.fas.fa-solid.fa-rotate-left
                                 input.form-control.font-size-input(
                                     type='number',
                                     min='0',
@@ -254,7 +314,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background opacity
-                        .description(translate) Unit: %, 100 = unchanged
+                        .description(translate) Unit: %, 100 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundOpacity',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundOpacity = 100; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -265,11 +335,21 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background blur
-                        .description(translate) Unit: px, 0 = unchanged
+                        .description(translate) Unit: px, 0 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='10',
+                        step='0.1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundBlur = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
-                        max='100',
+                        max='10',
                         step='0.1',
                         [(ngModel)]='config.store.backgroundPlugin.backgroundBlur',
                         (ngModelChange)='apply();',
@@ -277,29 +357,59 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background brightness
-                        .description(translate) Unit: %, 100 = unchanged
+                        .description(translate) Unit: %, 100 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='200',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundBrightness = 100; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
-                        max='1000',
+                        max='200',
                         [(ngModel)]='config.store.backgroundPlugin.backgroundBrightness',
                         (ngModelChange)='apply();',
                     )
                 .form-line
                     .header
                         .title(translate) Background contrast
-                        .description(translate) Unit: %, 100 = unchanged
+                        .description(translate) Unit: %, 100 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='500',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundContrast = 100; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
-                        max='1000',
+                        max='500',
                         [(ngModel)]='config.store.backgroundPlugin.backgroundContrast',
                         (ngModelChange)='apply();',
                     )
                 .form-line
                     .header
                         .title(translate) Background grayscale
-                        .description(translate) Unit: %, 0 = unchanged
+                        .description(translate) Unit: %, 0 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundGrayscale',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundGrayscale = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -310,7 +420,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background hue rotate
-                        .description(translate) Unit: degree, 0 = unchanged
+                        .description(translate) Unit: degree, 0 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundHueRotate',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='360',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundHueRotate = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -321,7 +441,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background invert
-                        .description(translate) Unit: %, 0 = unchanged
+                        .description(translate) Unit: %, 0 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundInvert',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundInvert = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -332,7 +462,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background saturate
-                        .description(translate) Unit: %, 100 = unchanged
+                        .description(translate) Unit: %, 100 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundSaturate',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='1000',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundSaturate = 100; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -343,7 +483,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Background sepia
-                        .description(translate) Unit: %, 0 = unchanged
+                        .description(translate) Unit: %, 0 = disable
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundSepia',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundSepia = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -356,6 +506,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                     .header
                         .title(translate) Group list transparent
                         .description(translate) Unit: %, 0 = disable, Make home page menu and other group list background transparent
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundListGroupTransparent',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundListGroupTransparent = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
@@ -367,6 +527,16 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                     .header
                         .title(translate) Terminal toolbar transparent
                         .description(translate) Unit: %, 0 = disable, Make terminal toolbar background transparent
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin.backgroundTerminalToolbarTransparent',
+                        (mouseup)='apply();',
+                        min='0',
+                        max='100',
+                        step='1'
+                    )
+                    button.btn.btn-secondary.me-3((click)='config.store.backgroundPlugin.backgroundTerminalToolbarTransparent = 0; apply();')
+                        i.fas.fa-solid.fa-rotate-left
                     input.form-control.font-size-input(
                         type='number',
                         min='0',
