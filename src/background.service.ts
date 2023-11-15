@@ -87,22 +87,13 @@ export class BackgroundService {
           backgroundDropShadowY,
           backgroundDropShadowBlur,
           backgroundDropShadowColor,
+        },
+        {
+          backgroundListGroupTransparent,
+          backgroundTerminalToolbarTransparent,
+          backgroundFooterTransparent,
         }
       );
-
-      // if (backgroundListGroupTransparent > 0) {
-      //   css += cssBuilder.backgroundListGroupTransparent(backgroundListGroupTransparent);
-      // }
-      // if (backgroundTerminalToolbarTransparent > 0) {
-      //   css += cssBuilder.backgroundTerminalToolbarTransparent(
-      //     backgroundTerminalToolbarTransparent
-      //   );
-      // }
-      css += cssBuilder.backgroundExtraSettings({
-        backgroundListGroupTransparent,
-        backgroundTerminalToolbarTransparent,
-        backgroundFooterTransparent,
-      });
     }
 
     if (uiFontEnabled) {

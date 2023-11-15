@@ -44,7 +44,8 @@ export function background(
   showType: ShowType,
   fullscreenParams: FullscreenParams,
   floatParams: FloatParams,
-  filterParams: FilterParams
+  filterParams: FilterParams,
+  extraParams: ExtraParams
 ) {
   const { backgroundFullscreenType, backgroundFullscreenRepeatType } = fullscreenParams;
   const {
@@ -102,22 +103,6 @@ start-page.content-tab-active::after {
       : "") +
     ";";
 
-  // const filterCss2 = `filter:
-  //   ${backgroundOpacity === 100 ? "" : `opacity(${backgroundOpacity}%)`}
-  //   ${backgroundBlur === 0 ? "" : `blur(${backgroundBlur}px)`}
-  //   ${backgroundBrightness === 100 ? "" : `brightness(${backgroundBrightness}%)`}
-  //   ${backgroundContrast === 100 ? "" : `contrast(${backgroundContrast}%)`}
-  //   ${backgroundGrayscale === 0 ? "" : `grayscale(${backgroundGrayscale}%)`}
-  //   ${backgroundHueRotate === 0 ? "" : `hue-rotate(${backgroundHueRotate}deg)`}
-  //   ${backgroundInvert === 0 ? "" : `invert(${backgroundInvert}%)`}
-  //   ${backgroundSaturate === 100 ? "" : `saturate(${backgroundSaturate}%)`}
-  //   ${backgroundSepia === 0 ? "" : `sepia(${backgroundSepia}%)`}
-  //   ${
-  //     showType === "float" && backgroundDropShadowEnabled
-  //       ? `drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
-  //       : ""
-  //   };`;
-
   const imagePathCss = `background-image: url("${path}");`;
   let css = originalBgCss;
 
@@ -156,24 +141,7 @@ start-page.content-tab-active::after {
   } else {
     throw new Error("ShowType Error!");
   }
-  return css;
-}
 
-export function backgroundListGroupTransparent(transparent: number) {
-  return `
-.list-group {
-  --bs-list-group-bg: color-mix(in srgb, var(--theme-bg-more) ${100 - transparent}%, transparent);
-}\n`;
-}
-
-export function backgroundTerminalToolbarTransparent(transparent: number) {
-  return `
-terminal-toolbar {
-  background: color-mix(in srgb, var(--bs-body-bg) ${100 - transparent}%, transparent) !important;
-}\n`;
-}
-
-export function backgroundExtraSettings(extraParams: ExtraParams) {
   const {
     backgroundListGroupTransparent,
     backgroundTerminalToolbarTransparent,
@@ -204,7 +172,8 @@ footer {
   }%, transparent) !important;
 }\n`;
   }
-  return extraCss;
+  css += extraCss;
+  return css;
 }
 
 export function uiFont(family: string, size: number) {
