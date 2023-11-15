@@ -50,11 +50,11 @@
 //   | "Terminal toolbar transparent"
 //   | "UI Font"
 //   | "UI Font Family"
-//   | "Unit: %, 0 = unchanged"
-//   | "Unit: %, 100 = unchanged"
-//   | "Unit: degree, 0 = unchanged"
+//   | "Unit: %, 0 = disable"
+//   | "Unit: %, 100 = disable"
+//   | "Unit: degree, 0 = disable"
 //   | "Unit: px"
-//   | "Unit: px, 0 = unchanged"
+//   | "Unit: px, 0 = disable"
 //   | "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)";
 
 type BackgroundPluginTranslations = Record<string, string>;
@@ -115,12 +115,12 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "UI Font": "字体",
       "Unit: %, 0 = disable, Make home page menu and other group list background transparent": "单位：%，0 = 禁用，让首页菜单和其他分组列表背景呈现半透明",
       "Unit: %, 0 = disable, Make terminal toolbar background transparent": "单位：%，0 = 禁用，让终端工具栏的背景呈现半透明",
-      "Unit: %, 0 = unchanged": "单位：%，0 = 不改变",
-      "Unit: %, 100 = unchanged": "单位：%，100 = 不改变",
-      "Unit: degree, 0 = unchanged": "单位：度，0 = 不改变",
-      "Unit: px, 0 = unchanged": "单位：像素，0 = 不改变",
+      "Unit: %, 0 = disable": "单位：%，0 = 禁用",
+      "Unit: %, 100 = disable": "单位：%，100 = 禁用",
+      "Unit: degree, 0 = disable": "单位：度，0 = 禁用",
+      "Unit: px, 0 = disable": "单位：像素，0 = 禁用",
       "Unit: px": "单位：像素",
-      "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)": "使用RGBA格式（如：#FF0000A0），或者使用颜色名字（red, green, blue, etc...）",
+      "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)": "使用RGBA格式（如：#FF0000A0），或者使用颜色名字（red, green, blue, 等等...）",
     },
   ],
 ];
