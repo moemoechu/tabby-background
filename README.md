@@ -43,6 +43,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 ![White Menu Float](screenshots/white_menu_float.png)
 ![Black Term Float](screenshots/black_term_float.png)
 ![White Menu Float Shadow](screenshots/white_menu_float_shadow.png)
+![White Term Float Shadow](screenshots/white_term_float_shadow.png)
 
 ## Changelog
 
