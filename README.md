@@ -24,7 +24,7 @@ For who use portable mode and want to use relative image path, image file can be
 
 ### Change UI Font
 
-Enter the font family name into the textbox, can use the font name in [appearance] setting tab.
+Enter the font family name into the textbox, can use the font name in **appearance** setting tab.
 
 ## Screenshot
 
@@ -42,6 +42,7 @@ Enter the font family name into the textbox, can use the font name in [appearanc
 
 ![White Menu Float](screenshots/white_menu_float.png)
 ![Black Term Float](screenshots/black_term_float.png)
+![White Menu Float Shadow](screenshots/white_menu_float_shadow.png)
 
 ## Changelog
 
