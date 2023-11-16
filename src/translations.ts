@@ -66,7 +66,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)": "使用RGBA格式（如：#FF0000A0），或者使用颜色名字（red, green, blue, 等等...）",
       "Others": "其他",
       "Unit: %, 50 = default": "单位：%，50 = 默认",
-      "Unit: %, 100 = default": "单位：%，100 = 默认",
+      "Unit: %, 0 = default": "单位：%，0 = 默认",
       "Inactive tab dimming": "非活动标签页变暗",
       "Active tab dimming": "活动标签页变暗",
     },

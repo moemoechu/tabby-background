@@ -172,7 +172,7 @@ export class BackgroundSettingsTabComponent {
     },
     {
       title: "Active tab dimming",
-      description: "Unit: %, 100 = default",
+      description: "Unit: %, 0 = default",
       model: "othersActiveTabDimming",
       default: "0",
       min: "0",
