@@ -400,39 +400,32 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                     )
 
     li(ngbNavItem)
-        a(ngbNavLink, translate) Tabs
+        a(ngbNavLink, translate) Others
         ng-template(ngbNavContent)
-            .form-line
-                .header
-                    .title(translate) Enable tabs parameter override
-                    //- .description(translate) 
-                toggle(
-                    [(ngModel)]='config.store.backgroundPlugin.tabsOverrideEnabled',
-                    (ngModelChange)='apply();',
-                )
 
-            .content-box(*ngIf='config.store.backgroundPlugin.tabsOverrideEnabled === true')
+            ng-container(*ngFor='let item of others')
                 .form-line
                     .header
-                        .title(translate) Tabs dynamic width min
-                        .description(translate) Unit: px
-                    input.form-control(
+                        .title(translate) {{item.title}}
+                        .description(translate) {{item.description}}
+                    input.me-3(
+                        type='range',
+                        [(ngModel)]='config.store.backgroundPlugin[item.model]',
+                        (mouseup)='apply();',
+                        min='{{item.min}}',
+                        max='{{item.max}}',
+                        step='{{item.step}}'
+                    )
+                    button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin[item.model] = item.default; apply();')
+                        i.fas.fa-solid.fa-rotate-left
+                    input.form-control.font-size-input(
                         type='number',
-                        min='50',
-                        max='1000',
-                        [(ngModel)]='config.store.backgroundPlugin.tabsFlexMinWidth',
+                        min='{{item.min}}',
+                        max='{{item.max}}',
+                        step='{{item.step}}',
+                        [(ngModel)]='config.store.backgroundPlugin[item.model]',
                         (ngModelChange)='apply();',
                     )
-                .form-line
-                    .header
-                        .title(translate) Tabs fixed width
-                        .description(translate) Unit: px
-                    input.form-control(
-                        type='number',
-                        min='50',
-                        max='1000',
-                        [(ngModel)]='config.store.backgroundPlugin.tabsFixedWidth',
-                        (ngModelChange)='apply();',
-                    )
+
 
 div([ngbNavOutlet]='nav')

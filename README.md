@@ -7,7 +7,9 @@ Change Tabby background image and more...
 - Change background to your favorite picture.
 - Change UI Font to your favorite font, not affect terminal font.
 - All changes applied in pure css, no dynamic javascript.
+- All changes can be disable separately.
 - Compatible with builtin black and white skin.
+- Support English and Chinese.
 - Tested on Windows and MacOS with Tabby version 1.0.201.
 
 ## Usage
@@ -47,6 +49,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 
 ## Changelog
 
+- 1.3.2: Add tab dimming settings, remove tabs parameter override.
 - 1.3.1: Cleanup and minify.
 - 1.3.0: UI rearrange.
 - 1.2.6: Add drop shadow filter for float mode.

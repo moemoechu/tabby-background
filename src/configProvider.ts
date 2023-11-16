@@ -42,6 +42,8 @@ export type BackgroundPluginConfig = {
   tabsOverrideEnabled: boolean;
   tabsFlexMinWidth: number;
   tabsFixedWidth: number;
+  othersInactiveTabDimming: number;
+  othersActiveTabDimming: number;
 };
 
 /** @hidden */
@@ -82,6 +84,8 @@ export class BackgroundConfigProvider extends ConfigProvider {
       tabsOverrideEnabled: false,
       tabsFlexMinWidth: 200,
       tabsFixedWidth: 200,
+      othersInactiveTabDimming: 50,
+      othersActiveTabDimming: 0,
     },
   };
 }

@@ -142,6 +142,45 @@ export class BackgroundSettingsTabComponent {
     },
   ];
 
+  others: any[] = [
+    // {
+    //   title: "Tabs dynamic width min",
+    //   description: "Unit: px, 0 = disable",
+    //   model: "tabsFlexMinWidth",
+    //   default: "200",
+    //   min: "0",
+    //   max: "1000",
+    //   step: "1",
+    // },
+    // {
+    //   title: "Tabs fixed width",
+    //   description: "Unit: px, 200 = disable",
+    //   model: "tabsFixedWidth",
+    //   default: "200",
+    //   min: "50",
+    //   max: "1000",
+    //   step: "1",
+    // },
+    {
+      title: "Inactive tab dimming",
+      description: "Unit: %, 50 = disable",
+      model: "othersInactiveTabDimming",
+      default: "50",
+      min: "0",
+      max: "100",
+      step: "1",
+    },
+    {
+      title: "Active tab dimming",
+      description: "Unit: %, 100 = disable",
+      model: "othersActiveTabDimming",
+      default: "0",
+      min: "0",
+      max: "100",
+      step: "1",
+    },
+  ];
+
   constructor(
     public config: ConfigService,
     private background: BackgroundService,
