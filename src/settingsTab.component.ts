@@ -3,6 +3,7 @@ import { BackgroundService } from "background.service";
 import { ConfigService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
 import { debounce } from "utils-decorators";
+import { ToastrService } from "ngx-toastr";
 
 /** @hidden */
 @Component({
@@ -185,7 +186,8 @@ export class BackgroundSettingsTabComponent {
     public config: ConfigService,
     private background: BackgroundService,
     private electron: ElectronService,
-    private hostWindow: ElectronHostWindow
+    private hostWindow: ElectronHostWindow,
+    private toastr: ToastrService
   ) {}
 
   async pickFile(): Promise<void> {
@@ -209,5 +211,6 @@ export class BackgroundSettingsTabComponent {
   apply() {
     this.config.save();
     this.background.applyCss();
+    this.toastr.info("Background applied.");
   }
 }

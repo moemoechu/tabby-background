@@ -10,7 +10,7 @@ Change Tabby background image and more...
 - All changes can be disable separately.
 - Compatible with builtin black and white skin.
 - Support English and Chinese.
-- Tested on Windows and MacOS with Tabby version 1.0.201.
+- Tested on Windows and MacOS with Tabby version 1.0.204.
 
 ## Usage
 
