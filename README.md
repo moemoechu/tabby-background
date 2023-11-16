@@ -49,6 +49,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 
 ## Changelog
 
+- 1.3.3: Change bootstrap method, provide more fluent experience.
 - 1.3.2: Add tab dimming settings, remove tabs parameter override.
 - 1.3.1: Cleanup and minify.
 - 1.3.0: UI rearrange.
