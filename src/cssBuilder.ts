@@ -1,43 +1,4 @@
-import { BackgroundPluginConfig, ShowType } from "configProvider";
-
-export type FullscreenParams = Pick<
-  BackgroundPluginConfig,
-  "backgroundFullscreenType" | "backgroundFullscreenRepeatType"
->;
-
-export type FloatParams = Pick<
-  BackgroundPluginConfig,
-  | "backgroundFloatSize"
-  | "backgroundFloatX"
-  | "backgroundFloatY"
-  | "backgroundFloatXAlign"
-  | "backgroundFloatYAlign"
->;
-
-export type FilterParams = Pick<
-  BackgroundPluginConfig,
-  | "backgroundDropShadowEnabled"
-  | "backgroundDropShadowX"
-  | "backgroundDropShadowY"
-  | "backgroundDropShadowBlur"
-  | "backgroundDropShadowColor"
-  | "backgroundOpacity"
-  | "backgroundBlur"
-  | "backgroundBrightness"
-  | "backgroundContrast"
-  | "backgroundGrayscale"
-  | "backgroundHueRotate"
-  | "backgroundInvert"
-  | "backgroundSaturate"
-  | "backgroundSepia"
->;
-
-export type ExtraParams = Pick<
-  BackgroundPluginConfig,
-  | "backgroundListGroupTransparent"
-  | "backgroundTerminalToolbarTransparent"
-  | "backgroundFooterTransparent"
->;
+import { BackgroundPluginConfig } from "configProvider";
 
 export function background(configs: BackgroundPluginConfig) {
   const { backgroundEnabled, backgroundPath, backgroundShowType } = configs;
