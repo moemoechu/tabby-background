@@ -20,7 +20,5 @@ import { BackgroundSettingsTabProvider } from "./settingsTabProvider";
   declarations: [BackgroundSettingsTabComponent],
 })
 export default class BackgroundModule {
-  constructor(public config: ConfigService, private readonly background: BackgroundService) {
-    this.background.bootstrap();
-  }
+  constructor(public config: ConfigService, private readonly background: BackgroundService) {}
 }

@@ -211,6 +211,6 @@ export class BackgroundSettingsTabComponent {
   apply() {
     this.config.save();
     this.background.applyCss();
-    this.toastr.info("Background applied.");
+    this.toastr.info("Background applied");
   }
 }
