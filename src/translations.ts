@@ -69,6 +69,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Unit: %, 0 = default": "单位：%，0 = 默认",
       "Inactive tab dimming": "非活动标签页变暗",
       "Active tab dimming": "活动标签页变暗",
+      "Background applied!": "背景已应用！",
     },
   ],
 ];
