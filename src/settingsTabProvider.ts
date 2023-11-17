@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { TranslateService } from "tabby-core";
 import { SettingsTabProvider } from "tabby-settings";
 import { BackgroundSettingsTabComponent } from "./settingsTab.component";
 
@@ -10,7 +9,7 @@ export class BackgroundSettingsTabProvider extends SettingsTabProvider {
   icon = "image";
   title = "Background";
 
-  constructor(private translate: TranslateService) {
+  constructor() {
     super();
   }
 

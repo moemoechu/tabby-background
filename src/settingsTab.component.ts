@@ -14,6 +14,10 @@ import { ToastrService } from "ngx-toastr";
         width: 100px;
         flex: none;
       }
+      .param-input {
+        width: 70px;
+        flex: none;
+      }
 
       .font-family-input {
         min-width: 150px;
@@ -115,8 +119,7 @@ export class BackgroundSettingsTabComponent {
   extraSettings: any[] = [
     {
       title: "Group list transparent",
-      description:
-        "Unit: %, 0 = disable, Make home page menu and other group list background transparent",
+      description: "Unit: %, 0 = disable, Apply to home menu and other group list",
       model: "backgroundListGroupTransparent",
       default: "0",
       min: "0",
@@ -125,7 +128,7 @@ export class BackgroundSettingsTabComponent {
     },
     {
       title: "Terminal toolbar transparent",
-      description: "Unit: %, 0 = disable, Make terminal toolbar background transparent",
+      description: "Unit: %, 0 = disable, Apply to terminal toolbar",
       model: "backgroundTerminalToolbarTransparent",
       default: "0",
       min: "0",
@@ -134,7 +137,7 @@ export class BackgroundSettingsTabComponent {
     },
     {
       title: "Home page footer transparent",
-      description: "Unit: %, 50 = disable, Make home page footer background transparent",
+      description: "Unit: %, 50 = disable, Apply to home page footer",
       model: "backgroundFooterTransparent",
       default: "50",
       min: "0",

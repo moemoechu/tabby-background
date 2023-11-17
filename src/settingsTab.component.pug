@@ -116,7 +116,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         )
                         button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatSize = 300; apply();')
                             i.fas.fa-solid.fa-rotate-left
-                        input.form-control.font-size-input(
+                        input.form-control.param-input(
                             type='number',
                             min='0',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundFloatSize',
@@ -136,7 +136,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         )
                         button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatX = 0; apply();')
                             i.fas.fa-solid.fa-rotate-left
-                        input.form-control.font-size-input(
+                        input.form-control.param-input(
                             type='number',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundFloatX',
                             (ngModelChange)='apply();',
@@ -155,7 +155,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         )
                         button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundFloatY = 0; apply();')
                             i.fas.fa-solid.fa-rotate-left
-                        input.form-control.font-size-input(
+                        input.form-control.param-input(
                             type='number',
                             [(ngModel)]='config.store.backgroundPlugin.backgroundFloatY',
                             (ngModelChange)='apply();',
@@ -254,7 +254,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 )
                                 button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowX = 0; apply();')
                                     i.fas.fa-solid.fa-rotate-left
-                                input.form-control.font-size-input(
+                                input.form-control.param-input(
                                     type='number',
                                     [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowX',
                                     (ngModelChange)='apply();',
@@ -273,7 +273,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 )
                                 button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowY = 0; apply();')
                                     i.fas.fa-solid.fa-rotate-left
-                                input.form-control.font-size-input(
+                                input.form-control.param-input(
                                     type='number',
                                     [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowY',
                                     (ngModelChange)='apply();',
@@ -292,7 +292,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                                 )
                                 button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin.backgroundDropShadowBlur = 0; apply();')
                                     i.fas.fa-solid.fa-rotate-left
-                                input.form-control.font-size-input(
+                                input.form-control.param-input(
                                     type='number',
                                     min='0',
                                     max='100',
@@ -303,7 +303,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                             .form-line
                                 .header
                                     .title(translate) Drop shadow color
-                                    .description(translate) Use RGBA format(#FF0000A0) or use color name(red, green, blue, etc...)
+                                    .description(translate) Use RGBA (#FF0000A0) or color name(red, green, ...)
                                 input.form-control.font-family-input(
                                     type='text',
                                     [(ngModel)]='config.store.backgroundPlugin.backgroundDropShadowColor',
@@ -320,17 +320,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                             type='range',
                             [(ngModel)]='config.store.backgroundPlugin[item.model]',
                             (mouseup)='apply();',
-                            min='{{item.min}}',
-                            max='{{item.max}}',
-                            step='{{item.step}}'
+                            [min]='item.min',
+                            [max]='item.max',
+                            [step]='item.step'
                         )
                         button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin[item.model] = item.default; apply();')
                             i.fas.fa-solid.fa-rotate-left
-                        input.form-control.font-size-input(
+                        input.form-control.param-input(
                             type='number',
-                            min='{{item.min}}',
-                            max='{{item.max}}',
-                            step='{{item.step}}',
+                            [min]='item.min',
+                            [max]='item.max',
+                            [step]='item.step',
                             [(ngModel)]='config.store.backgroundPlugin[item.model]',
                             (ngModelChange)='apply();',
                         )
@@ -344,17 +344,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                             type='range',
                             [(ngModel)]='config.store.backgroundPlugin[item.model]',
                             (mouseup)='apply();',
-                            min='{{item.min}}',
-                            max='{{item.max}}',
-                            step='{{item.step}}'
+                            [min]='item.min',
+                            [max]='item.max',
+                            [step]='item.step'
                         )
                         button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin[item.model] = item.default; apply();')
                             i.fas.fa-solid.fa-rotate-left
-                        input.form-control.font-size-input(
+                        input.form-control.param-input(
                             type='number',
-                            min='{{item.min}}',
-                            max='{{item.max}}',
-                            step='{{item.step}}',
+                            [min]='item.min',
+                            [max]='item.max',
+                            [step]='item.step',
                             [(ngModel)]='config.store.backgroundPlugin[item.model]',
                             (ngModelChange)='apply();',
                         )
@@ -365,7 +365,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
             .form-line
                 .header
                     .title(translate) Enable UI font replace
-                    .description(translate) Do not affect the terminal font, the terminal font still uses the font in the [appearance] configuration
+                    .description(translate) Do not affect the terminal font in the [appearance] configuration
                 toggle(
                     [(ngModel)]='config.store.backgroundPlugin.uiFontEnabled',
                     (ngModelChange)='apply();',
@@ -393,7 +393,7 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                 .form-line
                     .header
                         .title(translate) Fix close button font
-                        .description(translate) After enable, restore the tab closing button to the default style
+                        .description(translate) Restore the tab closing button to default font
                     toggle(
                         [(ngModel)]='config.store.backgroundPlugin.uiFontTabBarCloseBtnFix',
                         (ngModelChange)='apply();',
@@ -412,17 +412,17 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         type='range',
                         [(ngModel)]='config.store.backgroundPlugin[item.model]',
                         (mouseup)='apply();',
-                        min='{{item.min}}',
-                        max='{{item.max}}',
-                        step='{{item.step}}'
+                        min='item.min',
+                        max='item.max',
+                        step='item.step'
                     )
                     button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin[item.model] = item.default; apply();')
                         i.fas.fa-solid.fa-rotate-left
-                    input.form-control.font-size-input(
+                    input.form-control.param-input(
                         type='number',
-                        min='{{item.min}}',
-                        max='{{item.max}}',
-                        step='{{item.step}}',
+                        min='item.min',
+                        max='item.max',
+                        step='item.step',
                         [(ngModel)]='config.store.backgroundPlugin[item.model]',
                         (ngModelChange)='apply();',
                     )
