@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
+import { BackgroundPluginConfig } from "./configProvider";
 import * as cssBuilder from "./cssBuilder";
 import { translations } from "./translations";
-import { BackgroundPluginConfig } from "configProvider";
 
 @Injectable({ providedIn: "root" })
 export class BackgroundService {

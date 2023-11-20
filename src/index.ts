@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import TabbyCoreModule, { ConfigProvider, ConfigService } from "tabby-core";
 import { SettingsTabProvider } from "tabby-settings";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { BackgroundService } from "background.service";
+import { BackgroundService } from "./background.service";
 import { BackgroundConfigProvider } from "./configProvider";
 import { BackgroundSettingsTabComponent } from "./settingsTab.component";
 import { BackgroundSettingsTabProvider } from "./settingsTabProvider";

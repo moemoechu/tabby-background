@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 import { BackgroundService } from "background.service";
+import { ToastrService } from "ngx-toastr";
 import { ConfigService, TranslateService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
 import { debounce } from "utils-decorators";
-import { ToastrService } from "ngx-toastr";
 
 /** @hidden */
 @Component({
