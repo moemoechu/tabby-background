@@ -4,13 +4,13 @@ Change Tabby background image and more...
 
 ## Features
 
-- Change background to your favorite picture.
-- Change UI Font to your favorite font, not affect terminal font.
-- All changes applied in pure css, no dynamic javascript.
-- All changes can be disable separately.
-- Compatible with builtin black and white skin.
-- Support English and Chinese.
-- Tested on Windows and MacOS with Tabby version 1.0.204.
+- [x] Change background to your favorite picture.
+- [x] Change UI Font to your favorite font, not affect terminal font.
+- [x] All changes applied in pure css, no dynamic javascript.
+- [x] All changes can be disable separately.
+- [x] Compatible with builtin black and white skin.
+- [x] Support English and Chinese.
+- [x] Tested on Windows and MacOS with Tabby version 1.0.205.
 
 ## Usage
 
