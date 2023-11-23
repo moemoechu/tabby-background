@@ -183,6 +183,15 @@ export class BackgroundSettingsTabComponent {
       max: "100",
       step: "1",
     },
+    {
+      title: "TabBar preserve space width",
+      description: "Unit: px, 138 = disable",
+      model: "othersTabBarPersistentSpaceMinWidth",
+      default: "138",
+      min: "0",
+      max: "1000",
+      step: "1",
+    },
   ];
 
   constructor(

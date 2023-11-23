@@ -44,6 +44,7 @@ export type BackgroundPluginConfig = {
   tabsFixedWidth: number;
   othersInactiveTabDimming: number;
   othersActiveTabDimming: number;
+  othersTabBarPersistentSpaceMinWidth: number;
 };
 
 /** @hidden */
@@ -86,6 +87,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       tabsFixedWidth: 200,
       othersInactiveTabDimming: 50,
       othersActiveTabDimming: 0,
+      othersTabBarPersistentSpaceMinWidth: 138,
     },
   };
 }

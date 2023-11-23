@@ -147,7 +147,8 @@ footer {
   //   css += tabsFixedWidth(tabsFixedWidth);
   // }
 
-  const { othersInactiveTabDimming, othersActiveTabDimming } = configs;
+  const { othersInactiveTabDimming, othersActiveTabDimming, othersTabBarPersistentSpaceMinWidth } =
+    configs;
   let othersCss = "";
 
   if (othersInactiveTabDimming !== 50) {
@@ -162,6 +163,14 @@ split-tab>.child {
 split-tab>.child.focused {
   opacity: ${(100 - othersActiveTabDimming) / 100};
 }`;
+  }
+
+  if (othersTabBarPersistentSpaceMinWidth !== 138) {
+    othersCss += `
+.btn-space.persistent {
+  min-width: ${othersTabBarPersistentSpaceMinWidth}px !important;
+}
+`;
   }
 
   css += othersCss;

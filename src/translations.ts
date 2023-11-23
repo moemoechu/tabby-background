@@ -72,6 +72,8 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Inactive tab dimming": "非活动标签页变暗",
       "Active tab dimming": "活动标签页变暗",
       "Background applied!": "背景已应用！",
+      "TabBar preserve space width": "标签栏预留宽度",
+      "Unit: px, 138 = disable": "单位：像素，138 = 禁用",
     },
   ],
 ];

@@ -328,11 +328,11 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                             i.fas.fa-solid.fa-rotate-left
                         input.form-control.param-input(
                             type='number',
+                            [(ngModel)]='config.store.backgroundPlugin[item.model]',
+                            (ngModelChange)='apply();',
                             [min]='item.min',
                             [max]='item.max',
                             [step]='item.step',
-                            [(ngModel)]='config.store.backgroundPlugin[item.model]',
-                            (ngModelChange)='apply();',
                         )
                 .h4(translate) Extra Settings
                 ng-container(*ngFor='let item of extraSettings')
@@ -352,11 +352,11 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                             i.fas.fa-solid.fa-rotate-left
                         input.form-control.param-input(
                             type='number',
+                            [(ngModel)]='config.store.backgroundPlugin[item.model]',
+                            (ngModelChange)='apply();',
                             [min]='item.min',
                             [max]='item.max',
                             [step]='item.step',
-                            [(ngModel)]='config.store.backgroundPlugin[item.model]',
-                            (ngModelChange)='apply();',
                         )
 
     li(ngbNavItem)
@@ -412,19 +412,19 @@ ul.nav-tabs(ngbNav, #nav='ngbNav')
                         type='range',
                         [(ngModel)]='config.store.backgroundPlugin[item.model]',
                         (mouseup)='apply();',
-                        min='item.min',
-                        max='item.max',
-                        step='item.step'
+                        [min]='item.min',
+                        [max]='item.max',
+                        [step]='item.step'
                     )
                     button.btn.btn-outline-secondary.me-3((click)='config.store.backgroundPlugin[item.model] = item.default; apply();')
                         i.fas.fa-solid.fa-rotate-left
                     input.form-control.param-input(
                         type='number',
-                        min='item.min',
-                        max='item.max',
-                        step='item.step',
                         [(ngModel)]='config.store.backgroundPlugin[item.model]',
                         (ngModelChange)='apply();',
+                        [min]='item.min',
+                        [max]='item.max',
+                        [step]='item.step',
                     )
 
 
