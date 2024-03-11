@@ -33,7 +33,17 @@ export default () => ({
         test: /\.scss/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      { test: /\.pug$/, use: ["apply-loader", "pug-loader"] },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
+      },
       {
         test: /\.po$/,
         use: [{ loader: "json-loader" }, { loader: "po-gettext-loader" }],
