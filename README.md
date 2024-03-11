@@ -19,7 +19,6 @@ Change Tabby background image and more...
 
 - [x] Change tab dimming settings
 - [x] Change TabBar preserve space width.
-- [x] All changes applied in pure css, no dynamic javascript.
 - [x] All changes can be disable separately.
 - [x] Compatible with builtin black and white skin.
 - [x] Support English and Chinese.
@@ -62,7 +61,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 
 ## Changelog
 
-- 1.3.3: Add modify TabBar preserve space width.
+- 1.3.4: Add modify TabBar preserve space width.
 - 1.3.3: Change bootstrap method, provide more fluent experience.
 - 1.3.2: Add tab dimming settings, remove tabs parameter override.
 - 1.3.1: Cleanup and minify.
