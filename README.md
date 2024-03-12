@@ -9,6 +9,9 @@ Change Tabby background image and more...
 - [x] Change background to your favorite picture.
 - [x] Support all of vanilla css filters.
 - [x] Float mode to better support transparent png.
+- [ ] Per session/group/type background.
+- [ ] Slideshow.
+- [ ] Using desktop background.
 
 ### UI Font
 
@@ -21,7 +24,7 @@ Change Tabby background image and more...
 - [x] Change TabBar preserve space width.
 - [x] All changes can be disable separately.
 - [x] Compatible with builtin black and white skin.
-- [x] Support English and Chinese.
+- [x] Setting UI support English and Chinese.
 - [x] Tested on Windows and MacOS with Tabby version 1.0.205.
 
 ## Usage
