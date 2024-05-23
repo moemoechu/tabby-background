@@ -9,9 +9,10 @@ Change Tabby background image and more...
 - [x] Change background to your favorite picture.
 - [x] Support all of vanilla css filters.
 - [x] Float mode to better support transparent png.
-- [ ] Per session/group/type background.
+- [ ] Per session background.
 - [ ] Slideshow.
 - [ ] Using desktop background.
+- [ ] Tab context menu fast switch background.
 
 ### UI Font
 
@@ -20,7 +21,7 @@ Change Tabby background image and more...
 
 ### Other
 
-- [x] Change tab dimming settings
+- [x] Change split panel dimming settings
 - [x] Change TabBar preserve space width.
 - [x] All changes can be disable separately.
 - [x] Compatible with builtin black and white skin.
