@@ -166,7 +166,7 @@ export class BackgroundSettingsTabComponent {
     //   step: "1",
     // },
     {
-      title: "Inactive tab dimming",
+      title: "Inactive split panel dimming",
       description: "Unit: %, 50 = default",
       model: "othersInactiveTabDimming",
       default: "50",
@@ -175,7 +175,7 @@ export class BackgroundSettingsTabComponent {
       step: "1",
     },
     {
-      title: "Active tab dimming",
+      title: "Inactive split panel dimming",
       description: "Unit: %, 0 = default",
       model: "othersActiveTabDimming",
       default: "0",
