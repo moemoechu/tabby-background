@@ -8,7 +8,6 @@ export type FloatXAlign = "left" | "center" | "right";
 export type FloatYAlign = "top" | "center" | "bottom";
 
 export type Background = {
-  // profile?: string; // 单会话背景配置，先不实现喵，留个坑喵~
   backgroundPath: string;
   backgroundShowType: ShowType;
   backgroundFullscreenType: FullscreenType;
@@ -37,34 +36,13 @@ export type Background = {
   backgroundFooterTransparent: number;
 };
 
-export type BackgroundPluginConfig = {
+export type AdvancedBackground = Background & {
+  profile: any; // 单会话背景配置，先不实现喵，留个坑喵~
+  enabled: boolean;
+};
+
+export type BackgroundPluginConfig = Background & {
   backgroundEnabled: boolean;
-  backgroundPath: string;
-  backgroundShowType: ShowType;
-  backgroundFullscreenType: FullscreenType;
-  backgroundFullscreenRepeatType: FullscreenRepeatType;
-  backgroundFloatSize: number;
-  backgroundFloatX: number;
-  backgroundFloatY: number;
-  backgroundFloatXAlign: FloatXAlign;
-  backgroundFloatYAlign: FloatYAlign;
-  backgroundDropShadowEnabled: boolean;
-  backgroundDropShadowX: number;
-  backgroundDropShadowY: number;
-  backgroundDropShadowBlur: number;
-  backgroundDropShadowColor: string;
-  backgroundOpacity: number;
-  backgroundBlur: number;
-  backgroundBrightness: number;
-  backgroundContrast: number;
-  backgroundGrayscale: number;
-  backgroundHueRotate: number;
-  backgroundInvert: number;
-  backgroundSaturate: number;
-  backgroundSepia: number;
-  backgroundListGroupTransparent: number;
-  backgroundTerminalToolbarTransparent: number;
-  backgroundFooterTransparent: number;
   uiFontEnabled: boolean;
   uiFontFamily: string;
   uiFontSize: number;
@@ -76,7 +54,7 @@ export type BackgroundPluginConfig = {
   othersActiveTabDimming: number;
   othersTabBarPersistentSpaceMinWidth: number;
   backgroundMode: "simple" | "advanced";
-  backgrounds: Background[];
+  backgrounds: AdvancedBackground[];
   backgroundAdvancedType: "per-tab" | "global";
   backgroundAdvancedChooseType: "sequence" | "random";
   backgroundAdvancedSwitchType: "slideshow" | "session";
