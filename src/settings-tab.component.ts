@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { BackgroundService } from "background.service";
+import { BackgroundService } from "./background.service";
+import { BackgroundPluginConfig } from "./config.provider";
 import { ToastrService } from "ngx-toastr";
 import { ConfigService, TranslateService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
@@ -7,7 +8,7 @@ import { debounce } from "utils-decorators";
 
 /** @hidden */
 @Component({
-  template: require("./settingsTab.component.html"),
+  template: require("./settings-tab.component.html"),
   styles: [
     `
       .font-size-input {
@@ -194,6 +195,8 @@ export class BackgroundSettingsTabComponent {
     },
   ];
 
+  pluginConfig: BackgroundPluginConfig;
+
   constructor(
     public config: ConfigService,
     private background: BackgroundService,
@@ -201,7 +204,9 @@ export class BackgroundSettingsTabComponent {
     private hostWindow: ElectronHostWindow,
     private toastr: ToastrService,
     private translate: TranslateService
-  ) {}
+  ) {
+    this.pluginConfig = this.config.store.backgroundPlugin;
+  }
 
   async pickFile(): Promise<void> {
     const paths = (

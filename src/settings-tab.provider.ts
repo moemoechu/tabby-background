@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { SettingsTabProvider } from "tabby-settings";
-import { BackgroundSettingsTabComponent } from "./settingsTab.component";
+import { BackgroundSettingsTabComponent } from "./settings-tab.component";
 
 /** @hidden */
 @Injectable()

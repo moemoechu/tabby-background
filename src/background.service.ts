@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
-import { BackgroundPluginConfig } from "./configProvider";
+import { BackgroundPluginConfig } from "./config.provider";
 import * as cssBuilder from "./cssBuilder";
 import { translations } from "./translations";
 
@@ -8,6 +8,10 @@ import { translations } from "./translations";
 export class BackgroundService {
   private logger: Logger;
   private styleElement: HTMLStyleElement;
+  private backgroundStyleElement: HTMLStyleElement;
+  private uiFontStyleElement: HTMLStyleElement;
+  private uiOtherStyleElement: HTMLStyleElement;
+
   constructor(
     public config: ConfigService,
     private logService: LogService,
@@ -15,6 +19,20 @@ export class BackgroundService {
   ) {
     this.logger = this.logService.create("tabby-background");
     this.logger.info("BackgroundService ctor");
+    
+    this.backgroundStyleElement = document.createElement("style");
+    this.backgroundStyleElement.id = "background";
+    this.backgroundStyleElement.innerHTML = "";
+    document.body.appendChild(this.backgroundStyleElement);
+    this.uiFontStyleElement = document.createElement("style");
+    this.uiFontStyleElement.id = "uiFont";
+    this.uiFontStyleElement.innerHTML = "";
+    document.body.appendChild(this.uiFontStyleElement);
+    this.uiOtherStyleElement = document.createElement("style");
+    this.uiOtherStyleElement.id = "uiOther";
+    this.uiOtherStyleElement.innerHTML = "";
+    document.body.appendChild(this.uiOtherStyleElement);
+
     this.styleElement = document.createElement("style");
     this.styleElement.id = "tabby-background";
     this.styleElement.innerHTML = "";
@@ -22,10 +40,13 @@ export class BackgroundService {
     this.config.ready$.subscribe(() => {
       this.logger.info("config ready");
       this.applyCss();
-      for (const translation of translations) {
-        const [lang, trans] = translation;
-        this.translate.setTranslation(lang, trans, true);
-      }
+      setImmediate(() => {
+        for (const translation of translations) {
+          const [lang, trans] = translation;
+          this.translate.setTranslation(lang, trans, true);
+          this.logger.info("translate applied");
+        }
+      });
     });
   }
 

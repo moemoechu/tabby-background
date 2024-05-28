@@ -7,6 +7,36 @@ export type FullscreenRepeatType = "repeat" | "no-repeat";
 export type FloatXAlign = "left" | "center" | "right";
 export type FloatYAlign = "top" | "center" | "bottom";
 
+export type Background = {
+  // profile?: string; // 单会话背景配置，先不实现喵，留个坑喵~
+  backgroundPath: string;
+  backgroundShowType: ShowType;
+  backgroundFullscreenType: FullscreenType;
+  backgroundFullscreenRepeatType: FullscreenRepeatType;
+  backgroundFloatSize: number;
+  backgroundFloatX: number;
+  backgroundFloatY: number;
+  backgroundFloatXAlign: FloatXAlign;
+  backgroundFloatYAlign: FloatYAlign;
+  backgroundDropShadowEnabled: boolean;
+  backgroundDropShadowX: number;
+  backgroundDropShadowY: number;
+  backgroundDropShadowBlur: number;
+  backgroundDropShadowColor: string;
+  backgroundOpacity: number;
+  backgroundBlur: number;
+  backgroundBrightness: number;
+  backgroundContrast: number;
+  backgroundGrayscale: number;
+  backgroundHueRotate: number;
+  backgroundInvert: number;
+  backgroundSaturate: number;
+  backgroundSepia: number;
+  backgroundListGroupTransparent: number;
+  backgroundTerminalToolbarTransparent: number;
+  backgroundFooterTransparent: number;
+};
+
 export type BackgroundPluginConfig = {
   backgroundEnabled: boolean;
   backgroundPath: string;
@@ -45,6 +75,12 @@ export type BackgroundPluginConfig = {
   othersInactiveTabDimming: number;
   othersActiveTabDimming: number;
   othersTabBarPersistentSpaceMinWidth: number;
+  backgroundMode: "simple" | "advanced";
+  backgrounds: Background[];
+  backgroundAdvancedType: "per-tab" | "global";
+  backgroundAdvancedChooseType: "sequence" | "random";
+  backgroundAdvancedSwitchType: "slideshow" | "session";
+  backgroundAdvancedSlideshowInterval: number;
 };
 
 /** @hidden */
@@ -88,6 +124,12 @@ export class BackgroundConfigProvider extends ConfigProvider {
       othersInactiveTabDimming: 50,
       othersActiveTabDimming: 0,
       othersTabBarPersistentSpaceMinWidth: 138,
+      backgroundMode: "simple",
+      backgrounds: [],
+      backgroundAdvancedType: "global",
+      backgroundAdvancedChooseType: "sequence",
+      backgroundAdvancedSwitchType: "session",
+      backgroundAdvancedSlideshowInterval: 3600,
     },
   };
 }

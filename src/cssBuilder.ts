@@ -1,4 +1,4 @@
-import { BackgroundPluginConfig } from "configProvider";
+import { BackgroundPluginConfig } from "./config.provider";
 
 export function background(configs: BackgroundPluginConfig) {
   const { backgroundEnabled, backgroundPath, backgroundShowType } = configs;

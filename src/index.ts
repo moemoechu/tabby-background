@@ -6,9 +6,9 @@ import TabbyCoreModule, { ConfigProvider, ConfigService } from "tabby-core";
 import { SettingsTabProvider } from "tabby-settings";
 
 import { BackgroundService } from "./background.service";
-import { BackgroundConfigProvider } from "./configProvider";
-import { BackgroundSettingsTabComponent } from "./settingsTab.component";
-import { BackgroundSettingsTabProvider } from "./settingsTabProvider";
+import { BackgroundConfigProvider } from "./config.provider";
+import { BackgroundSettingsTabComponent } from "./settings-tab.component";
+import { BackgroundSettingsTabProvider } from "./settings-tab.provider";
 
 @NgModule({
   imports: [CommonModule, FormsModule, TabbyCoreModule, NgbModule],
