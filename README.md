@@ -63,8 +63,13 @@ Enter the font family name into the textbox, can use the font name in **appearan
 ![White Menu Float Shadow](screenshots/white_menu_float_shadow.png)
 ![White Term Float Shadow](screenshots/white_term_float_shadow.png)
 
+### Slideshow
+
+![Slideshow](screenshots/slideshow.gif)
+
 ## Changelog
 
+- 2.0.0: Add slideshow.
 - 1.3.4: Add modify TabBar preserve space width.
 - 1.3.3: Change bootstrap method, provide more fluent experience.
 - 1.3.2: Add tab dimming settings, remove tabs parameter override.
