@@ -17,6 +17,10 @@ export class BackgroundService {
   private uiFontStyleElement: HTMLStyleElement;
   private uiOtherStyleElement: HTMLStyleElement;
   pluginConfig: BackgroundPluginConfig;
+  private backgroundTimer: NodeJS.Timeout;
+  private previewMode: boolean;
+  private slideShowList: string[];
+  private slideShowCurrentIndex: number;
 
   constructor(
     public config: ConfigService,
@@ -38,6 +42,9 @@ export class BackgroundService {
     this.uiOtherStyleElement.id = "uiOther";
     this.uiOtherStyleElement.innerHTML = "";
     document.body.appendChild(this.uiOtherStyleElement);
+
+    this.previewMode = false;
+    this.slideShowList = [];
 
     this.config.ready$.subscribe(() => {
       this.logger.info("config ready");
@@ -69,6 +76,9 @@ export class BackgroundService {
       const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
       this.backgroundStyleElement.innerHTML = backgroundCss;
     } else if (this.pluginConfig.backgroundMode === "advanced") {
+      if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
+        this.enterSlideShow();
+      }
     }
     this.logger.info("Background applied.");
   }
@@ -83,6 +93,7 @@ export class BackgroundService {
     newBackground.id = uuid.v4();
     newBackground.name = `bg${this.pluginConfig.backgrounds.length}`;
     this.pluginConfig.backgrounds.unshift(newBackground);
+    this.logger.debug(`background ${newBackground.id} added...`);
     this.apply();
   }
 
@@ -91,7 +102,89 @@ export class BackgroundService {
     this.apply();
   }
 
-  getBackgroundByID(id: number) {}
+  getBackgroundByID(id: string) {
+    const background = this.pluginConfig.backgrounds.find((value) => value.id === id);
+    return background;
+  }
+
+  buildSlideShowList() {
+    this.slideShowList = this.pluginConfig.backgrounds
+      .filter((value) => value.enabled)
+      .map((value) => value.id);
+    if (this.pluginConfig.backgroundAdvancedChooseType === "sequence") {
+      console.log("sequence");
+    } else if (this.pluginConfig.backgroundAdvancedChooseType === "reverse") {
+      console.log("reverse");
+      this.slideShowList.reverse();
+    } else if (this.pluginConfig.backgroundAdvancedChooseType === "random") {
+      console.log("random");
+      this.slideShowList.sort(() => Math.random() - 0.5);
+    }
+    this.slideShowCurrentIndex = this.slideShowList.findIndex(
+      (value) => value === this.pluginConfig.backgroundAdvancedCurrentId
+    );
+    if (this.slideShowCurrentIndex === -1) {
+      this.slideShowCurrentIndex = 0;
+    }
+    console.log(this.slideShowList);
+  }
+
+  enterSlideShow() {
+    const handler = () => {
+      this.logger.info(`begin slideshow timer`);
+      this.slideShowCurrentIndex++;
+      if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
+        this.slideShowCurrentIndex = 0;
+      }
+      this.pluginConfig.backgroundAdvancedCurrentId =
+        this.slideShowList[this.slideShowCurrentIndex];
+      const backgroundCss = this.buildBackgroundCss(
+        this.getBackgroundByID(this.pluginConfig.backgroundAdvancedCurrentId)
+      );
+      this.backgroundStyleElement.innerHTML = backgroundCss;
+      this.pluginConfig.backgroundLastChangedTime = Date.now();
+      this.backgroundTimer = setTimeout(
+        handler,
+        this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
+      );
+
+      this.config.save();
+      this.logger.info(`end slideshow timer`);
+    };
+    this.leaveSlideShow();
+    this.buildSlideShowList();
+    if (this.slideShowList.length === 0) {
+      return;
+    }
+    const backgroundCss = this.buildBackgroundCss(
+      this.getBackgroundByID(this.slideShowList[this.slideShowCurrentIndex])
+    );
+    this.backgroundStyleElement.innerHTML = backgroundCss;
+    const leftTime =
+      this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000 -
+      (Date.now() - this.pluginConfig.backgroundLastChangedTime);
+
+    this.backgroundTimer = setTimeout(handler, leftTime > 0 ? leftTime : 0);
+  }
+
+  leaveSlideShow() {
+    if (this.backgroundTimer) {
+      clearTimeout(this.backgroundTimer);
+      this.backgroundTimer = undefined;
+    }
+  }
+
+  enterPreviewMode() {
+    if (this.previewMode === false) {
+      this.previewMode = true;
+    }
+  }
+
+  leavePreviewMode() {
+    if (this.previewMode === true) {
+      this.previewMode = false;
+    }
+  }
 
   buildBackgroundCss(background: Background) {
     const { backgroundPath, backgroundShowType } = background;

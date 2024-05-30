@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { BackgroundService } from "./background.service";
 import { AdvancedBackground, BackgroundPluginConfig } from "./config.provider";
@@ -51,7 +51,7 @@ import { debounce } from "utils-decorators";
     `,
   ],
 })
-export class BackgroundSettingsTabComponent {
+export class BackgroundSettingsTabComponent implements OnDestroy {
   filters: any[] = [
     {
       title: "Background opacity",
@@ -225,6 +225,10 @@ export class BackgroundSettingsTabComponent {
     private translate: TranslateService
   ) {
     this.pluginConfig = this.config.store.backgroundPlugin;
+    console.log("component ctor");
+  }
+  ngOnDestroy(): void {
+    console.log("component distroy");
   }
 
   async pickFile(): Promise<void> {
@@ -260,4 +264,6 @@ export class BackgroundSettingsTabComponent {
   delBackground(i: number) {
     this.background.delBackground(i);
   }
+  exportBackgroundAdvancedSettings() {}
+  importBackgroundAdvancedSettings() {}
 }

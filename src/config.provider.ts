@@ -95,6 +95,7 @@ export type BackgroundPluginConfig = Background & {
   backgroundAdvancedSwitchType: "slideshow" | "session";
   backgroundAdvancedSlideshowInterval: number;
   backgroundAdvancedCurrentId: string;
+  backgroundLastChangedTime: number;
 };
 
 /** @hidden */
@@ -145,6 +146,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundAdvancedSwitchType: "session",
       backgroundAdvancedSlideshowInterval: 3600,
       backgroundAdvancedCurrentId: uuid.NIL,
+      backgroundLastChangedTime: 0,
     },
   };
 }

@@ -23,7 +23,7 @@
             (ngModelChange)="apply()"
           >
             <option [ngValue]="'simple'" translate>Simple</option>
-            <option [ngValue]="'advanced'" translate>Advanced (experimental)</option>
+            <option [ngValue]="'advanced'" translate>Advanced</option>
           </select>
         </div>
         <div class="content-box" *ngIf="pluginConfig.backgroundMode === 'simple'">
@@ -548,7 +548,7 @@
             >
               <option [ngValue]="'sequence'" translate>Sequence</option>
               <option [ngValue]="'random'" translate>Random</option>
-              <option [ngValue]="'random'" translate>Reverse</option>
+              <option [ngValue]="'reverse'" translate>Reverse</option>
             </select>
           </div>
 
@@ -558,11 +558,11 @@
               <span translate>Add</span>
             </button>
             <div class="flex-grow-1"></div>
-            <button class="btn btn-primary" (click)="importHighlightProfile()">
+            <button class="btn btn-primary" (click)="importBackgroundAdvancedSettings()">
               <i class="fas fa-solid fa-file-import"></i>
               <span translate>Import</span>
             </button>
-            <button class="btn btn-primary ms-2" (click)="exportHighlightProfile()">
+            <button class="btn btn-primary ms-2" (click)="exportBackgroundAdvancedSettings()">
               <i class="fas fa-solid fa-file-export"></i>
               <span translate>Export</span>
             </button>
