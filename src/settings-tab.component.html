@@ -503,7 +503,7 @@
               (ngModelChange)="apply()"
             >
               <option [ngValue]="'slideshow'" translate>Slideshow</option>
-              <option [ngValue]="'session'" translate>New Session</option>
+              <!-- <option [ngValue]="'session'" translate>New Session</option> -->
             </select>
           </div>
           <div class="form-line" *ngIf="pluginConfig.backgroundAdvancedSwitchType === 'slideshow'">
@@ -635,7 +635,7 @@
                         [(ngModel)]="item.backgroundPath"
                         (ngModelChange)="apply()"
                       />
-                      <button class="btn btn-secondary" (click)="pickFile()">
+                      <button class="btn btn-secondary" (click)="pickFile(item)">
                         <i class="fas fa-folder-open"> </i>
                       </button>
                     </div>

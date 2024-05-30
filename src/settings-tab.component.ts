@@ -231,7 +231,7 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
     console.log("component distroy");
   }
 
-  async pickFile(): Promise<void> {
+  async pickFile(background?: AdvancedBackground): Promise<void> {
     const paths = (
       await this.electron.dialog.showOpenDialog(this.hostWindow.getWindow(), {
         filters: [
@@ -242,7 +242,11 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
       })
     ).filePaths;
     if (paths[0]) {
-      this.config.store.backgroundPlugin.backgroundPath = paths[0];
+      if (background) {
+        background.backgroundPath = paths[0];
+      } else {
+        this.config.store.backgroundPlugin.backgroundPath = paths[0];
+      }
       this.apply();
     }
   }
