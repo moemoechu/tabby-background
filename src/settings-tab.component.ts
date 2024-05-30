@@ -243,19 +243,14 @@ export class BackgroundSettingsTabComponent {
     }
   }
 
-  save() {
-    this.config.save();
-  }
-
   apply() {
-    this.save();
-    this.background.applyCss();
+    this.background.apply();
     // this.toastr.info(this.translate.instant("Background applied!"));
   }
 
   dropBackgroundItem(event: CdkDragDrop<AdvancedBackground[]>) {
     moveItemInArray(this.pluginConfig.backgrounds, event.previousIndex, event.currentIndex);
-    this.save();
+    this.apply();
   }
 
   addBackground() {

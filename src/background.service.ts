@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
-import { AdvancedBackground, BackgroundPluginConfig, DefaultBackground } from "./config.provider";
+import {
+  AdvancedBackground,
+  Background,
+  BackgroundPluginConfig,
+  DefaultBackground,
+} from "./config.provider";
 import { translations } from "./translations";
 import * as uuid from "uuid";
 
@@ -34,14 +39,10 @@ export class BackgroundService {
     this.uiOtherStyleElement.innerHTML = "";
     document.body.appendChild(this.uiOtherStyleElement);
 
-    this.styleElement = document.createElement("style");
-    this.styleElement.id = "tabby-background";
-    this.styleElement.innerHTML = "";
-    document.body.appendChild(this.styleElement);
     this.config.ready$.subscribe(() => {
       this.logger.info("config ready");
       this.pluginConfig = this.config.store.backgroundPlugin;
-      this.applyCss();
+      this.applyStyle();
       setImmediate(() => {
         for (const translation of translations) {
           const [lang, trans] = translation;
@@ -52,19 +53,29 @@ export class BackgroundService {
     });
   }
 
-  buildCss() {
-    let css = background(this.pluginConfig);
-
-    return css;
+  clearStyle() {
+    this.backgroundStyleElement.innerHTML = "";
+    this.uiFontStyleElement.innerHTML = "";
+    this.uiOtherStyleElement.innerHTML = "";
   }
 
-  applyCss() {
-    this.styleElement.innerHTML = this.buildCss();
+  applyStyle() {
+    this.clearStyle();
+
+    // this.styleElement.innerHTML = this.buildCss();
+    this.uiFontStyleElement.innerHTML = this.buildUiFontCss();
+    this.uiOtherStyleElement.innerHTML = this.buildOthersCss();
+    if (this.pluginConfig.backgroundMode === "simple") {
+      const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
+      this.backgroundStyleElement.innerHTML = backgroundCss;
+    } else if (this.pluginConfig.backgroundMode === "advanced") {
+    }
     this.logger.info("Background applied.");
   }
 
-  saveConfig() {
+  apply() {
     this.config.save();
+    this.applyStyle();
   }
 
   addBackground() {
@@ -72,97 +83,87 @@ export class BackgroundService {
     newBackground.id = uuid.v4();
     newBackground.name = `bg${this.pluginConfig.backgrounds.length}`;
     this.pluginConfig.backgrounds.unshift(newBackground);
-    this.saveConfig();
+    this.apply();
   }
 
   delBackground(i: number) {
     this.pluginConfig.backgrounds.splice(i, 1);
-    this.saveConfig();
+    this.apply();
   }
-}
 
-export function background(configs: BackgroundPluginConfig) {
-  const { backgroundEnabled, backgroundPath, backgroundShowType } = configs;
-  const { backgroundFullscreenType, backgroundFullscreenRepeatType } = configs;
-  const {
-    backgroundFloatSize,
-    backgroundFloatX,
-    backgroundFloatY,
-    backgroundFloatXAlign,
-    backgroundFloatYAlign,
-  } = configs;
-  const {
-    backgroundOpacity,
-    backgroundBlur,
-    backgroundBrightness,
-    backgroundContrast,
-    backgroundGrayscale,
-    backgroundHueRotate,
-    backgroundInvert,
-    backgroundSaturate,
-    backgroundSepia,
-    backgroundDropShadowEnabled,
-    backgroundDropShadowX,
-    backgroundDropShadowY,
-    backgroundDropShadowBlur,
-    backgroundDropShadowColor,
-  } = configs;
+  getBackgroundByID(id: number) {}
 
-  let css = `/* added by tabby-background plugin */\n`;
+  buildBackgroundCss(background: Background) {
+    const { backgroundPath, backgroundShowType } = background;
+    const { backgroundFullscreenType, backgroundFullscreenRepeatType } = background;
+    const {
+      backgroundFloatSize,
+      backgroundFloatX,
+      backgroundFloatY,
+      backgroundFloatXAlign,
+      backgroundFloatYAlign,
+    } = background;
+    const {
+      backgroundOpacity,
+      backgroundBlur,
+      backgroundBrightness,
+      backgroundContrast,
+      backgroundGrayscale,
+      backgroundHueRotate,
+      backgroundInvert,
+      backgroundSaturate,
+      backgroundSepia,
+      backgroundDropShadowEnabled,
+      backgroundDropShadowX,
+      backgroundDropShadowY,
+      backgroundDropShadowBlur,
+      backgroundDropShadowColor,
+    } = background;
+    const {
+      backgroundListGroupTransparent,
+      backgroundTerminalToolbarTransparent,
+      backgroundFooterTransparent,
+    } = background;
 
-  if (backgroundEnabled) {
-    const originalBgCss = `
+    const css = `
+/* added by tabby-background plugin */
+/* background */
 .content-tab-active {
   background: none;
 }
-
 .content-tab-active::after {
   content: ""; position: fixed; left: 0; right: 0; z-index: -2; display: block; width: 100%; height: 100%;
   background: var(--body-bg);
 }
 start-page.content-tab-active::after {
   background: var(--theme-bg-more-2);
-}\n`;
-
-    css += originalBgCss;
-    const beforeBaseCss = `content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;`;
-
-    const filterCss =
-      "filter:" +
-      (backgroundOpacity === 100 ? "" : ` opacity(${backgroundOpacity}%)`) +
-      (backgroundBlur === 0 ? "" : ` blur(${backgroundBlur}px)`) +
-      (backgroundBrightness === 100 ? "" : ` brightness(${backgroundBrightness}%)`) +
-      (backgroundContrast === 100 ? "" : ` contrast(${backgroundContrast}%)`) +
-      (backgroundGrayscale === 0 ? "" : ` grayscale(${backgroundGrayscale}%)`) +
-      (backgroundHueRotate === 0 ? "" : ` hue-rotate(${backgroundHueRotate}deg)`) +
-      (backgroundInvert === 0 ? "" : ` invert(${backgroundInvert}%)`) +
-      (backgroundSaturate === 100 ? "" : ` saturate(${backgroundSaturate}%)`) +
-      (backgroundSepia === 0 ? "" : ` sepia(${backgroundSepia}%)`) +
-      (backgroundShowType === "float" && backgroundDropShadowEnabled
-        ? ` drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
-        : "") +
-      ";";
-
-    const imagePathCss = `background-image: url("${backgroundPath.replaceAll("\\", "/")}");`;
-
-    if (backgroundShowType === "fullscreen") {
-      css += `
+}
 .content-tab-active::before {
-  ${beforeBaseCss}
-  ${filterCss}
-
-  ${imagePathCss}
+  content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;
+  filter:${
+    (backgroundOpacity === 100 ? "" : ` opacity(${backgroundOpacity}%)`) +
+    (backgroundBlur === 0 ? "" : ` blur(${backgroundBlur}px)`) +
+    (backgroundBrightness === 100 ? "" : ` brightness(${backgroundBrightness}%)`) +
+    (backgroundContrast === 100 ? "" : ` contrast(${backgroundContrast}%)`) +
+    (backgroundGrayscale === 0 ? "" : ` grayscale(${backgroundGrayscale}%)`) +
+    (backgroundHueRotate === 0 ? "" : ` hue-rotate(${backgroundHueRotate}deg)`) +
+    (backgroundInvert === 0 ? "" : ` invert(${backgroundInvert}%)`) +
+    (backgroundSaturate === 100 ? "" : ` saturate(${backgroundSaturate}%)`) +
+    (backgroundSepia === 0 ? "" : ` sepia(${backgroundSepia}%)`) +
+    (backgroundShowType === "float" && backgroundDropShadowEnabled
+      ? ` drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
+      : "") +
+    ";"
+  }
+  background-image: url("${backgroundPath.replaceAll("\\", "/")}");
+${(() => {
+  if (backgroundShowType === "fullscreen") {
+    return `
   background-repeat: ${backgroundFullscreenRepeatType};
   background-position: center;
-  background-size: ${backgroundFullscreenType};
-}\n`;
-    } else if (backgroundShowType === "float") {
-      css += `
-.content-tab-active::before {
-  ${beforeBaseCss}
-  ${filterCss}
-
-  ${imagePathCss}
+  background-size: ${backgroundFullscreenType};`.trim();
+  } else if (backgroundShowType === "float") {
+    return `
   background-repeat: no-repeat;
   background-position: 
   ${
@@ -175,116 +176,122 @@ start-page.content-tab-active::after {
       ? backgroundFloatYAlign
       : `${backgroundFloatYAlign} ${backgroundFloatY}px`
   }; 
-  background-size: ${backgroundFloatSize}px;
-}\n`;
-    } else {
-      throw new Error("ShowType Error!");
-    }
-
-    const {
-      backgroundListGroupTransparent,
-      backgroundTerminalToolbarTransparent,
-      backgroundFooterTransparent,
-    } = configs;
-    let extraCss = "";
-    if (backgroundListGroupTransparent > 0) {
-      extraCss += `
+  background-size: ${backgroundFloatSize}px;`;
+  } else {
+    throw new Error("ShowType Error!");
+  }
+})()}
+}
+/* group list */
+${
+  backgroundListGroupTransparent > 0
+    ? `
 .list-group {
   --bs-list-group-bg: color-mix(in srgb, var(--theme-bg-more) ${
     100 - backgroundListGroupTransparent
   }%, transparent);
-}\n`;
-    }
-    if (backgroundTerminalToolbarTransparent > 0) {
-      extraCss += `
+}`.trim()
+    : ""
+}
+/* toolbar */
+${
+  backgroundTerminalToolbarTransparent > 0
+    ? `
 terminal-toolbar {
   background: color-mix(in srgb, var(--bs-body-bg) ${
     100 - backgroundTerminalToolbarTransparent
   }%, transparent) !important;
-}\n`;
-    }
-    if (backgroundFooterTransparent !== 50) {
-      extraCss += `
+}`.trim()
+    : ""
+}
+/* footer */
+${
+  backgroundFooterTransparent !== 50
+    ? `
 footer {
   background: color-mix(in srgb, rgba(0,0,0,1) ${
     100 - backgroundFooterTransparent
   }%, transparent) !important;
-}\n`;
+}`.trim()
+    : ""
+}`.trim();
+    return css;
+  }
+
+  buildUiFontCss() {
+    const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = this.pluginConfig;
+    if (!uiFontEnabled) {
+      return "";
     }
-    css += extraCss;
-  }
-  const { uiFontEnabled, uiFontFamily, uiFontSize, uiFontTabBarCloseBtnFix } = configs;
-  let uiFontCss = "";
-
-  if (uiFontEnabled) {
-    uiFontCss += uiFont(uiFontFamily, uiFontSize);
-    if (uiFontTabBarCloseBtnFix) {
-      uiFontCss += uiCloseBtnFix();
-    }
-  }
-  css += uiFontCss;
-  // if (tabsOverrideEnabled) {
-  //   css += tabsFlexMinWidth(tabsFlexMinWidth);
-  //   css += tabsFixedWidth(tabsFixedWidth);
-  // }
-
-  const { othersInactiveTabDimming, othersActiveTabDimming, othersTabBarPersistentSpaceMinWidth } =
-    configs;
-  let othersCss = "";
-
-  if (othersInactiveTabDimming !== 50) {
-    othersCss += `
-split-tab>.child {
-  opacity: ${(100 - othersInactiveTabDimming) / 100};
-}`;
-  }
-
-  if (othersActiveTabDimming !== 0) {
-    othersCss += `
-split-tab>.child.focused {
-  opacity: ${(100 - othersActiveTabDimming) / 100};
-}`;
-  }
-
-  if (othersTabBarPersistentSpaceMinWidth !== 138) {
-    othersCss += `
-.btn-space.persistent {
-  min-width: ${othersTabBarPersistentSpaceMinWidth}px !important;
-}
-`;
-  }
-
-  css += othersCss;
-
-  return css;
-}
-
-export function uiFont(family: string, size: number) {
-  return `
+    const uiFontCss = `
+/* added by tabby-background plugin */
 body {
-  font-family: "${family}";
-  font-size: ${size}px;
-}\n`;
+  font-family: "${uiFontFamily}";
+  font-size: ${uiFontSize}px;
 }
-
-export function uiCloseBtnFix() {
-  return `
+${
+  uiFontTabBarCloseBtnFix
+    ? `
 app-root>.content .tab-bar>.tabs tab-header button {
   /*left: 8px;*/
   font-family: "Source Sans Pro";
-}\n`;
+}`.trim()
+    : ""
+}`.trim();
+    return uiFontCss;
+  }
+
+  buildOthersCss() {
+    const {
+      othersInactiveTabDimming,
+      othersActiveTabDimming,
+      othersTabBarPersistentSpaceMinWidth,
+    } = this.pluginConfig;
+
+    const othersCss = `
+/* added by tabby-background plugin */
+/* tab dimming settings */
+${
+  othersInactiveTabDimming !== 50
+    ? `
+split-tab>.child {
+  opacity: ${(100 - othersInactiveTabDimming) / 100};
+}`.trim()
+    : ""
+}
+${
+  othersActiveTabDimming !== 0
+    ? `
+split-tab>.child.focused {
+  opacity: ${(100 - othersActiveTabDimming) / 100};
+}`.trim()
+    : ""
+}
+/* tabbar settings */
+${
+  othersTabBarPersistentSpaceMinWidth !== 138
+    ? `
+.btn-space.persistent {
+  min-width: ${othersTabBarPersistentSpaceMinWidth}px !important;
+}
+`.trim()
+    : ""
+}`.trim();
+
+    return othersCss;
+  }
 }
 
-export function tabsFlexMinWidth(width: number) {
-  return `
-.flex-width {
-  min-width: ${width}px;
-}\n`;
-}
+// export function tabsFlexMinWidth(width: number) {
+//   return `
+// .flex-width {
+//   min-width: ${width}px;
+// }\n`;
+// }
 
-export function tabsFixedWidth(width: number) {
-  return `
-tab-header {
-  width: ${width}px !important;
-}\n`;
-}
+// export function tabsFixedWidth(width: number) {
+//   return `
+// tab-header {
+//   width: ${width}px !important;
+// }\n`;
+// }
