@@ -80,9 +80,7 @@ export class BackgroundService {
       this.backgroundStyleElement.innerHTML = backgroundCss;
     } else if (this.pluginConfig.backgroundMode === "advanced") {
       if (this.previewMode) {
-        this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
-          this.pluginConfig.backgrounds[this.previewIndex]
-        );
+        this.applyBackgroundPreview();
         return;
       }
       if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
@@ -95,6 +93,20 @@ export class BackgroundService {
   apply() {
     this.config.save();
     this.applyStyle();
+  }
+
+  applyBackground(id: string, updateTimestamp = true) {
+    this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.getBackgroundByID(id));
+    this.pluginConfig.backgroundAdvancedCurrentId = id;
+    if (updateTimestamp) {
+      this.pluginConfig.backgroundLastChangedTime = Date.now();
+    }
+    this.config.save();
+  }
+  applyBackgroundPreview() {
+    this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
+      this.pluginConfig.backgrounds[this.previewIndex]
+    );
   }
 
   addBackground() {
@@ -131,6 +143,8 @@ export class BackgroundService {
     );
     if (this.slideShowCurrentIndex === -1) {
       this.slideShowCurrentIndex = 0;
+      this.pluginConfig.backgroundAdvancedCurrentId =
+        this.slideShowList[this.slideShowCurrentIndex];
     }
   }
 
@@ -140,40 +154,34 @@ export class BackgroundService {
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
       }
-      this.pluginConfig.backgroundAdvancedCurrentId =
-        this.slideShowList[this.slideShowCurrentIndex];
       this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
         "/*background-placeholder*/",
         "opacity: 0;"
       );
       this.transitionTimer = setTimeout(() => {
-        const backgroundCss = this.buildBackgroundCss(
-          this.getBackgroundByID(this.pluginConfig.backgroundAdvancedCurrentId)
-        );
-        this.backgroundStyleElement.innerHTML = backgroundCss;
-        this.pluginConfig.backgroundLastChangedTime = Date.now();
+        this.applyBackground(this.slideShowList[this.slideShowCurrentIndex]);
         this.backgroundTimer = setTimeout(
           handler,
           this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
         );
-
-        this.config.save();
-      }, 800);
+      }, 700);
     };
     this.leaveSlideShow();
     this.buildSlideShowList();
     if (this.slideShowList.length === 0) {
       return;
     }
-    const backgroundCss = this.buildBackgroundCss(
-      this.getBackgroundByID(this.slideShowList[this.slideShowCurrentIndex])
-    );
-    this.backgroundStyleElement.innerHTML = backgroundCss;
+
     const leftTime =
       this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000 -
       (Date.now() - this.pluginConfig.backgroundLastChangedTime);
-
-    this.backgroundTimer = setTimeout(handler, leftTime > 0 ? leftTime : 0);
+    if (leftTime > 0) {
+      this.logger.info(`${leftTime / 1000} second left to change background`);
+      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex], false);
+      this.backgroundTimer = setTimeout(handler, leftTime);
+    } else {
+      handler();
+    }
   }
 
   leaveSlideShow() {
