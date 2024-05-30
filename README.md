@@ -10,7 +10,8 @@ Change Tabby background image and more...
 - [x] Support all of vanilla css filters.
 - [x] Float mode to better support transparent png.
 - [ ] Per session background.
-- [ ] Slideshow.
+- [x] Slideshow.
+- [ ] Slideshow support folder.
 - [ ] Using desktop background.
 - [ ] Tab context menu fast switch background.
 
