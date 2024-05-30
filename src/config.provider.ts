@@ -1,4 +1,5 @@
 import { ConfigProvider } from "tabby-core";
+import * as uuid from "uuid";
 
 export type ShowType = "fullscreen" | "float";
 export type FullscreenType = "contain" | "cover";
@@ -37,8 +38,42 @@ export type Background = {
 };
 
 export type AdvancedBackground = Background & {
-  profile: any; // 单会话背景配置，先不实现喵，留个坑喵~
+  // profile: any; // 单会话背景配置，先不实现喵，留个坑喵~
   enabled: boolean;
+  id: string;
+  name: string;
+};
+
+export const DefaultBackground: AdvancedBackground = {
+  enabled: false,
+  id: uuid.NIL,
+  name: "",
+  backgroundPath: "",
+  backgroundShowType: "fullscreen",
+  backgroundFullscreenType: "cover",
+  backgroundFullscreenRepeatType: "no-repeat",
+  backgroundFloatSize: 0,
+  backgroundFloatX: 0,
+  backgroundFloatY: 0,
+  backgroundFloatXAlign: "center",
+  backgroundFloatYAlign: "center",
+  backgroundDropShadowEnabled: false,
+  backgroundDropShadowX: 0,
+  backgroundDropShadowY: 0,
+  backgroundDropShadowBlur: 0,
+  backgroundDropShadowColor: "black",
+  backgroundOpacity: 100,
+  backgroundBlur: 0,
+  backgroundBrightness: 100,
+  backgroundContrast: 100,
+  backgroundGrayscale: 0,
+  backgroundHueRotate: 0,
+  backgroundInvert: 0,
+  backgroundSaturate: 100,
+  backgroundSepia: 0,
+  backgroundListGroupTransparent: 0,
+  backgroundTerminalToolbarTransparent: 0,
+  backgroundFooterTransparent: 50,
 };
 
 export type BackgroundPluginConfig = Background & {
@@ -56,9 +91,10 @@ export type BackgroundPluginConfig = Background & {
   backgroundMode: "simple" | "advanced";
   backgrounds: AdvancedBackground[];
   backgroundAdvancedType: "per-tab" | "global";
-  backgroundAdvancedChooseType: "sequence" | "random";
+  backgroundAdvancedChooseType: "sequence" | "random" | "reverse";
   backgroundAdvancedSwitchType: "slideshow" | "session";
   backgroundAdvancedSlideshowInterval: number;
+  backgroundAdvancedCurrentId: string;
 };
 
 /** @hidden */
@@ -108,6 +144,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgroundAdvancedChooseType: "sequence",
       backgroundAdvancedSwitchType: "session",
       backgroundAdvancedSlideshowInterval: 3600,
+      backgroundAdvancedCurrentId: uuid.NIL,
     },
   };
 }

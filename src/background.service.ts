@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
-import { BackgroundPluginConfig } from "./config.provider";
+import { AdvancedBackground, BackgroundPluginConfig, DefaultBackground } from "./config.provider";
 import { translations } from "./translations";
+import * as uuid from "uuid";
 
 @Injectable({ providedIn: "root" })
 export class BackgroundService {
@@ -60,6 +61,23 @@ export class BackgroundService {
   applyCss() {
     this.styleElement.innerHTML = this.buildCss();
     this.logger.info("Background applied.");
+  }
+
+  saveConfig() {
+    this.config.save();
+  }
+
+  addBackground() {
+    const newBackground: AdvancedBackground = Object.assign({}, DefaultBackground);
+    newBackground.id = uuid.v4();
+    newBackground.name = `bg${this.pluginConfig.backgrounds.length}`;
+    this.pluginConfig.backgrounds.unshift(newBackground);
+    this.saveConfig();
+  }
+
+  delBackground(i: number) {
+    this.pluginConfig.backgrounds.splice(i, 1);
+    this.saveConfig();
   }
 }
 

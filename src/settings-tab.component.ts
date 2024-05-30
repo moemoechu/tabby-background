@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { BackgroundService } from "./background.service";
-import { BackgroundPluginConfig } from "./config.provider";
+import { AdvancedBackground, BackgroundPluginConfig } from "./config.provider";
 import { ToastrService } from "ngx-toastr";
 import { ConfigService, TranslateService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
@@ -28,6 +29,24 @@ import { debounce } from "utils-decorators";
       .background-input {
         min-width: 300px;
         // flex: none;
+      }
+      .list-group-item-background {
+        --bs-list-group-action-hover-bg: rgba(0, 0, 0, 0.55);
+        // backdrop-filter: blur(3px);
+      }
+      .close {
+        // font-size: 1.4rem;
+        opacity: 0.1;
+        transition: opacity 0.3s;
+      }
+      .nav-link:hover > .close {
+        opacity: 0.8;
+      }
+      .add-button {
+        opacity: 0.4;
+      }
+      .add-button:hover {
+        opacity: 0.9;
       }
     `,
   ],
@@ -224,11 +243,26 @@ export class BackgroundSettingsTabComponent {
     }
   }
 
-  // 为了防止频繁保存可能导致的潜在的风险（其实没有），加入了防抖
-  // @debounce(500)
-  apply() {
+  save() {
     this.config.save();
+  }
+
+  apply() {
+    this.save();
     this.background.applyCss();
     // this.toastr.info(this.translate.instant("Background applied!"));
+  }
+
+  dropBackgroundItem(event: CdkDragDrop<AdvancedBackground[]>) {
+    moveItemInArray(this.pluginConfig.backgrounds, event.previousIndex, event.currentIndex);
+    this.save();
+  }
+
+  addBackground() {
+    this.background.addBackground();
+  }
+
+  delBackground(i: number) {
+    this.background.delBackground(i);
   }
 }
