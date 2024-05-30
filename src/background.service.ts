@@ -18,7 +18,9 @@ export class BackgroundService {
   private uiOtherStyleElement: HTMLStyleElement;
   pluginConfig: BackgroundPluginConfig;
   private backgroundTimer: NodeJS.Timeout;
+  private transitionTimer: NodeJS.Timeout;
   private previewMode: boolean;
+  private previewIndex: number;
   private slideShowList: string[];
   private slideShowCurrentIndex: number;
 
@@ -77,6 +79,12 @@ export class BackgroundService {
       const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
       this.backgroundStyleElement.innerHTML = backgroundCss;
     } else if (this.pluginConfig.backgroundMode === "advanced") {
+      if (this.previewMode) {
+        this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
+          this.pluginConfig.backgrounds[this.previewIndex]
+        );
+        return;
+      }
       if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
         this.enterSlideShow();
       }
@@ -113,12 +121,9 @@ export class BackgroundService {
       .filter((value) => value.enabled)
       .map((value) => value.id);
     if (this.pluginConfig.backgroundAdvancedChooseType === "sequence") {
-      console.log("sequence");
     } else if (this.pluginConfig.backgroundAdvancedChooseType === "reverse") {
-      console.log("reverse");
       this.slideShowList.reverse();
     } else if (this.pluginConfig.backgroundAdvancedChooseType === "random") {
-      console.log("random");
       this.slideShowList.sort(() => Math.random() - 0.5);
     }
     this.slideShowCurrentIndex = this.slideShowList.findIndex(
@@ -127,27 +132,24 @@ export class BackgroundService {
     if (this.slideShowCurrentIndex === -1) {
       this.slideShowCurrentIndex = 0;
     }
-    console.log(this.slideShowList);
   }
 
   enterSlideShow() {
     const handler = () => {
-      this.logger.info(`begin slideshow timer`);
       this.slideShowCurrentIndex++;
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
       }
       this.pluginConfig.backgroundAdvancedCurrentId =
         this.slideShowList[this.slideShowCurrentIndex];
-      const backgroundCss = this.buildBackgroundCss(
-        this.getBackgroundByID(this.pluginConfig.backgroundAdvancedCurrentId)
-      );
       this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
         "/*background-placeholder*/",
         "opacity: 0;"
       );
-      console.log(this.backgroundStyleElement.innerHTML);
-      setTimeout(() => {
+      this.transitionTimer = setTimeout(() => {
+        const backgroundCss = this.buildBackgroundCss(
+          this.getBackgroundByID(this.pluginConfig.backgroundAdvancedCurrentId)
+        );
         this.backgroundStyleElement.innerHTML = backgroundCss;
         this.pluginConfig.backgroundLastChangedTime = Date.now();
         this.backgroundTimer = setTimeout(
@@ -156,7 +158,6 @@ export class BackgroundService {
         );
 
         this.config.save();
-        this.logger.info(`end slideshow timer`);
       }, 800);
     };
     this.leaveSlideShow();
@@ -180,18 +181,21 @@ export class BackgroundService {
       clearTimeout(this.backgroundTimer);
       this.backgroundTimer = undefined;
     }
+    if (this.transitionTimer) {
+      clearTimeout(this.transitionTimer);
+      this.transitionTimer = undefined;
+    }
   }
 
-  enterPreviewMode() {
-    if (this.previewMode === false) {
-      this.previewMode = true;
-    }
+  enterPreviewMode(i: number) {
+    this.previewMode = true;
+    this.previewIndex = i;
+    this.applyStyle();
   }
 
   leavePreviewMode() {
-    if (this.previewMode === true) {
-      this.previewMode = false;
-    }
+    this.previewMode = false;
+    this.applyStyle();
   }
 
   buildBackgroundCss(background: Background) {

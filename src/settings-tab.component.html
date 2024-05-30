@@ -547,8 +547,8 @@
               (ngModelChange)="apply()"
             >
               <option [ngValue]="'sequence'" translate>Sequence</option>
-              <option [ngValue]="'random'" translate>Random</option>
               <option [ngValue]="'reverse'" translate>Reverse</option>
+              <option [ngValue]="'random'" translate>Random</option>
             </select>
           </div>
 
@@ -584,7 +584,7 @@
                   <span class="text-center" translate>Name</span>
                 </div>
                 <div class="col gx-1 d-flex justify-content-center align-items-center">
-                  <span class="text-center" translate>Path</span>
+                  <span class="text-center" translate>Background path</span>
                 </div>
                 <div class="col col-auto gx-1">
                   <button
@@ -1093,39 +1093,6 @@
                                 [step]="filter.step"
                               />
                             </div>
-
-                            <!-- <div class="row mt-1" style="min-height: 40px">
-                              <div class="col d-flex align-filters-center">
-                                <span class="ms-1" translate>{{ filter.title }}</span>
-                              </div>
-                              <div
-                                class="col-md-auto d-flex align-filters-center"
-                                *ngIf="style.valueType"
-                              >
-                                <input
-                                  class="form-control"
-                                  [type]="style.valueType"
-                                  [min]="style.min"
-                                  [max]="style.max"
-                                  [(ngModel)]="filter[style.valueModel]"
-                                  (ngModelChange)="apply()"
-                                  style="
-                                    width: 70px;
-                                    flex: none;
-                                    background-color: rgba(0, 0, 0, 0.3);
-                                    backdrop-filter: blur(3px);
-                                  "
-                                />
-                              </div>
-                              <div class="col-md-auto d-flex align-filters-center">
-                                <checkbox
-                                  class="ms-1"
-                                  [(ngModel)]="filter[style.enabledModel]"
-                                  (ngModelChange)="apply()"
-                                >
-                                </checkbox>
-                              </div>
-                            </div> -->
                           </ng-container>
                           <div class="h4" translate>Extra Settings</div>
                           <ng-container *ngFor="let extra of extraSettings">

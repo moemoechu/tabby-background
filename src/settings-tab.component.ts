@@ -225,10 +225,9 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
     private translate: TranslateService
   ) {
     this.pluginConfig = this.config.store.backgroundPlugin;
-    console.log("component ctor");
   }
   ngOnDestroy(): void {
-    console.log("component distroy");
+    this.background.leavePreviewMode();
   }
 
   async pickFile(background?: AdvancedBackground): Promise<void> {
@@ -268,6 +267,11 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
   delBackground(i: number) {
     this.background.delBackground(i);
   }
+
+  previewBackground(i: number) {
+    this.background.enterPreviewMode(i);
+  }
+
   exportBackgroundAdvancedSettings() {}
   importBackgroundAdvancedSettings() {}
 }
