@@ -1062,44 +1062,44 @@
                             </div>
                           </div>
                           <div class="h4" translate>Background Filters</div>
-                          <ng-container *ngFor="let item of filters">
+                          <ng-container *ngFor="let filter of filters">
                             <div class="form-line">
                               <div class="header">
-                                <div class="title" translate>{{ item.title }}</div>
-                                <div class="description" translate>{{ item.description }}</div>
+                                <div class="title" translate>{{ filter.title }}</div>
+                                <div class="description" translate>{{ filter.description }}</div>
                               </div>
                               <input
                                 class="me-3"
                                 type="range"
-                                [(ngModel)]="pluginConfig[item.model]"
+                                [(ngModel)]="item[filter.model]"
                                 (mouseup)="apply()"
-                                [min]="item.min"
-                                [max]="item.max"
-                                [step]="item.step"
+                                [min]="filter.min"
+                                [max]="filter.max"
+                                [step]="filter.step"
                               />
                               <button
                                 class="btn btn-outline-secondary me-3"
-                                (click)="pluginConfig[item.model] = item.default; apply()"
+                                (click)="item[filter.model] = filter.default; apply()"
                               >
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
                               <input
                                 class="form-control param-input"
                                 type="number"
-                                [(ngModel)]="pluginConfig[item.model]"
+                                [(ngModel)]="item[filter.model]"
                                 (ngModelChange)="apply()"
-                                [min]="item.min"
-                                [max]="item.max"
-                                [step]="item.step"
+                                [min]="filter.min"
+                                [max]="filter.max"
+                                [step]="filter.step"
                               />
                             </div>
 
                             <!-- <div class="row mt-1" style="min-height: 40px">
-                              <div class="col d-flex align-items-center">
-                                <span class="ms-1" translate>{{ item.title }}</span>
+                              <div class="col d-flex align-filters-center">
+                                <span class="ms-1" translate>{{ filter.title }}</span>
                               </div>
                               <div
-                                class="col-md-auto d-flex align-items-center"
+                                class="col-md-auto d-flex align-filters-center"
                                 *ngIf="style.valueType"
                               >
                                 <input
@@ -1107,7 +1107,7 @@
                                   [type]="style.valueType"
                                   [min]="style.min"
                                   [max]="style.max"
-                                  [(ngModel)]="item[style.valueModel]"
+                                  [(ngModel)]="filter[style.valueModel]"
                                   (ngModelChange)="apply()"
                                   style="
                                     width: 70px;
@@ -1117,15 +1117,48 @@
                                   "
                                 />
                               </div>
-                              <div class="col-md-auto d-flex align-items-center">
+                              <div class="col-md-auto d-flex align-filters-center">
                                 <checkbox
                                   class="ms-1"
-                                  [(ngModel)]="item[style.enabledModel]"
+                                  [(ngModel)]="filter[style.enabledModel]"
                                   (ngModelChange)="apply()"
                                 >
                                 </checkbox>
                               </div>
                             </div> -->
+                          </ng-container>
+                          <div class="h4" translate>Extra Settings</div>
+                          <ng-container *ngFor="let extra of extraSettings">
+                            <div class="form-line">
+                              <div class="header">
+                                <div class="title" translate>{{ extra.title }}</div>
+                                <div class="description" translate>{{ extra.description }}</div>
+                              </div>
+                              <input
+                                class="me-3"
+                                type="range"
+                                [(ngModel)]="item[extra.model]"
+                                (mouseup)="apply()"
+                                [min]="extra.min"
+                                [max]="extra.max"
+                                [step]="extra.step"
+                              />
+                              <button
+                                class="btn btn-outline-secondary me-3"
+                                (click)="item[extra.model] = extra.default; apply()"
+                              >
+                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              </button>
+                              <input
+                                class="form-control param-input"
+                                type="number"
+                                [(ngModel)]="item[extra.model]"
+                                (ngModelChange)="apply()"
+                                [min]="extra.min"
+                                [max]="extra.max"
+                                [step]="extra.step"
+                              />
+                            </div>
                           </ng-container>
                         </div>
                       </div>
