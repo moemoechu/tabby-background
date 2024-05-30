@@ -64,6 +64,7 @@ export class BackgroundService {
     this.backgroundStyleElement.innerHTML = "";
     this.uiFontStyleElement.innerHTML = "";
     this.uiOtherStyleElement.innerHTML = "";
+    this.leaveSlideShow();
   }
 
   applyStyle() {
@@ -141,15 +142,22 @@ export class BackgroundService {
       const backgroundCss = this.buildBackgroundCss(
         this.getBackgroundByID(this.pluginConfig.backgroundAdvancedCurrentId)
       );
-      this.backgroundStyleElement.innerHTML = backgroundCss;
-      this.pluginConfig.backgroundLastChangedTime = Date.now();
-      this.backgroundTimer = setTimeout(
-        handler,
-        this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
+      this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
+        "/*background-placeholder*/",
+        "opacity: 0;"
       );
+      console.log(this.backgroundStyleElement.innerHTML);
+      setTimeout(() => {
+        this.backgroundStyleElement.innerHTML = backgroundCss;
+        this.pluginConfig.backgroundLastChangedTime = Date.now();
+        this.backgroundTimer = setTimeout(
+          handler,
+          this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
+        );
 
-      this.config.save();
-      this.logger.info(`end slideshow timer`);
+        this.config.save();
+        this.logger.info(`end slideshow timer`);
+      }, 800);
     };
     this.leaveSlideShow();
     this.buildSlideShowList();
@@ -232,6 +240,7 @@ start-page.content-tab-active::after {
   background: var(--theme-bg-more-2);
 }
 .content-tab-active::before {
+  /*background-placeholder*/
   content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;
   filter:${
     (backgroundOpacity === 100 ? "" : ` opacity(${backgroundOpacity}%)`) +
@@ -249,12 +258,13 @@ start-page.content-tab-active::after {
     ";"
   }
   background-image: url("${backgroundPath.replaceAll("\\", "/")}");
+  transition: opacity 0.5s ease-in-out;
 ${(() => {
   if (backgroundShowType === "fullscreen") {
     return `
   background-repeat: ${backgroundFullscreenRepeatType};
   background-position: center;
-  background-size: ${backgroundFullscreenType};`.trim();
+  background-size: ${backgroundFullscreenType};`;
   } else if (backgroundShowType === "float") {
     return `
   background-repeat: no-repeat;
