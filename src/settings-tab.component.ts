@@ -195,7 +195,7 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
       step: "1",
     },
     {
-      title: "Inactive split panel dimming",
+      title: "Active split panel dimming",
       description: "Unit: %, 0 = default",
       model: "othersActiveTabDimming",
       default: "0",
