@@ -119,6 +119,9 @@ export class BackgroundService {
   applyBackgroundPreview() {
     this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
       this.pluginConfig.backgrounds[this.previewIndex]
+    ).replace(
+      /\/\*background-opacity-placeholder\*\/.*/,
+      "/*background-opacity-placeholder*/opacity: 1;"
     );
   }
 
