@@ -91,6 +91,9 @@ export class BackgroundService {
   }
 
   apply() {
+    if (this.pluginConfig.backgroundAdvancedSlideshowInterval < 5) {
+      this.pluginConfig.backgroundAdvancedSlideshowInterval = 5;
+    }
     this.config.save();
     this.applyStyle();
   }
@@ -212,8 +215,10 @@ export class BackgroundService {
   }
 
   leavePreviewMode() {
-    this.previewMode = false;
-    this.applyStyle();
+    if (this.previewMode) {
+      this.previewMode = false;
+      this.applyStyle();
+    }
   }
 
   buildBackgroundCss(background: Background) {
