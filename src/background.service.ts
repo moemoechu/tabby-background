@@ -75,16 +75,18 @@ export class BackgroundService {
     // this.styleElement.innerHTML = this.buildCss();
     this.uiFontStyleElement.innerHTML = this.buildUiFontCss();
     this.uiOtherStyleElement.innerHTML = this.buildOthersCss();
-    if (this.pluginConfig.backgroundMode === "simple") {
-      const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
-      this.backgroundStyleElement.innerHTML = backgroundCss;
-    } else if (this.pluginConfig.backgroundMode === "advanced") {
-      if (this.previewMode) {
-        this.applyBackgroundPreview();
-        return;
-      }
-      if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
-        this.enterSlideShow();
+
+    if (this.pluginConfig.backgroundEnabled === true) {
+      if (this.pluginConfig.backgroundMode === "simple") {
+        this.applyBackground(uuid.NIL, false);
+      } else if (this.pluginConfig.backgroundMode === "advanced") {
+        if (this.previewMode) {
+          this.applyBackgroundPreview();
+          return;
+        }
+        if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
+          this.enterSlideShow();
+        }
       }
     }
     this.logger.info("Background applied.");
@@ -104,20 +106,24 @@ export class BackgroundService {
       "/*background-opacity-placeholder*/opacity: 0;"
     );
     setTimeout(() => {
-      this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.getBackgroundByID(id));
+      if (id === uuid.NIL) {
+        const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
+        this.backgroundStyleElement.innerHTML = backgroundCss;
+      } else {
+        this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.getBackgroundByID(id));
+        this.pluginConfig.backgroundAdvancedCurrentId = id;
+        if (updateTimestamp) {
+          this.pluginConfig.backgroundLastChangedTime = Date.now();
+        }
+      }
       setTimeout(() => {
         this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
           /\/\*background-opacity-placeholder\*\/.*/,
           "/*background-opacity-placeholder*/opacity: 1;"
         );
       }, 500);
+      this.config.save();
     }, 500);
-
-    this.pluginConfig.backgroundAdvancedCurrentId = id;
-    if (updateTimestamp) {
-      this.pluginConfig.backgroundLastChangedTime = Date.now();
-    }
-    this.config.save();
   }
   applyBackgroundPreview() {
     this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
