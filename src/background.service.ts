@@ -96,7 +96,20 @@ export class BackgroundService {
   }
 
   applyBackground(id: string, updateTimestamp = true) {
-    this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.getBackgroundByID(id));
+    this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
+      /\/\*background-opacity-placeholder\*\/.*/,
+      "/*background-opacity-placeholder*/opacity: 0;"
+    );
+    setTimeout(() => {
+      this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.getBackgroundByID(id));
+      setTimeout(() => {
+        this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
+          /\/\*background-opacity-placeholder\*\/.*/,
+          "/*background-opacity-placeholder*/opacity: 1;"
+        );
+      }, 500);
+    }, 500);
+
     this.pluginConfig.backgroundAdvancedCurrentId = id;
     if (updateTimestamp) {
       this.pluginConfig.backgroundLastChangedTime = Date.now();
@@ -154,17 +167,11 @@ export class BackgroundService {
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
       }
-      this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
-        "/*background-placeholder*/",
-        "opacity: 0;"
+      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex]);
+      this.backgroundTimer = setTimeout(
+        handler,
+        this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
       );
-      this.transitionTimer = setTimeout(() => {
-        this.applyBackground(this.slideShowList[this.slideShowCurrentIndex]);
-        this.backgroundTimer = setTimeout(
-          handler,
-          this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
-        );
-      }, 700);
     };
     this.leaveSlideShow();
     this.buildSlideShowList();
@@ -252,7 +259,7 @@ start-page.content-tab-active::after {
   background: var(--theme-bg-more-2);
 }
 .content-tab-active::before {
-  /*background-placeholder*/
+  /*background-opacity-placeholder*/opacity: 0;
   content: ""; position: fixed; left: 0; right: 0; z-index: -1; display: block; width: 100%; height: 100%;
   filter:${
     (backgroundOpacity === 100 ? "" : ` opacity(${backgroundOpacity}%)`) +
