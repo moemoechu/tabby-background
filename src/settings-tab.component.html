@@ -1139,7 +1139,11 @@
                     </div>
                   </div>
                   <div class="col col-auto gx-1 d-flex justify-content-center align-items-center">
-                    <button class="btn btn-outline-secondary" (click)="previewBackground(i)">
+                    <button
+                      [disabled]="item.isFolder === true"
+                      class="btn btn-outline-secondary"
+                      (click)="previewBackground(i)"
+                    >
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                   </div>
