@@ -8,6 +8,13 @@ import {
 } from "./config.provider";
 import { translations } from "./translations";
 import * as uuid from "uuid";
+import { readdirSync } from "fs";
+
+type SlideShowItem = {
+  id: string;
+  path: string;
+  background: AdvancedBackground;
+};
 
 @Injectable({ providedIn: "root" })
 export class BackgroundService {
@@ -149,14 +156,37 @@ export class BackgroundService {
   }
 
   getBackgroundByID(id: string) {
-    const background = this.pluginConfig.backgrounds.find((value) => value.id === id);
-    return background;
+    const [advancedId, isFolder, fileName] = id.split("|");
+    let realBackground: AdvancedBackground;
+    const background = this.pluginConfig.backgrounds.find((value) => value.id === advancedId);
+
+    realBackground = Object.assign({}, background);
+    if (isFolder === "true") {
+      realBackground.backgroundPath += `/${fileName}`;
+    }
+    return realBackground;
   }
 
   buildSlideShowList() {
-    this.slideShowList = this.pluginConfig.backgrounds
-      .filter((value) => value.enabled)
-      .map((value) => value.id);
+    this.slideShowList = [];
+    const filteredList = this.pluginConfig.backgrounds.filter((value) => value.enabled);
+    for (const item of filteredList) {
+      const { id, isFolder = false } = item;
+      const fileName = "null";
+      let files: string[] = [];
+      if (item.isFolder) {
+        try {
+          files = readdirSync(item.backgroundPath);
+        } catch {
+          continue;
+        }
+
+        this.slideShowList.push(...files.map((value) => [id, isFolder, value].join("|")));
+      } else {
+        this.slideShowList.push([id, isFolder, fileName].join("|"));
+      }
+    }
+    //.map((value) => `${value.id}|${value.isFolder}|${}`);
     if (this.pluginConfig.backgroundAdvancedChooseType === "sequence") {
     } else if (this.pluginConfig.backgroundAdvancedChooseType === "reverse") {
       this.slideShowList.reverse();
@@ -175,6 +205,7 @@ export class BackgroundService {
 
   enterSlideShow() {
     const handler = () => {
+      console.debug(this.slideShowList);
       this.slideShowCurrentIndex++;
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
@@ -290,7 +321,7 @@ start-page.content-tab-active::after {
       : "") +
     ";"
   }
-  background-image: url("${backgroundPath.replaceAll("\\", "/")}");
+  background-image: url("${encodeURI(backgroundPath.replaceAll("\\", "/"))}");
   transition: opacity 0.5s ease-in-out;
 ${(() => {
   if (backgroundShowType === "fullscreen") {

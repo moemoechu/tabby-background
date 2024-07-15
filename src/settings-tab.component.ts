@@ -231,16 +231,18 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
   }
 
   async pickFile(background?: AdvancedBackground): Promise<void> {
-    const paths = (
-      await this.electron.dialog.showOpenDialog(this.hostWindow.getWindow(), {
-        filters: [
-          { name: "Images", extensions: ["jpg", "png", "gif"] },
-          { name: "All Files", extensions: ["*"] },
-        ],
-        properties: ["openFile", "showHiddenFiles"],
-      })
-    ).filePaths;
-    if (paths[0]) {
+    const isFolder = background?.isFolder;
+
+    const paths = this.electron.dialog.showOpenDialogSync(this.hostWindow.getWindow(), {
+      filters: isFolder
+        ? undefined
+        : [
+            { name: "Images", extensions: ["jpg", "png", "gif"] },
+            { name: "All Files", extensions: ["*"] },
+          ],
+      properties: [isFolder ? "openDirectory" : "openFile", "showHiddenFiles"],
+    });
+    if (paths && paths[0]) {
       if (background) {
         background.backgroundPath = paths[0];
       } else {

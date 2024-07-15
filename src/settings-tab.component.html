@@ -579,7 +579,11 @@
                     <i class="fa-solid fa-toggle-on"></i>
                   </button>
                 </div>
-
+                <div class="col col-1 gx-1">
+                  <button class="btn border-0" disabled>
+                    <i class="fa-regular fa-folder-open"></i>
+                  </button>
+                </div>
                 <div class="col col-2 gx-1 d-flex justify-content-center align-items-center">
                   <span class="text-center" translate>Name</span>
                 </div>
@@ -616,6 +620,9 @@
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
                     <toggle cdkDragHandle [(ngModel)]="item.enabled" (ngModelChange)="apply()">
                     </toggle>
+                  </div>
+                  <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                    <checkbox [(ngModel)]="item.isFolder" (ngModelChange)="apply()"> </checkbox>
                   </div>
                   <div class="col col-2 gx-1">
                     <input

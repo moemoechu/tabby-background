@@ -42,12 +42,14 @@ export type AdvancedBackground = Background & {
   enabled: boolean;
   id: string;
   name: string;
+  isFolder: boolean;
 };
 
 export const DefaultBackground: AdvancedBackground = {
   enabled: false,
   id: uuid.NIL,
   name: "",
+  isFolder: false,
   backgroundPath: "",
   backgroundShowType: "fullscreen",
   backgroundFullscreenType: "cover",
