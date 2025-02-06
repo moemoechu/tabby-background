@@ -205,7 +205,6 @@ export class BackgroundService {
 
   enterSlideShow() {
     const handler = () => {
-      console.debug(this.slideShowList);
       this.slideShowCurrentIndex++;
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
@@ -413,39 +412,24 @@ app-root>.content .tab-bar>.tabs tab-header button {
       othersInactiveTabDimming,
       othersActiveTabDimming,
       othersTabBarPersistentSpaceMinWidth,
+      othersHideFooter
     } = this.pluginConfig;
 
-    const othersCss = `
-/* added by tabby-background plugin */
-/* tab dimming settings */
-${
-  othersInactiveTabDimming !== 50
-    ? `
-split-tab>.child {
-  opacity: ${(100 - othersInactiveTabDimming) / 100};
-}`.trim()
-    : ""
-}
-${
-  othersActiveTabDimming !== 0
-    ? `
-split-tab>.child.focused {
-  opacity: ${(100 - othersActiveTabDimming) / 100};
-}`.trim()
-    : ""
-}
-/* tabbar settings */
-${
-  othersTabBarPersistentSpaceMinWidth !== 138
-    ? `
-.btn-space.persistent {
-  min-width: ${othersTabBarPersistentSpaceMinWidth}px !important;
-}
-`.trim()
-    : ""
-}`.trim();
+    let css = "/* added by tabby-background plugin */";
+    if (othersInactiveTabDimming !== 50) {
+      css += `\nsplit-tab>.child {\n  opacity: ${(100 - othersInactiveTabDimming) / 100};\n}\n`;
+    }
+    if (othersActiveTabDimming !== 0) {
+      css += `\nsplit-tab>.child.focused {\n  opacity: ${(100 - othersActiveTabDimming) / 100};\n}\n`;
+    }
+    if (othersTabBarPersistentSpaceMinWidth !== 138) {
+      css += `\n.btn-space.persistent {\n  min-width: ${othersTabBarPersistentSpaceMinWidth}px !important;\n}\n`;
+    }
+    if (othersHideFooter) {
+      css += `\nfooter {\n  opacity: 0;\n}\n`;
+    }
 
-    return othersCss;
+    return css;
   }
 }
 

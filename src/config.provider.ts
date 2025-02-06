@@ -90,6 +90,7 @@ export type BackgroundPluginConfig = Background & {
   othersInactiveTabDimming: number;
   othersActiveTabDimming: number;
   othersTabBarPersistentSpaceMinWidth: number;
+  othersHideFooter: boolean;
   backgroundMode: "simple" | "advanced";
   backgrounds: AdvancedBackground[];
   backgroundAdvancedType: "per-tab" | "global";
@@ -141,6 +142,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       othersInactiveTabDimming: 50,
       othersActiveTabDimming: 0,
       othersTabBarPersistentSpaceMinWidth: 138,
+      othersHideFooter: false,
       backgroundMode: "simple",
       backgrounds: [],
       backgroundAdvancedType: "global",

@@ -22,8 +22,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Center": "中央",
       "Contain": "适应",
       "Cover": "填充",
-      "Do not affect the terminal font in the [appearance] configuration":
-        "不影响【外观】配置中的终端字体",
+      "Do not affect the terminal font in the [appearance] configuration": "不影响【外观】配置中的终端字体",
       "Drop shadow blur": "阴影模糊",
       "Drop shadow color": "阴影颜色",
       "Drop Shadow Parameters": "背景阴影参数",
@@ -55,8 +54,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Terminal toolbar transparent": "终端工具栏透明度",
       "UI Font Family": "界面字体",
       "UI Font": "字体",
-      "Unit: %, 0 = disable, Apply to home menu and other group list":
-        "单位：%，0 = 禁用，应用到首页菜单和其他分组列表",
+      "Unit: %, 0 = disable, Apply to home menu and other group list": "单位：%，0 = 禁用，应用到首页菜单和其他分组列表",
       "Unit: %, 0 = disable, Apply to terminal toolbar": "单位：%，0 = 禁用，应用到终端工具栏",
       "Unit: %, 0 = disable": "单位：%，0 = 禁用",
       "Unit: %, 100 = disable": "单位：%，100 = 禁用",
@@ -64,8 +62,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Unit: degree, 0 = disable": "单位：度，0 = 禁用",
       "Unit: px, 0 = disable": "单位：像素，0 = 禁用",
       "Unit: px": "单位：像素",
-      "Use RGBA (#FF0000A0) or color name(red, green, ...)":
-        "使用RGBA（#FF0000A0）或者颜色名字（red, green, ...）",
+      "Use RGBA (#FF0000A0) or color name(red, green, ...)": "使用RGBA（#FF0000A0）或者颜色名字（red, green, ...）",
       "Others": "其他",
       "Unit: %, 50 = default": "单位：%，50 = 默认",
       "Unit: %, 0 = default": "单位：%，0 = 默认",
@@ -86,6 +83,8 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Reverse": "倒序",
       "Simple": "简单",
       "Background mode": "背景模式",
+      "Hide main menu footer": "隐藏主界面页脚",
+      "Hide the main menu footer(bottom bar)": "隐藏主界面页脚（最下面的长条）",
     },
   ],
 ];
