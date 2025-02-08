@@ -70,6 +70,7 @@ Enter the font family name into the textbox, can use the font name in **appearan
 
 ## Changelog
 
+- 2.2.0: Add hide main menu footer.
 - 2.1.0: Add folder support.
 - 2.0.0: Add slideshow.
 - 1.3.4: Add modify TabBar preserve space width.
