@@ -24,10 +24,11 @@ Change Tabby background image and more...
 
 - [x] Change split panel dimming settings
 - [x] Change TabBar preserve space width.
+- [x] Hide main menu footer.
 - [x] All changes can be disable separately.
 - [x] Compatible with builtin black and white skin.
 - [x] Setting UI support English and Chinese.
-- [x] Tested on Windows and MacOS with Tabby version 1.0.205.
+- [x] Tested on Windows with Tabby version 1.0.221.
 
 ## Usage
 
