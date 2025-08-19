@@ -6,29 +6,20 @@ Change Tabby background image and more...
 
 ### Background
 
-- [x] Change background to your favorite picture.
-- [x] Support all of vanilla css filters.
+- [x] Change background picture and apply css filters.
 - [x] Float mode to better support transparent png.
-- [ ] Per session background.
-- [x] Slideshow.
-- [x] Slideshow support folder.
-- [ ] Using desktop background.
-- [ ] Tab context menu fast switch background.
+- [x] Support slideshow.
 
 ### UI Font
 
-- [x] Change UI Font to your favorite font, not affect terminal font.
-- [x] Change UI Font size.
+- [x] Change UI font and size.
 
 ### Other
 
 - [x] Change split panel dimming settings
 - [x] Change TabBar preserve space width.
 - [x] Hide main menu footer.
-- [x] All changes can be disable separately.
 - [x] Compatible with builtin black and white skin.
-- [x] Setting UI support English and Chinese.
-- [x] Tested on Windows with Tabby version 1.0.221.
 
 ## Usage
 
@@ -38,7 +29,7 @@ To install, use Tabby builtin plugin manager.
 
 ### Change Background Image
 
-Enter the image file path into textbox or use the file picker.
+Enter the image file path into textbox or use the file picker, also support image url in the internet.
 
 For who use portable mode and want to use relative image path, image file can be placed in portable **data** directory, the image path must begin with **../../../data/**.
 
@@ -68,6 +59,13 @@ Enter the font family name into the textbox, can use the font name in **appearan
 ### Slideshow
 
 ![Slideshow](screenshots/slideshow.gif)
+
+## Plan
+
+### 3.0
+
+- [ ] Per session background.
+- [ ] Tab context menu fast switch background.
 
 ## Changelog
 
