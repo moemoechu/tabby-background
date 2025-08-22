@@ -164,9 +164,7 @@ export class BackgroundService {
         } catch {
           continue;
         }
-        console.log(files);
         files = files.filter((file) => [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp", ".tif", ".tiff"].indexOf(path.extname(file).toLocaleLowerCase()) !== -1);
-        console.log(files);
         this.slideShowList.push(...files.map((value) => [id, isFolder, value].join("|")));
       } else {
         this.slideShowList.push([id, isFolder, fileName].join("|"));
