@@ -1,14 +1,10 @@
 import { Injectable } from "@angular/core";
 import { ConfigService, LogService, Logger, TranslateService } from "tabby-core";
-import {
-  AdvancedBackground,
-  Background,
-  BackgroundPluginConfig,
-  DefaultBackground,
-} from "./config.provider";
+import { AdvancedBackground, Background, BackgroundPluginConfig, DefaultBackground } from "./config.provider";
 import { translations } from "./translations";
 import * as uuid from "uuid";
 import { readdirSync } from "fs";
+import path from "path";
 
 type SlideShowItem = {
   id: string;
@@ -31,11 +27,7 @@ export class BackgroundService {
   private slideShowList: string[];
   private slideShowCurrentIndex: number;
 
-  constructor(
-    public config: ConfigService,
-    private logService: LogService,
-    private translate: TranslateService
-  ) {
+  constructor(public config: ConfigService, private logService: LogService, private translate: TranslateService) {
     this.logger = this.logService.create("tabby-background");
     this.logger.info("BackgroundService ctor");
 
@@ -108,10 +100,7 @@ export class BackgroundService {
   }
 
   applyBackground(id: string, updateTimestamp = true) {
-    this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
-      /\/\*background-opacity-placeholder\*\/.*/,
-      "/*background-opacity-placeholder*/opacity: 0;"
-    );
+    this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(/\/\*background-opacity-placeholder\*\/.*/, "/*background-opacity-placeholder*/opacity: 0;");
     setTimeout(() => {
       if (id === uuid.NIL) {
         const backgroundCss = this.buildBackgroundCss(this.pluginConfig);
@@ -124,18 +113,13 @@ export class BackgroundService {
         }
       }
       setTimeout(() => {
-        this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(
-          /\/\*background-opacity-placeholder\*\/.*/,
-          "/*background-opacity-placeholder*/opacity: 1;"
-        );
+        this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(/\/\*background-opacity-placeholder\*\/.*/, "/*background-opacity-placeholder*/opacity: 1;");
       }, 500);
       this.config.save();
     }, 500);
   }
   applyBackgroundPreview() {
-    this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(
-      this.pluginConfig.backgrounds[this.previewIndex]
-    ).replace(
+    this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(this.pluginConfig.backgrounds[this.previewIndex]).replace(
       /\/\*background-opacity-placeholder\*\/.*/,
       "/*background-opacity-placeholder*/opacity: 1;"
     );
@@ -180,7 +164,9 @@ export class BackgroundService {
         } catch {
           continue;
         }
-
+        console.log(files);
+        files = files.filter((file) => [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp", ".tif", ".tiff"].indexOf(path.extname(file).toLocaleLowerCase()) !== -1);
+        console.log(files);
         this.slideShowList.push(...files.map((value) => [id, isFolder, value].join("|")));
       } else {
         this.slideShowList.push([id, isFolder, fileName].join("|"));
@@ -193,13 +179,10 @@ export class BackgroundService {
     } else if (this.pluginConfig.backgroundAdvancedChooseType === "random") {
       this.slideShowList.sort(() => Math.random() - 0.5);
     }
-    this.slideShowCurrentIndex = this.slideShowList.findIndex(
-      (value) => value === this.pluginConfig.backgroundAdvancedCurrentId
-    );
+    this.slideShowCurrentIndex = this.slideShowList.findIndex((value) => value === this.pluginConfig.backgroundAdvancedCurrentId);
     if (this.slideShowCurrentIndex === -1) {
       this.slideShowCurrentIndex = 0;
-      this.pluginConfig.backgroundAdvancedCurrentId =
-        this.slideShowList[this.slideShowCurrentIndex];
+      this.pluginConfig.backgroundAdvancedCurrentId = this.slideShowList[this.slideShowCurrentIndex];
     }
   }
 
@@ -210,10 +193,7 @@ export class BackgroundService {
         this.slideShowCurrentIndex = 0;
       }
       this.applyBackground(this.slideShowList[this.slideShowCurrentIndex]);
-      this.backgroundTimer = setTimeout(
-        handler,
-        this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000
-      );
+      this.backgroundTimer = setTimeout(handler, this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000);
     };
     this.leaveSlideShow();
     this.buildSlideShowList();
@@ -221,9 +201,7 @@ export class BackgroundService {
       return;
     }
 
-    const leftTime =
-      this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000 -
-      (Date.now() - this.pluginConfig.backgroundLastChangedTime);
+    const leftTime = this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000 - (Date.now() - this.pluginConfig.backgroundLastChangedTime);
     if (leftTime > 0) {
       this.logger.info(`${leftTime / 1000} second left to change background`);
       this.applyBackground(this.slideShowList[this.slideShowCurrentIndex], false);
@@ -260,13 +238,7 @@ export class BackgroundService {
   buildBackgroundCss(background: Background) {
     const { backgroundPath, backgroundShowType } = background;
     const { backgroundFullscreenType, backgroundFullscreenRepeatType } = background;
-    const {
-      backgroundFloatSize,
-      backgroundFloatX,
-      backgroundFloatY,
-      backgroundFloatXAlign,
-      backgroundFloatYAlign,
-    } = background;
+    const { backgroundFloatSize, backgroundFloatX, backgroundFloatY, backgroundFloatXAlign, backgroundFloatYAlign } = background;
     const {
       backgroundOpacity,
       backgroundBlur,
@@ -283,11 +255,7 @@ export class BackgroundService {
       backgroundDropShadowBlur,
       backgroundDropShadowColor,
     } = background;
-    const {
-      backgroundListGroupTransparent,
-      backgroundTerminalToolbarTransparent,
-      backgroundFooterTransparent,
-    } = background;
+    const { backgroundListGroupTransparent, backgroundTerminalToolbarTransparent, backgroundFooterTransparent } = background;
 
     const css = `
 /* added by tabby-background plugin */
@@ -332,16 +300,8 @@ ${(() => {
     return `
   background-repeat: no-repeat;
   background-position: 
-  ${
-    backgroundFloatXAlign === "center"
-      ? backgroundFloatXAlign
-      : `${backgroundFloatXAlign} ${backgroundFloatX}px`
-  } 
-  ${
-    backgroundFloatYAlign === "center"
-      ? backgroundFloatYAlign
-      : `${backgroundFloatYAlign} ${backgroundFloatY}px`
-  }; 
+  ${backgroundFloatXAlign === "center" ? backgroundFloatXAlign : `${backgroundFloatXAlign} ${backgroundFloatX}px`} 
+  ${backgroundFloatYAlign === "center" ? backgroundFloatYAlign : `${backgroundFloatYAlign} ${backgroundFloatY}px`}; 
   background-size: ${backgroundFloatSize}px;`;
   } else {
     throw new Error("ShowType Error!");
@@ -353,9 +313,7 @@ ${
   backgroundListGroupTransparent > 0
     ? `
 .list-group {
-  --bs-list-group-bg: color-mix(in srgb, var(--theme-bg-more) ${
-    100 - backgroundListGroupTransparent
-  }%, transparent);
+  --bs-list-group-bg: color-mix(in srgb, var(--theme-bg-more) ${100 - backgroundListGroupTransparent}%, transparent);
 }`.trim()
     : ""
 }
@@ -364,9 +322,7 @@ ${
   backgroundTerminalToolbarTransparent > 0
     ? `
 terminal-toolbar {
-  background: color-mix(in srgb, var(--bs-body-bg) ${
-    100 - backgroundTerminalToolbarTransparent
-  }%, transparent) !important;
+  background: color-mix(in srgb, var(--bs-body-bg) ${100 - backgroundTerminalToolbarTransparent}%, transparent) !important;
 }`.trim()
     : ""
 }
@@ -375,9 +331,7 @@ ${
   backgroundFooterTransparent !== 50
     ? `
 footer {
-  background: color-mix(in srgb, rgba(0,0,0,1) ${
-    100 - backgroundFooterTransparent
-  }%, transparent) !important;
+  background: color-mix(in srgb, rgba(0,0,0,1) ${100 - backgroundFooterTransparent}%, transparent) !important;
 }`.trim()
     : ""
 }`.trim();
@@ -408,12 +362,7 @@ app-root>.content .tab-bar>.tabs tab-header button {
   }
 
   buildOthersCss() {
-    const {
-      othersInactiveTabDimming,
-      othersActiveTabDimming,
-      othersTabBarPersistentSpaceMinWidth,
-      othersHideFooter
-    } = this.pluginConfig;
+    const { othersInactiveTabDimming, othersActiveTabDimming, othersTabBarPersistentSpaceMinWidth, othersHideFooter } = this.pluginConfig;
 
     let css = "/* added by tabby-background plugin */";
     if (othersInactiveTabDimming !== 50) {

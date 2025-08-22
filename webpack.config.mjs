@@ -50,5 +50,5 @@ export default () => ({
       },
     ],
   },
-  externals: ["fs", "ngx-toastr", /^rxjs/, /^@angular/, /^@ng-bootstrap/, /^tabby-/],
+  externals: ["fs", "path", "ngx-toastr", /^rxjs/, /^@angular/, /^@ng-bootstrap/, /^tabby-/],
 });
