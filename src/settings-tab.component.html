@@ -17,11 +17,7 @@
             <div class="title" translate>Background mode</div>
             <div class="description" translate>Background mode</div>
           </div>
-          <select
-            class="form-control"
-            [(ngModel)]="pluginConfig.backgroundMode"
-            (ngModelChange)="apply()"
-          >
+          <select class="form-control" [(ngModel)]="pluginConfig.backgroundMode" (ngModelChange)="apply()">
             <option [ngValue]="'simple'" translate>Simple</option>
             <option [ngValue]="'advanced'" translate>Advanced</option>
           </select>
@@ -33,12 +29,7 @@
               <div class="description" translate>Relative path begins with ../../../data</div>
             </div>
             <div class="input-group w-50">
-              <input
-                class="form-control"
-                type="text"
-                [(ngModel)]="pluginConfig.backgroundPath"
-                (ngModelChange)="apply()"
-              />
+              <input class="form-control" type="text" [(ngModel)]="pluginConfig.backgroundPath" (ngModelChange)="apply()" />
               <button class="btn btn-secondary" (click)="pickFile()">
                 <i class="fas fa-folder-open"> </i>
               </button>
@@ -49,27 +40,11 @@
               <div class="title" translate>Background show type</div>
             </div>
             <div class="btn-group">
-              <input
-                class="btn-check"
-                type="radio"
-                name="backgroundShowType"
-                [(ngModel)]="pluginConfig.backgroundShowType"
-                (ngModelChange)="apply()"
-                id="showTypeFullscreen"
-                [value]="'fullscreen'"
-              />
+              <input class="btn-check" type="radio" name="backgroundShowType" [(ngModel)]="pluginConfig.backgroundShowType" (ngModelChange)="apply()" id="showTypeFullscreen" [value]="'fullscreen'" />
               <label class="btn btn-secondary" for="showTypeFullscreen">
                 <span translate>Fullscreen</span>
               </label>
-              <input
-                class="btn-check"
-                type="radio"
-                name="backgroundShowType"
-                [(ngModel)]="pluginConfig.backgroundShowType"
-                (ngModelChange)="apply()"
-                id="showTypeFullscreenFloat"
-                [value]="'float'"
-              />
+              <input class="btn-check" type="radio" name="backgroundShowType" [(ngModel)]="pluginConfig.backgroundShowType" (ngModelChange)="apply()" id="showTypeFullscreenFloat" [value]="'float'" />
               <label class="btn btn-secondary" for="showTypeFullscreenFloat">
                 <span translate>Float</span>
               </label>
@@ -146,121 +121,48 @@
                 <div class="title" translate>Float size</div>
                 <div class="description" translate>Unit: px</div>
               </div>
-              <input
-                class="me-3"
-                type="range"
-                [(ngModel)]="pluginConfig.backgroundFloatSize"
-                (mouseup)="apply()"
-                min="0"
-                max="1000"
-                step="1"
-              />
-              <button
-                class="btn btn-outline-secondary me-3"
-                (click)="pluginConfig.backgroundFloatSize = 300; apply()"
-              >
+              <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatSize" (mouseup)="apply()" min="0" max="1000" step="1" />
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatSize = 300; apply()">
                 <i class="fas fa-solid fa-rotate-left"> </i>
               </button>
-              <input
-                class="form-control param-input"
-                type="number"
-                min="0"
-                [(ngModel)]="pluginConfig.backgroundFloatSize"
-                (ngModelChange)="apply()"
-              />
+              <input class="form-control param-input" type="number" min="0" [(ngModel)]="pluginConfig.backgroundFloatSize" (ngModelChange)="apply()" />
             </div>
             <div class="form-line">
               <div class="header">
                 <div class="title" translate>Float X offset</div>
                 <div class="description" translate>Unit: px</div>
               </div>
-              <input
-                class="me-3"
-                type="range"
-                [(ngModel)]="pluginConfig.backgroundFloatX"
-                (mouseup)="apply()"
-                min="-100"
-                max="1000"
-                step="1"
-              />
-              <button
-                class="btn btn-outline-secondary me-3"
-                (click)="pluginConfig.backgroundFloatX = 0; apply()"
-              >
+              <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatX" (mouseup)="apply()" min="-100" max="1000" step="1" />
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatX = 0; apply()">
                 <i class="fas fa-solid fa-rotate-left"> </i>
               </button>
-              <input
-                class="form-control param-input"
-                type="number"
-                [(ngModel)]="pluginConfig.backgroundFloatX"
-                (ngModelChange)="apply()"
-              />
+              <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundFloatX" (ngModelChange)="apply()" />
             </div>
             <div class="form-line">
               <div class="header">
                 <div class="title" translate>Float Y offset</div>
                 <div class="description" translate>Unit: px</div>
               </div>
-              <input
-                class="me-3"
-                type="range"
-                [(ngModel)]="pluginConfig.backgroundFloatY"
-                (mouseup)="apply()"
-                min="-100"
-                max="1000"
-                step="1"
-              />
-              <button
-                class="btn btn-outline-secondary me-3"
-                (click)="pluginConfig.backgroundFloatY = 0; apply()"
-              >
+              <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatY" (mouseup)="apply()" min="-100" max="1000" step="1" />
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatY = 0; apply()">
                 <i class="fas fa-solid fa-rotate-left"> </i>
               </button>
-              <input
-                class="form-control param-input"
-                type="number"
-                [(ngModel)]="pluginConfig.backgroundFloatY"
-                (ngModelChange)="apply()"
-              />
+              <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundFloatY" (ngModelChange)="apply()" />
             </div>
             <div class="form-line">
               <div class="header">
                 <div class="title" translate>Float X align</div>
               </div>
               <div class="btn-group">
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatXAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatXAlign"
-                  (ngModelChange)="apply()"
-                  id="floatXAlignLeft"
-                  [value]="'left'"
-                />
+                <input class="btn-check" type="radio" name="floatXAlign" [(ngModel)]="pluginConfig.backgroundFloatXAlign" (ngModelChange)="apply()" id="floatXAlignLeft" [value]="'left'" />
                 <label class="btn btn-secondary" for="floatXAlignLeft">
                   <span translate>Left</span>
                 </label>
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatXAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatXAlign"
-                  (ngModelChange)="apply()"
-                  id="floatXAlignCenter"
-                  [value]="'center'"
-                />
+                <input class="btn-check" type="radio" name="floatXAlign" [(ngModel)]="pluginConfig.backgroundFloatXAlign" (ngModelChange)="apply()" id="floatXAlignCenter" [value]="'center'" />
                 <label class="btn btn-secondary" for="floatXAlignCenter">
                   <span translate>Center</span>
                 </label>
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatXAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatXAlign"
-                  (ngModelChange)="apply()"
-                  id="floatXAlignRight"
-                  [value]="'right'"
-                />
+                <input class="btn-check" type="radio" name="floatXAlign" [(ngModel)]="pluginConfig.backgroundFloatXAlign" (ngModelChange)="apply()" id="floatXAlignRight" [value]="'right'" />
                 <label class="btn btn-secondary" for="floatXAlignRight">
                   <span translate>Right</span>
                 </label>
@@ -271,39 +173,15 @@
                 <div class="title" translate>Float Y align</div>
               </div>
               <div class="btn-group">
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatYAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatYAlign"
-                  (ngModelChange)="apply()"
-                  id="floatYAlignTop"
-                  [value]="'top'"
-                />
+                <input class="btn-check" type="radio" name="floatYAlign" [(ngModel)]="pluginConfig.backgroundFloatYAlign" (ngModelChange)="apply()" id="floatYAlignTop" [value]="'top'" />
                 <label class="btn btn-secondary" for="floatYAlignTop">
                   <span translate>Top</span>
                 </label>
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatYAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatYAlign"
-                  (ngModelChange)="apply()"
-                  id="floatYAlignCenter"
-                  [value]="'center'"
-                />
+                <input class="btn-check" type="radio" name="floatYAlign" [(ngModel)]="pluginConfig.backgroundFloatYAlign" (ngModelChange)="apply()" id="floatYAlignCenter" [value]="'center'" />
                 <label class="btn btn-secondary" for="floatYAlignCenter">
                   <span translate>Center</span>
                 </label>
-                <input
-                  class="btn-check"
-                  type="radio"
-                  name="floatYAlign"
-                  [(ngModel)]="pluginConfig.backgroundFloatYAlign"
-                  (ngModelChange)="apply()"
-                  id="floatYAlignBottom"
-                  [value]="'bottom'"
-                />
+                <input class="btn-check" type="radio" name="floatYAlign" [(ngModel)]="pluginConfig.backgroundFloatYAlign" (ngModelChange)="apply()" id="floatYAlignBottom" [value]="'bottom'" />
                 <label class="btn btn-secondary" for="floatYAlignBottom">
                   <span translate>Bottom</span>
                 </label>
@@ -316,11 +194,7 @@
                   <div class="title" translate>Enable drop shadow</div>
                   <div class="description"></div>
                 </div>
-                <toggle
-                  [(ngModel)]="pluginConfig.backgroundDropShadowEnabled"
-                  (ngModelChange)="apply()"
-                >
-                </toggle>
+                <toggle [(ngModel)]="pluginConfig.backgroundDropShadowEnabled" (ngModelChange)="apply()"> </toggle>
               </div>
               <div class="content-box" *ngIf="pluginConfig.backgroundDropShadowEnabled === true">
                 <div class="form-line">
@@ -328,98 +202,40 @@
                     <div class="title" translate>Drop shadow X offset</div>
                     <div class="description" translate>Unit: px</div>
                   </div>
-                  <input
-                    class="me-3"
-                    type="range"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowX"
-                    (mouseup)="apply()"
-                    min="-200"
-                    max="200"
-                    step="1"
-                  />
-                  <button
-                    class="btn btn-outline-secondary me-3"
-                    (click)="pluginConfig.backgroundDropShadowX = 0; apply()"
-                  >
+                  <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowX" (mouseup)="apply()" min="-200" max="200" step="1" />
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowX = 0; apply()">
                     <i class="fas fa-solid fa-rotate-left"> </i>
                   </button>
-                  <input
-                    class="form-control param-input"
-                    type="number"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowX"
-                    (ngModelChange)="apply()"
-                  />
+                  <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundDropShadowX" (ngModelChange)="apply()" />
                 </div>
                 <div class="form-line">
                   <div class="header">
                     <div class="title" translate>Drop shadow Y offset</div>
                     <div class="description" translate>Unit: px</div>
                   </div>
-                  <input
-                    class="me-3"
-                    type="range"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowY"
-                    (mouseup)="apply()"
-                    min="-200"
-                    max="200"
-                    step="1"
-                  />
-                  <button
-                    class="btn btn-outline-secondary me-3"
-                    (click)="pluginConfig.backgroundDropShadowY = 0; apply()"
-                  >
+                  <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowY" (mouseup)="apply()" min="-200" max="200" step="1" />
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowY = 0; apply()">
                     <i class="fas fa-solid fa-rotate-left"> </i>
                   </button>
-                  <input
-                    class="form-control param-input"
-                    type="number"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowY"
-                    (ngModelChange)="apply()"
-                  />
+                  <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundDropShadowY" (ngModelChange)="apply()" />
                 </div>
                 <div class="form-line">
                   <div class="header">
                     <div class="title" translate>Drop shadow blur</div>
                     <div class="description" translate>Unit: px</div>
                   </div>
-                  <input
-                    class="me-3"
-                    type="range"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowBlur"
-                    (mouseup)="apply()"
-                    min="0"
-                    max="100"
-                    step="0.1"
-                  />
-                  <button
-                    class="btn btn-outline-secondary me-3"
-                    (click)="pluginConfig.backgroundDropShadowBlur = 0; apply()"
-                  >
+                  <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowBlur" (mouseup)="apply()" min="0" max="100" step="0.1" />
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowBlur = 0; apply()">
                     <i class="fas fa-solid fa-rotate-left"> </i>
                   </button>
-                  <input
-                    class="form-control param-input"
-                    type="number"
-                    min="0"
-                    max="100"
-                    step="0.1"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowBlur"
-                    (ngModelChange)="apply()"
-                  />
+                  <input class="form-control param-input" type="number" min="0" max="100" step="0.1" [(ngModel)]="pluginConfig.backgroundDropShadowBlur" (ngModelChange)="apply()" />
                 </div>
                 <div class="form-line">
                   <div class="header">
                     <div class="title" translate>Drop shadow color</div>
-                    <div class="description" translate>
-                      Use RGBA (#FF0000A0) or color name(red, green, ...)
-                    </div>
+                    <div class="description" translate>Use RGBA (#FF0000A0) or color name(red, green, ...)</div>
                   </div>
-                  <input
-                    class="form-control font-family-input"
-                    type="text"
-                    [(ngModel)]="pluginConfig.backgroundDropShadowColor"
-                    (ngModelChange)="apply()"
-                  />
+                  <input class="form-control font-family-input" type="text" [(ngModel)]="pluginConfig.backgroundDropShadowColor" (ngModelChange)="apply()" />
                 </div>
               </div>
             </div>
@@ -431,30 +247,11 @@
                 <div class="title" translate>{{ item.title }}</div>
                 <div class="description" translate>{{ item.description }}</div>
               </div>
-              <input
-                class="me-3"
-                type="range"
-                [(ngModel)]="pluginConfig[item.model]"
-                (mouseup)="apply()"
-                [min]="item.min"
-                [max]="item.max"
-                [step]="item.step"
-              />
-              <button
-                class="btn btn-outline-secondary me-3"
-                (click)="pluginConfig[item.model] = item.default; apply()"
-              >
+              <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
                 <i class="fas fa-solid fa-rotate-left"> </i>
               </button>
-              <input
-                class="form-control param-input"
-                type="number"
-                [(ngModel)]="pluginConfig[item.model]"
-                (ngModelChange)="apply()"
-                [min]="item.min"
-                [max]="item.max"
-                [step]="item.step"
-              />
+              <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
             </div>
           </ng-container>
           <div class="h4" translate>Extra Settings</div>
@@ -464,30 +261,11 @@
                 <div class="title" translate>{{ item.title }}</div>
                 <div class="description" translate>{{ item.description }}</div>
               </div>
-              <input
-                class="me-3"
-                type="range"
-                [(ngModel)]="pluginConfig[item.model]"
-                (mouseup)="apply()"
-                [min]="item.min"
-                [max]="item.max"
-                [step]="item.step"
-              />
-              <button
-                class="btn btn-outline-secondary me-3"
-                (click)="pluginConfig[item.model] = item.default; apply()"
-              >
+              <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
                 <i class="fas fa-solid fa-rotate-left"> </i>
               </button>
-              <input
-                class="form-control param-input"
-                type="number"
-                [(ngModel)]="pluginConfig[item.model]"
-                (ngModelChange)="apply()"
-                [min]="item.min"
-                [max]="item.max"
-                [step]="item.step"
-              />
+              <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
             </div>
           </ng-container>
         </div>
@@ -497,11 +275,7 @@
               <div class="title" translate>Background switch type</div>
               <div class="description" translate>When switch background</div>
             </div>
-            <select
-              class="form-control"
-              [(ngModel)]="pluginConfig.backgroundAdvancedSwitchType"
-              (ngModelChange)="apply()"
-            >
+            <select class="form-control" [(ngModel)]="pluginConfig.backgroundAdvancedSwitchType" (ngModelChange)="apply()">
               <option [ngValue]="'slideshow'" translate>Slideshow</option>
               <!-- <option [ngValue]="'session'" translate>New Session</option> -->
             </select>
@@ -511,41 +285,18 @@
               <div class="title" translate>Slideshow interval</div>
               <div class="description" translate>Slideshow interval (second)</div>
             </div>
-            <input
-              class="me-3"
-              type="range"
-              [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval"
-              (mouseup)="apply()"
-              [min]="5"
-              [max]="604800"
-              [step]="1"
-            />
-            <button
-              class="btn btn-outline-secondary me-3"
-              (click)="pluginConfig.backgroundAdvancedSlideshowInterval = 3600; apply()"
-            >
+            <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval" (mouseup)="apply()" [min]="5" [max]="604800" [step]="1" />
+            <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundAdvancedSlideshowInterval = 3600; apply()">
               <i class="fas fa-solid fa-rotate-left"> </i>
             </button>
-            <input
-              class="form-control param-input"
-              type="number"
-              [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval"
-              (ngModelChange)="apply()"
-              [min]="5"
-              [max]="604800"
-              [step]="1"
-            />
+            <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval" (ngModelChange)="apply()" [min]="5" [max]="604800" [step]="1" />
           </div>
           <div class="form-line">
             <div class="header">
               <div class="title" translate>Background choose type</div>
               <div class="description" translate>How to choose background</div>
             </div>
-            <select
-              class="form-control"
-              [(ngModel)]="pluginConfig.backgroundAdvancedChooseType"
-              (ngModelChange)="apply()"
-            >
+            <select class="form-control" [(ngModel)]="pluginConfig.backgroundAdvancedChooseType" (ngModelChange)="apply()">
               <option [ngValue]="'sequence'" translate>Sequence</option>
               <option [ngValue]="'reverse'" translate>Reverse</option>
               <option [ngValue]="'random'" translate>Random</option>
@@ -567,22 +318,18 @@
               <span translate>Export</span>
             </button> -->
           </div>
-          <div
-            class="list-group mt-3 mb-3"
-            cdkDropList
-            (cdkDropListDropped)="dropBackgroundItem($event)"
-          >
+          <div class="list-group mt-3 mb-3" cdkDropList (cdkDropListDropped)="dropBackgroundItem($event)">
             <div class="container list-group-item active align-items-center">
               <div class="row">
-                <div class="col col-1 gx-1">
-                  <button class="btn border-0" disabled>
+                <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                  <span>
                     <i class="fa-solid fa-toggle-on"></i>
-                  </button>
+                  </span>
                 </div>
-                <div class="col col-1 gx-1">
-                  <button class="btn border-0" disabled>
+                <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                  <span>
                     <i class="fa-regular fa-folder-open"></i>
-                  </button>
+                  </span>
                 </div>
                 <div class="col col-2 gx-1 d-flex justify-content-center align-items-center">
                   <span class="text-center" translate>Name</span>
@@ -590,58 +337,38 @@
                 <div class="col gx-1 d-flex justify-content-center align-items-center">
                   <span class="text-center" translate>Background path</span>
                 </div>
-                <div class="col col-auto gx-1">
-                  <button
-                    class="btn border border-dark"
-                    style="width: 60px; --bs-border-opacity: 0"
-                    disabled
-                  >
+                <div class="col col-auto gx-1 d-flex">
+                  <span class="d-flex justify-content-center align-items-center" style="width: 60px">
                     <i class="fa-solid fa-palette"></i>
-                  </button>
+                  </span>
                 </div>
-                <div class="col col-auto gx-1">
-                  <button class="btn border border-dark" style="--bs-border-opacity: 0" disabled>
+                <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                  <span>
                     <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  </span>
                 </div>
-                <div class="col col-auto gx-1">
-                  <button class="btn border border-dark" style="--bs-border-opacity: 0" disabled>
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
+                <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                  <span>
+                    <i class="fas fa-solid fa-trash"></i>
+                  </span>
                 </div>
               </div>
             </div>
             <ng-container *ngFor="let item of pluginConfig.backgrounds; let i = index">
-              <div
-                class="container list-group-item align-items-center list-group-item-action list-group-item-background"
-                cdkDrag
-              >
+              <div class="container list-group-item align-items-center list-group-item-action list-group-item-background" cdkDrag>
                 <div class="row">
-                  <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
-                    <toggle cdkDragHandle [(ngModel)]="item.enabled" (ngModelChange)="apply()">
-                    </toggle>
+                  <div class="col col-1 gx-1 d-flex justify-content-center align-items-center form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" cdkDragHandle [(ngModel)]="item.enabled" (ngModelChange)="apply()" />
                   </div>
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
-                    <checkbox [(ngModel)]="item.isFolder" (ngModelChange)="apply()"> </checkbox>
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="item.isFolder" (ngModelChange)="apply()" />
                   </div>
                   <div class="col col-2 gx-1">
-                    <input
-                      class="form-control"
-                      style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)"
-                      type="text"
-                      [(ngModel)]="item.name"
-                      (ngModelChange)="apply()"
-                    />
+                    <input class="form-control" style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)" type="text" [(ngModel)]="item.name" (ngModelChange)="apply()" />
                   </div>
                   <div class="col gx-1">
                     <div class="input-group">
-                      <input
-                        class="form-control"
-                        style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)"
-                        type="text"
-                        [(ngModel)]="item.backgroundPath"
-                        (ngModelChange)="apply()"
-                      />
+                      <input class="form-control" style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)" type="text" [(ngModel)]="item.backgroundPath" (ngModelChange)="apply()" />
                       <button class="btn btn-secondary" (click)="pickFile(item)">
                         <i class="fas fa-folder-open"> </i>
                       </button>
@@ -649,24 +376,13 @@
                   </div>
                   <div class="col col-auto gx-1 d-flex justify-content-center align-items-center">
                     <div ngbDropdown container="body" placement="top-right">
-                      <button
-                        class="btn btn-outline-primary"
-                        style="width: 60px"
-                        ngbDropdownToggle
-                        (click)="$event.stopPropagation()"
-                      >
+                      <button class="btn btn-outline-primary" style="width: 60px" ngbDropdownToggle (click)="$event.stopPropagation()">
                         <i class="fa-solid fa-palette"></i>
                       </button>
                       <div
                         class="border border-black"
                         ngbDropdownMenu
-                        style="
-                          min-width: 450px;
-                          max-height: 300px;
-                          overflow: scroll;
-                          background-color: rgba(68, 68, 68, 0.3);
-                          backdrop-filter: blur(10px);
-                        "
+                        style="min-width: 450px; max-height: 300px; overflow: scroll; background-color: rgba(68, 68, 68, 0.3); backdrop-filter: blur(10px)"
                       >
                         <div class="container-fluid">
                           <div class="form-line">
@@ -695,10 +411,7 @@
                                 id="showTypeFullscreenFloat-{{ i }}"
                                 [value]="'float'"
                               />
-                              <label
-                                class="btn btn-secondary"
-                                for="showTypeFullscreenFloat-{{ i }}"
-                              >
+                              <label class="btn btn-secondary" for="showTypeFullscreenFloat-{{ i }}">
                                 <span translate>Float</span>
                               </label>
                             </div>
@@ -718,10 +431,7 @@
                                   id="fullscreenTypeContain-{{ i }}"
                                   [value]="'contain'"
                                 />
-                                <label
-                                  class="btn btn-secondary"
-                                  for="fullscreenTypeContain-{{ i }}"
-                                >
+                                <label class="btn btn-secondary" for="fullscreenTypeContain-{{ i }}">
                                   <span translate>Contain</span>
                                 </label>
                                 <input
@@ -738,10 +448,7 @@
                                 </label>
                               </div>
                             </div>
-                            <div
-                              class="form-line"
-                              *ngIf="item.backgroundFullscreenType === 'contain'"
-                            >
+                            <div class="form-line" *ngIf="item.backgroundFullscreenType === 'contain'">
                               <div class="header">
                                 <div class="title" translate>Repeat type</div>
                               </div>
@@ -755,10 +462,7 @@
                                   id="fullscreenRepeatTypeRepeat-{{ i }}"
                                   [value]="'repeat'"
                                 />
-                                <label
-                                  class="btn btn-secondary"
-                                  for="fullscreenRepeatTypeRepeat-{{ i }}"
-                                >
+                                <label class="btn btn-secondary" for="fullscreenRepeatTypeRepeat-{{ i }}">
                                   <span translate>Repeat</span>
                                 </label>
                                 <input
@@ -770,10 +474,7 @@
                                   id="fullscreenRepeatTypeNoRepeat-{{ i }}"
                                   [value]="'no-repeat'"
                                 />
-                                <label
-                                  class="btn btn-secondary"
-                                  for="fullscreenRepeatTypeNoRepeat-{{ i }}"
-                                >
+                                <label class="btn btn-secondary" for="fullscreenRepeatTypeNoRepeat-{{ i }}">
                                   <span translate>No Repeat</span>
                                 </label>
                               </div>
@@ -786,82 +487,33 @@
                                 <div class="title" translate>Float size</div>
                                 <div class="description" translate>Unit: px</div>
                               </div>
-                              <input
-                                class="me-3"
-                                type="range"
-                                [(ngModel)]="item.backgroundFloatSize"
-                                (mouseup)="apply()"
-                                min="0"
-                                max="1000"
-                                step="1"
-                              />
-                              <button
-                                class="btn btn-outline-secondary me-3"
-                                (click)="item.backgroundFloatSize = 300; apply()"
-                              >
+                              <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatSize" (mouseup)="apply()" min="0" max="1000" step="1" />
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatSize = 300; apply()">
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
-                              <input
-                                class="form-control param-input"
-                                type="number"
-                                min="0"
-                                [(ngModel)]="item.backgroundFloatSize"
-                                (ngModelChange)="apply()"
-                              />
+                              <input class="form-control param-input" type="number" min="0" [(ngModel)]="item.backgroundFloatSize" (ngModelChange)="apply()" />
                             </div>
                             <div class="form-line">
                               <div class="header">
                                 <div class="title" translate>Float X offset</div>
                                 <div class="description" translate>Unit: px</div>
                               </div>
-                              <input
-                                class="me-3"
-                                type="range"
-                                [(ngModel)]="item.backgroundFloatX"
-                                (mouseup)="apply()"
-                                min="-100"
-                                max="1000"
-                                step="1"
-                              />
-                              <button
-                                class="btn btn-outline-secondary me-3"
-                                (click)="item.backgroundFloatX = 0; apply()"
-                              >
+                              <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatX" (mouseup)="apply()" min="-100" max="1000" step="1" />
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatX = 0; apply()">
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
-                              <input
-                                class="form-control param-input"
-                                type="number"
-                                [(ngModel)]="item.backgroundFloatX"
-                                (ngModelChange)="apply()"
-                              />
+                              <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundFloatX" (ngModelChange)="apply()" />
                             </div>
                             <div class="form-line">
                               <div class="header">
                                 <div class="title" translate>Float Y offset</div>
                                 <div class="description" translate>Unit: px</div>
                               </div>
-                              <input
-                                class="me-3"
-                                type="range"
-                                [(ngModel)]="item.backgroundFloatY"
-                                (mouseup)="apply()"
-                                min="-100"
-                                max="1000"
-                                step="1"
-                              />
-                              <button
-                                class="btn btn-outline-secondary me-3"
-                                (click)="item.backgroundFloatY = 0; apply()"
-                              >
+                              <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatY" (mouseup)="apply()" min="-100" max="1000" step="1" />
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatY = 0; apply()">
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
-                              <input
-                                class="form-control param-input"
-                                type="number"
-                                [(ngModel)]="item.backgroundFloatY"
-                                (ngModelChange)="apply()"
-                              />
+                              <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundFloatY" (ngModelChange)="apply()" />
                             </div>
                             <div class="form-line">
                               <div class="header">
@@ -956,114 +608,48 @@
                                   <div class="title" translate>Enable drop shadow</div>
                                   <div class="description"></div>
                                 </div>
-                                <toggle
-                                  [(ngModel)]="item.backgroundDropShadowEnabled"
-                                  (ngModelChange)="apply()"
-                                >
-                                </toggle>
+                                <toggle [(ngModel)]="item.backgroundDropShadowEnabled" (ngModelChange)="apply()"> </toggle>
                               </div>
-                              <div
-                                class="content-box"
-                                *ngIf="item.backgroundDropShadowEnabled === true"
-                              >
+                              <div class="content-box" *ngIf="item.backgroundDropShadowEnabled === true">
                                 <div class="form-line">
                                   <div class="header">
                                     <div class="title" translate>Drop shadow X offset</div>
                                     <div class="description" translate>Unit: px</div>
                                   </div>
-                                  <input
-                                    class="me-3"
-                                    type="range"
-                                    [(ngModel)]="item.backgroundDropShadowX"
-                                    (mouseup)="apply()"
-                                    min="-200"
-                                    max="200"
-                                    step="1"
-                                  />
-                                  <button
-                                    class="btn btn-outline-secondary me-3"
-                                    (click)="item.backgroundDropShadowX = 0; apply()"
-                                  >
+                                  <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowX" (mouseup)="apply()" min="-200" max="200" step="1" />
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowX = 0; apply()">
                                     <i class="fas fa-solid fa-rotate-left"> </i>
                                   </button>
-                                  <input
-                                    class="form-control param-input"
-                                    type="number"
-                                    [(ngModel)]="item.backgroundDropShadowX"
-                                    (ngModelChange)="apply()"
-                                  />
+                                  <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundDropShadowX" (ngModelChange)="apply()" />
                                 </div>
                                 <div class="form-line">
                                   <div class="header">
                                     <div class="title" translate>Drop shadow Y offset</div>
                                     <div class="description" translate>Unit: px</div>
                                   </div>
-                                  <input
-                                    class="me-3"
-                                    type="range"
-                                    [(ngModel)]="item.backgroundDropShadowY"
-                                    (mouseup)="apply()"
-                                    min="-200"
-                                    max="200"
-                                    step="1"
-                                  />
-                                  <button
-                                    class="btn btn-outline-secondary me-3"
-                                    (click)="item.backgroundDropShadowY = 0; apply()"
-                                  >
+                                  <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowY" (mouseup)="apply()" min="-200" max="200" step="1" />
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowY = 0; apply()">
                                     <i class="fas fa-solid fa-rotate-left"> </i>
                                   </button>
-                                  <input
-                                    class="form-control param-input"
-                                    type="number"
-                                    [(ngModel)]="item.backgroundDropShadowY"
-                                    (ngModelChange)="apply()"
-                                  />
+                                  <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundDropShadowY" (ngModelChange)="apply()" />
                                 </div>
                                 <div class="form-line">
                                   <div class="header">
                                     <div class="title" translate>Drop shadow blur</div>
                                     <div class="description" translate>Unit: px</div>
                                   </div>
-                                  <input
-                                    class="me-3"
-                                    type="range"
-                                    [(ngModel)]="item.backgroundDropShadowBlur"
-                                    (mouseup)="apply()"
-                                    min="0"
-                                    max="100"
-                                    step="0.1"
-                                  />
-                                  <button
-                                    class="btn btn-outline-secondary me-3"
-                                    (click)="item.backgroundDropShadowBlur = 0; apply()"
-                                  >
+                                  <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowBlur" (mouseup)="apply()" min="0" max="100" step="0.1" />
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowBlur = 0; apply()">
                                     <i class="fas fa-solid fa-rotate-left"> </i>
                                   </button>
-                                  <input
-                                    class="form-control param-input"
-                                    type="number"
-                                    min="0"
-                                    max="100"
-                                    step="0.1"
-                                    [(ngModel)]="item.backgroundDropShadowBlur"
-                                    (ngModelChange)="apply()"
-                                  />
+                                  <input class="form-control param-input" type="number" min="0" max="100" step="0.1" [(ngModel)]="item.backgroundDropShadowBlur" (ngModelChange)="apply()" />
                                 </div>
                                 <div class="form-line">
                                   <div class="header">
                                     <div class="title" translate>Drop shadow color</div>
-                                    <div class="description" translate>
-                                      Use RGBA (#FF0000A0) or color name(red, green, ...)
-                                    </div>
+                                    <div class="description" translate>Use RGBA (#FF0000A0) or color name(red, green, ...)</div>
                                   </div>
-                                  <input
-                                    class="form-control"
-                                    style="width: 120px"
-                                    type="text"
-                                    [(ngModel)]="item.backgroundDropShadowColor"
-                                    (ngModelChange)="apply()"
-                                  />
+                                  <input class="form-control" style="width: 120px" type="text" [(ngModel)]="item.backgroundDropShadowColor" (ngModelChange)="apply()" />
                                 </div>
                               </div>
                             </div>
@@ -1075,19 +661,8 @@
                                 <div class="title" translate>{{ filter.title }}</div>
                                 <div class="description" translate>{{ filter.description }}</div>
                               </div>
-                              <input
-                                class="me-3"
-                                type="range"
-                                [(ngModel)]="item[filter.model]"
-                                (mouseup)="apply()"
-                                [min]="filter.min"
-                                [max]="filter.max"
-                                [step]="filter.step"
-                              />
-                              <button
-                                class="btn btn-outline-secondary me-3"
-                                (click)="item[filter.model] = filter.default; apply()"
-                              >
+                              <input class="me-3" type="range" [(ngModel)]="item[filter.model]" (mouseup)="apply()" [min]="filter.min" [max]="filter.max" [step]="filter.step" />
+                              <button class="btn btn-outline-secondary me-3" (click)="item[filter.model] = filter.default; apply()">
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
                               <input
@@ -1108,46 +683,23 @@
                                 <div class="title" translate>{{ extra.title }}</div>
                                 <div class="description" translate>{{ extra.description }}</div>
                               </div>
-                              <input
-                                class="me-3"
-                                type="range"
-                                [(ngModel)]="item[extra.model]"
-                                (mouseup)="apply()"
-                                [min]="extra.min"
-                                [max]="extra.max"
-                                [step]="extra.step"
-                              />
-                              <button
-                                class="btn btn-outline-secondary me-3"
-                                (click)="item[extra.model] = extra.default; apply()"
-                              >
+                              <input class="me-3" type="range" [(ngModel)]="item[extra.model]" (mouseup)="apply()" [min]="extra.min" [max]="extra.max" [step]="extra.step" />
+                              <button class="btn btn-outline-secondary me-3" (click)="item[extra.model] = extra.default; apply()">
                                 <i class="fas fa-solid fa-rotate-left"> </i>
                               </button>
-                              <input
-                                class="form-control param-input"
-                                type="number"
-                                [(ngModel)]="item[extra.model]"
-                                (ngModelChange)="apply()"
-                                [min]="extra.min"
-                                [max]="extra.max"
-                                [step]="extra.step"
-                              />
+                              <input class="form-control param-input" type="number" [(ngModel)]="item[extra.model]" (ngModelChange)="apply()" [min]="extra.min" [max]="extra.max" [step]="extra.step" />
                             </div>
                           </ng-container>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col col-auto gx-1 d-flex justify-content-center align-items-center">
-                    <button
-                      [disabled]="item.isFolder === true"
-                      class="btn btn-outline-secondary"
-                      (click)="previewBackground(i)"
-                    >
+                  <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
+                    <button [disabled]="item.isFolder === true" class="btn btn-outline-secondary" (click)="previewBackground(i)">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                   </div>
-                  <div class="col col-auto gx-1 d-flex justify-content-center align-items-center">
+                  <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
                     <button class="btn btn-outline-secondary" (click)="delBackground(i)">
                       <i class="fa-solid fa-trash"></i>
                     </button>
@@ -1166,9 +718,7 @@
       <div class="form-line">
         <div class="header">
           <div class="title" translate>Enable UI font replace</div>
-          <div class="description" translate>
-            Do not affect the terminal font in the [appearance] configuration
-          </div>
+          <div class="description" translate>Do not affect the terminal font in the [appearance] configuration</div>
         </div>
         <toggle [(ngModel)]="pluginConfig.uiFontEnabled" (ngModelChange)="apply()"> </toggle>
       </div>
@@ -1178,20 +728,8 @@
             <div class="title" translate>UI Font Family</div>
           </div>
           <div class="input-group w-75">
-            <input
-              class="form-control font-family-input"
-              type="text"
-              [(ngModel)]="pluginConfig.uiFontFamily"
-              (ngModelChange)="apply()"
-            />
-            <input
-              class="form-control font-size-input"
-              type="number"
-              min="5"
-              max="48"
-              [(ngModel)]="pluginConfig.uiFontSize"
-              (ngModelChange)="apply()"
-            />
+            <input class="form-control font-family-input" type="text" [(ngModel)]="pluginConfig.uiFontFamily" (ngModelChange)="apply()" />
+            <input class="form-control font-size-input" type="number" min="5" max="48" [(ngModel)]="pluginConfig.uiFontSize" (ngModelChange)="apply()" />
           </div>
         </div>
         <div class="form-line">
@@ -1199,8 +737,7 @@
             <div class="title" translate>Fix close button font</div>
             <div class="description" translate>Restore the tab closing button to default font</div>
           </div>
-          <toggle [(ngModel)]="pluginConfig.uiFontTabBarCloseBtnFix" (ngModelChange)="apply()">
-          </toggle>
+          <toggle [(ngModel)]="pluginConfig.uiFontTabBarCloseBtnFix" (ngModelChange)="apply()"> </toggle>
         </div>
       </div>
     </ng-template>
@@ -1214,30 +751,11 @@
             <div class="title" translate>{{ item.title }}</div>
             <div class="description" translate>{{ item.description }}</div>
           </div>
-          <input
-            class="me-3"
-            type="range"
-            [(ngModel)]="pluginConfig[item.model]"
-            (mouseup)="apply()"
-            [min]="item.min"
-            [max]="item.max"
-            [step]="item.step"
-          />
-          <button
-            class="btn btn-outline-secondary me-3"
-            (click)="pluginConfig[item.model] = item.default; apply()"
-          >
+          <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
+          <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
             <i class="fas fa-solid fa-rotate-left"> </i>
           </button>
-          <input
-            class="form-control param-input"
-            type="number"
-            [(ngModel)]="pluginConfig[item.model]"
-            (ngModelChange)="apply()"
-            [min]="item.min"
-            [max]="item.max"
-            [step]="item.step"
-          />
+          <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
         </div>
       </ng-container>
       <div class="form-line">
@@ -1245,8 +763,7 @@
           <div class="title" translate>Hide main menu footer</div>
           <div class="description" translate>Hide the main menu footer(bottom bar)</div>
         </div>
-        <toggle [(ngModel)]="pluginConfig.othersHideFooter" (ngModelChange)="apply()">
-        </toggle>
+        <toggle [(ngModel)]="pluginConfig.othersHideFooter" (ngModelChange)="apply()"> </toggle>
       </div>
     </ng-template>
   </li>

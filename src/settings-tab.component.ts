@@ -31,8 +31,11 @@ import { debounce } from "utils-decorators";
         // flex: none;
       }
       .list-group-item-background {
-        --bs-list-group-action-hover-bg: rgba(0, 0, 0, 0.55);
+        // --bs-list-group-action-hover-bg: rgba(0, 0, 0, 0.55);
         // backdrop-filter: blur(3px);
+
+        --bs-list-group-bg: rgba(0, 0, 0, 0.25);
+        --bs-list-group-action-hover-bg: rgba(0, 0, 0, 0.65);
       }
       .close {
         // font-size: 1.4rem;
