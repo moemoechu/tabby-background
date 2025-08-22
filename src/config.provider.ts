@@ -147,7 +147,7 @@ export class BackgroundConfigProvider extends ConfigProvider {
       backgrounds: [],
       backgroundAdvancedType: "global",
       backgroundAdvancedChooseType: "sequence",
-      backgroundAdvancedSwitchType: "session",
+      backgroundAdvancedSwitchType: "slideshow",
       backgroundAdvancedSlideshowInterval: 3600,
       backgroundAdvancedCurrentId: uuid.NIL,
       backgroundLastChangedTime: 0,
