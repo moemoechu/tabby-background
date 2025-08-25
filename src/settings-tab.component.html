@@ -358,10 +358,10 @@
               <div class="container list-group-item align-items-center list-group-item-action list-group-item-background" cdkDrag>
                 <div class="row">
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" cdkDragHandle [(ngModel)]="item.enabled" (ngModelChange)="apply()" />
+                    <input class="form-check-input" type="checkbox" role="switch" cdkDragHandle [(ngModel)]="item.enabled" (ngModelChange)="apply()" ngbTooltip="{{ 'Enable' | translate }}" />
                   </div>
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="item.isFolder" (ngModelChange)="apply()" />
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="item.isFolder" (ngModelChange)="apply()" ngbTooltip="{{ 'Folder Mode' | translate }}" />
                   </div>
                   <div class="col col-2 gx-1">
                     <input class="form-control" style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)" type="text" [(ngModel)]="item.name" (ngModelChange)="apply()" />
@@ -369,14 +369,14 @@
                   <div class="col gx-1">
                     <div class="input-group">
                       <input class="form-control" style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)" type="text" [(ngModel)]="item.backgroundPath" (ngModelChange)="apply()" />
-                      <button class="btn btn-secondary" (click)="pickFile(item)">
+                      <button class="btn btn-secondary" (click)="pickFile(item)" ngbTooltip="{{ 'Pick ' + (item.isFolder ? 'Folder' : 'File') | translate }}">
                         <i class="fas fa-folder-open"> </i>
                       </button>
                     </div>
                   </div>
                   <div class="col col-auto gx-1 d-flex justify-content-center align-items-center">
                     <div ngbDropdown container="body" placement="top-right">
-                      <button class="btn btn-outline-primary" style="width: 60px" ngbDropdownToggle (click)="$event.stopPropagation()">
+                      <button class="btn btn-outline-primary" style="width: 60px" ngbDropdownToggle (click)="$event.stopPropagation()" ngbTooltip="{{ 'Style' | translate }}">
                         <i class="fa-solid fa-palette"></i>
                       </button>
                       <div
@@ -695,12 +695,12 @@
                     </div>
                   </div>
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
-                    <button [disabled]="item.isFolder === true" class="btn btn-outline-secondary" (click)="previewBackground(i)">
+                    <button [disabled]="item.isFolder === true" class="btn btn-outline-secondary" (click)="previewBackground(i)" ngbTooltip="{{ 'Preview' | translate }}">
                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                   </div>
                   <div class="col col-1 gx-1 d-flex justify-content-center align-items-center">
-                    <button class="btn btn-outline-secondary" (click)="delBackground(i)">
+                    <button class="btn btn-outline-secondary" (click)="delBackground(i)" ngbTooltip="{{ 'Delete' | translate }}">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </div>

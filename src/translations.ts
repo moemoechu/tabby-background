@@ -85,6 +85,10 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Background mode": "背景模式",
       "Hide main menu footer": "隐藏主界面页脚",
       "Hide the main menu footer(bottom bar)": "隐藏主界面页脚（最下面的长条）",
+      "Preview": "预览",
+      "Pick File": "选择文件",
+      "Pick Folder": "选择目录",
+      "Folder Mode": "目录模式",
     },
   ],
 ];
