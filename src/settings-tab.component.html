@@ -728,7 +728,12 @@
             <div class="title" translate>UI Font Family</div>
           </div>
           <div class="input-group w-75">
-            <input class="form-control font-family-input" type="text" [(ngModel)]="pluginConfig.uiFontFamily" (ngModelChange)="apply()" />
+            <!-- <input class="form-control font-family-input" type="text" [(ngModel)]="pluginConfig.uiFontFamily" (ngModelChange)="apply()" /> -->
+            <select class="form-control" [(ngModel)]="pluginConfig.uiFontFamily" (ngModelChange)="apply()">
+              <option *ngFor="let font of fonts" [ngValue]="font">
+                {{ font }}
+              </option>
+            </select>
             <input class="form-control font-size-input" type="number" min="5" max="48" [(ngModel)]="pluginConfig.uiFontSize" (ngModelChange)="apply()" />
           </div>
         </div>

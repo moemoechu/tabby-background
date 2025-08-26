@@ -3,7 +3,7 @@ import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { BackgroundService } from "./background.service";
 import { AdvancedBackground, BackgroundPluginConfig } from "./config.provider";
 import { ToastrService } from "ngx-toastr";
-import { ConfigService, TranslateService } from "tabby-core";
+import { ConfigService, PlatformService, TranslateService } from "tabby-core";
 import { ElectronHostWindow, ElectronService } from "tabby-electron";
 import { debounce } from "utils-decorators";
 
@@ -218,6 +218,7 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
   ];
 
   pluginConfig: BackgroundPluginConfig;
+  fonts: string[];
 
   constructor(
     public config: ConfigService,
@@ -225,9 +226,13 @@ export class BackgroundSettingsTabComponent implements OnDestroy {
     private electron: ElectronService,
     private hostWindow: ElectronHostWindow,
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private platform: PlatformService
   ) {
     this.pluginConfig = this.config.store.backgroundPlugin;
+  }
+  async ngOnInit() {
+    this.fonts = await this.platform.listFonts();
   }
   ngOnDestroy(): void {
     this.background.leavePreviewMode();
