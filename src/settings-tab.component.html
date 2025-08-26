@@ -30,8 +30,8 @@
             </div>
             <div class="input-group w-50">
               <input class="form-control" type="text" [(ngModel)]="pluginConfig.backgroundPath" (ngModelChange)="apply()" />
-              <button class="btn btn-secondary" (click)="pickFile()">
-                <i class="fas fa-folder-open"> </i>
+              <button class="btn btn-secondary" (click)="pickFile()" ngbTooltip="{{ 'Pick File' | translate }}">
+                <i class="fas fa-folder-open"></i>
               </button>
             </div>
           </div>
@@ -122,8 +122,8 @@
                 <div class="description" translate>Unit: px</div>
               </div>
               <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatSize" (mouseup)="apply()" min="0" max="1000" step="1" />
-              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatSize = 300; apply()">
-                <i class="fas fa-solid fa-rotate-left"> </i>
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatSize = 300; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                <i class="fas fa-solid fa-rotate-left"></i>
               </button>
               <input class="form-control param-input" type="number" min="0" [(ngModel)]="pluginConfig.backgroundFloatSize" (ngModelChange)="apply()" />
             </div>
@@ -133,8 +133,8 @@
                 <div class="description" translate>Unit: px</div>
               </div>
               <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatX" (mouseup)="apply()" min="-100" max="1000" step="1" />
-              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatX = 0; apply()">
-                <i class="fas fa-solid fa-rotate-left"> </i>
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatX = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                <i class="fas fa-solid fa-rotate-left"></i>
               </button>
               <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundFloatX" (ngModelChange)="apply()" />
             </div>
@@ -144,8 +144,8 @@
                 <div class="description" translate>Unit: px</div>
               </div>
               <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundFloatY" (mouseup)="apply()" min="-100" max="1000" step="1" />
-              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatY = 0; apply()">
-                <i class="fas fa-solid fa-rotate-left"> </i>
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundFloatY = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                <i class="fas fa-solid fa-rotate-left"></i>
               </button>
               <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundFloatY" (ngModelChange)="apply()" />
             </div>
@@ -203,8 +203,8 @@
                     <div class="description" translate>Unit: px</div>
                   </div>
                   <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowX" (mouseup)="apply()" min="-200" max="200" step="1" />
-                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowX = 0; apply()">
-                    <i class="fas fa-solid fa-rotate-left"> </i>
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowX = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                    <i class="fas fa-solid fa-rotate-left"></i>
                   </button>
                   <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundDropShadowX" (ngModelChange)="apply()" />
                 </div>
@@ -214,8 +214,8 @@
                     <div class="description" translate>Unit: px</div>
                   </div>
                   <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowY" (mouseup)="apply()" min="-200" max="200" step="1" />
-                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowY = 0; apply()">
-                    <i class="fas fa-solid fa-rotate-left"> </i>
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowY = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                    <i class="fas fa-solid fa-rotate-left"></i>
                   </button>
                   <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundDropShadowY" (ngModelChange)="apply()" />
                 </div>
@@ -225,8 +225,8 @@
                     <div class="description" translate>Unit: px</div>
                   </div>
                   <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundDropShadowBlur" (mouseup)="apply()" min="0" max="100" step="0.1" />
-                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowBlur = 0; apply()">
-                    <i class="fas fa-solid fa-rotate-left"> </i>
+                  <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundDropShadowBlur = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                    <i class="fas fa-solid fa-rotate-left"></i>
                   </button>
                   <input class="form-control param-input" type="number" min="0" max="100" step="0.1" [(ngModel)]="pluginConfig.backgroundDropShadowBlur" (ngModelChange)="apply()" />
                 </div>
@@ -248,8 +248,8 @@
                 <div class="description" translate>{{ item.description }}</div>
               </div>
               <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
-              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
-                <i class="fas fa-solid fa-rotate-left"> </i>
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                <i class="fas fa-solid fa-rotate-left"></i>
               </button>
               <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
             </div>
@@ -262,8 +262,8 @@
                 <div class="description" translate>{{ item.description }}</div>
               </div>
               <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
-              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
-                <i class="fas fa-solid fa-rotate-left"> </i>
+              <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                <i class="fas fa-solid fa-rotate-left"></i>
               </button>
               <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
             </div>
@@ -286,8 +286,8 @@
               <div class="description" translate>Slideshow interval (second)</div>
             </div>
             <input class="me-3" type="range" [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval" (mouseup)="apply()" [min]="5" [max]="604800" [step]="1" />
-            <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundAdvancedSlideshowInterval = 3600; apply()">
-              <i class="fas fa-solid fa-rotate-left"> </i>
+            <button class="btn btn-outline-secondary me-3" (click)="pluginConfig.backgroundAdvancedSlideshowInterval = 3600; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+              <i class="fas fa-solid fa-rotate-left"></i>
             </button>
             <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig.backgroundAdvancedSlideshowInterval" (ngModelChange)="apply()" [min]="5" [max]="604800" [step]="1" />
           </div>
@@ -370,7 +370,7 @@
                     <div class="input-group">
                       <input class="form-control" style="background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px)" type="text" [(ngModel)]="item.backgroundPath" (ngModelChange)="apply()" />
                       <button class="btn btn-secondary" (click)="pickFile(item)" ngbTooltip="{{ 'Pick ' + (item.isFolder ? 'Folder' : 'File') | translate }}">
-                        <i class="fas fa-folder-open"> </i>
+                        <i class="fas fa-folder-open"></i>
                       </button>
                     </div>
                   </div>
@@ -488,8 +488,8 @@
                                 <div class="description" translate>Unit: px</div>
                               </div>
                               <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatSize" (mouseup)="apply()" min="0" max="1000" step="1" />
-                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatSize = 300; apply()">
-                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatSize = 300; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                <i class="fas fa-solid fa-rotate-left"></i>
                               </button>
                               <input class="form-control param-input" type="number" min="0" [(ngModel)]="item.backgroundFloatSize" (ngModelChange)="apply()" />
                             </div>
@@ -499,8 +499,8 @@
                                 <div class="description" translate>Unit: px</div>
                               </div>
                               <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatX" (mouseup)="apply()" min="-100" max="1000" step="1" />
-                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatX = 0; apply()">
-                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatX = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                <i class="fas fa-solid fa-rotate-left"></i>
                               </button>
                               <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundFloatX" (ngModelChange)="apply()" />
                             </div>
@@ -510,8 +510,8 @@
                                 <div class="description" translate>Unit: px</div>
                               </div>
                               <input class="me-3" type="range" [(ngModel)]="item.backgroundFloatY" (mouseup)="apply()" min="-100" max="1000" step="1" />
-                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatY = 0; apply()">
-                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              <button class="btn btn-outline-secondary me-3" (click)="item.backgroundFloatY = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                <i class="fas fa-solid fa-rotate-left"></i>
                               </button>
                               <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundFloatY" (ngModelChange)="apply()" />
                             </div>
@@ -617,8 +617,8 @@
                                     <div class="description" translate>Unit: px</div>
                                   </div>
                                   <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowX" (mouseup)="apply()" min="-200" max="200" step="1" />
-                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowX = 0; apply()">
-                                    <i class="fas fa-solid fa-rotate-left"> </i>
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowX = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                    <i class="fas fa-solid fa-rotate-left"></i>
                                   </button>
                                   <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundDropShadowX" (ngModelChange)="apply()" />
                                 </div>
@@ -628,8 +628,8 @@
                                     <div class="description" translate>Unit: px</div>
                                   </div>
                                   <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowY" (mouseup)="apply()" min="-200" max="200" step="1" />
-                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowY = 0; apply()">
-                                    <i class="fas fa-solid fa-rotate-left"> </i>
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowY = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                    <i class="fas fa-solid fa-rotate-left"></i>
                                   </button>
                                   <input class="form-control param-input" type="number" [(ngModel)]="item.backgroundDropShadowY" (ngModelChange)="apply()" />
                                 </div>
@@ -639,8 +639,8 @@
                                     <div class="description" translate>Unit: px</div>
                                   </div>
                                   <input class="me-3" type="range" [(ngModel)]="item.backgroundDropShadowBlur" (mouseup)="apply()" min="0" max="100" step="0.1" />
-                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowBlur = 0; apply()">
-                                    <i class="fas fa-solid fa-rotate-left"> </i>
+                                  <button class="btn btn-outline-secondary me-3" (click)="item.backgroundDropShadowBlur = 0; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                    <i class="fas fa-solid fa-rotate-left"></i>
                                   </button>
                                   <input class="form-control param-input" type="number" min="0" max="100" step="0.1" [(ngModel)]="item.backgroundDropShadowBlur" (ngModelChange)="apply()" />
                                 </div>
@@ -662,8 +662,8 @@
                                 <div class="description" translate>{{ filter.description }}</div>
                               </div>
                               <input class="me-3" type="range" [(ngModel)]="item[filter.model]" (mouseup)="apply()" [min]="filter.min" [max]="filter.max" [step]="filter.step" />
-                              <button class="btn btn-outline-secondary me-3" (click)="item[filter.model] = filter.default; apply()">
-                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              <button class="btn btn-outline-secondary me-3" (click)="item[filter.model] = filter.default; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                <i class="fas fa-solid fa-rotate-left"></i>
                               </button>
                               <input
                                 class="form-control param-input"
@@ -684,8 +684,8 @@
                                 <div class="description" translate>{{ extra.description }}</div>
                               </div>
                               <input class="me-3" type="range" [(ngModel)]="item[extra.model]" (mouseup)="apply()" [min]="extra.min" [max]="extra.max" [step]="extra.step" />
-                              <button class="btn btn-outline-secondary me-3" (click)="item[extra.model] = extra.default; apply()">
-                                <i class="fas fa-solid fa-rotate-left"> </i>
+                              <button class="btn btn-outline-secondary me-3" (click)="item[extra.model] = extra.default; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+                                <i class="fas fa-solid fa-rotate-left"></i>
                               </button>
                               <input class="form-control param-input" type="number" [(ngModel)]="item[extra.model]" (ngModelChange)="apply()" [min]="extra.min" [max]="extra.max" [step]="extra.step" />
                             </div>
@@ -752,8 +752,8 @@
             <div class="description" translate>{{ item.description }}</div>
           </div>
           <input class="me-3" type="range" [(ngModel)]="pluginConfig[item.model]" (mouseup)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
-          <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()">
-            <i class="fas fa-solid fa-rotate-left"> </i>
+          <button class="btn btn-outline-secondary me-3" (click)="pluginConfig[item.model] = item.default; apply()" ngbTooltip="{{ 'Reset' | translate }}">
+            <i class="fas fa-solid fa-rotate-left"></i>
           </button>
           <input class="form-control param-input" type="number" [(ngModel)]="pluginConfig[item.model]" (ngModelChange)="apply()" [min]="item.min" [max]="item.max" [step]="item.step" />
         </div>

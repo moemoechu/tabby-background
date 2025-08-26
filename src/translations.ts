@@ -89,6 +89,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Pick File": "选择文件",
       "Pick Folder": "选择目录",
       "Folder Mode": "目录模式",
+      "Reset": "重置",
     },
   ],
 ];
