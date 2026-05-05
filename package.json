@@ -22,7 +22,8 @@
   "scripts": {
     "build": "rm -rf dist && webpack --progress --color",
     "watch": "webpack --progress --color --watch",
-    "deploy": "npm run build && rm -rf /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && mkdir /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && cp -r ./dist package.json /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background/",
+    "deploy:bb": "npm run build && rm -rf /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && mkdir /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background && cp -r ./dist package.json /mnt/hgfs/Tabby/data/plugins/node_modules/tabby-background/",
+    "deploy": "npm run build && xcopy /E /I /Y dist C:\\Users\\Administrator\\AppData\\Roaming\\tabby\\plugins\\node_modules\\tabby-background\\dist",
     "prepublishOnly": "npm run build",
     "copyDeps": "cp -rf /mnt/hgfs/Tabby/resources/builtin-plugins/* ./node_modules/"
   },
@@ -52,5 +53,8 @@
     "uuid": "^9.0.1",
     "webpack": "^5",
     "webpack-cli": "^5"
+  },
+  "volta": {
+    "node": "20.19.2"
   }
 }
