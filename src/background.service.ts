@@ -19,6 +19,7 @@ export class BackgroundService {
   private backgroundStyleElement: HTMLStyleElement;
   private uiFontStyleElement: HTMLStyleElement;
   private uiOtherStyleElement: HTMLStyleElement;
+  private crossfadeLayer: HTMLDivElement;
   pluginConfig: BackgroundPluginConfig;
   private backgroundTimer: NodeJS.Timeout;
   private transitionTimer: NodeJS.Timeout;
@@ -48,6 +49,23 @@ export class BackgroundService {
     this.uiOtherStyleElement.innerHTML = "";
     document.body.appendChild(this.uiOtherStyleElement);
 
+    this.crossfadeLayer = document.createElement("div");
+    this.crossfadeLayer.id = "background-crossfade";
+    Object.assign(this.crossfadeLayer.style, {
+      position: "fixed",
+      left: "0",
+      right: "0",
+      top: "0",
+      bottom: "0",
+      zIndex: "0",
+      width: "100%",
+      height: "100%",
+      opacity: "0",
+      transition: "opacity 1s ease-in-out",
+      pointerEvents: "none",
+    });
+    document.body.appendChild(this.crossfadeLayer);
+
     this.previewMode = false;
     this.slideShowList = [];
 
@@ -69,6 +87,12 @@ export class BackgroundService {
     this.backgroundStyleElement.innerHTML = "";
     this.uiFontStyleElement.innerHTML = "";
     this.uiOtherStyleElement.innerHTML = "";
+    this.crossfadeLayer.style.backgroundImage = "";
+    this.crossfadeLayer.style.backgroundRepeat = "";
+    this.crossfadeLayer.style.backgroundPosition = "";
+    this.crossfadeLayer.style.backgroundSize = "";
+    this.crossfadeLayer.style.filter = "";
+    this.crossfadeLayer.style.opacity = "0";
     this.leaveSlideShow();
   }
 
@@ -87,7 +111,7 @@ export class BackgroundService {
           this.applyBackgroundPreview();
           return;
         }
-        if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow") {
+        if (this.pluginConfig.backgroundAdvancedSwitchType === "slideshow" || this.pluginConfig.backgroundAdvancedSwitchType === "crossfade") {
           this.enterSlideShow();
         }
       }
@@ -103,7 +127,97 @@ export class BackgroundService {
     this.applyStyle();
   }
 
-  applyBackground(id: string, updateTimestamp = true) {
+  private applyLayerStyle(layer: HTMLDivElement, background: Background) {
+    const {
+      backgroundPath,
+      backgroundShowType,
+      backgroundFullscreenType,
+      backgroundFullscreenRepeatType,
+      backgroundFloatSize,
+      backgroundFloatX,
+      backgroundFloatY,
+      backgroundFloatXAlign,
+      backgroundFloatYAlign,
+      backgroundOpacity,
+      backgroundBlur,
+      backgroundBrightness,
+      backgroundContrast,
+      backgroundGrayscale,
+      backgroundHueRotate,
+      backgroundInvert,
+      backgroundSaturate,
+      backgroundSepia,
+      backgroundDropShadowEnabled,
+      backgroundDropShadowX,
+      backgroundDropShadowY,
+      backgroundDropShadowBlur,
+      backgroundDropShadowColor,
+    } = background;
+
+    layer.style.backgroundImage = `url("${encodeURI(backgroundPath.replaceAll("\\", "/"))}")`;
+
+    if (backgroundShowType === "fullscreen") {
+      layer.style.backgroundRepeat = backgroundFullscreenRepeatType;
+      layer.style.backgroundPosition = "center";
+      layer.style.backgroundSize = backgroundFullscreenType;
+    } else if (backgroundShowType === "float") {
+      layer.style.backgroundRepeat = "no-repeat";
+      layer.style.backgroundPosition =
+        `${backgroundFloatXAlign === "center" ? backgroundFloatXAlign : `${backgroundFloatXAlign} ${backgroundFloatX}px`} ` +
+        `${backgroundFloatYAlign === "center" ? backgroundFloatYAlign : `${backgroundFloatYAlign} ${backgroundFloatY}px`}`;
+      layer.style.backgroundSize = `${backgroundFloatSize}px`;
+    }
+
+    layer.style.filter = (
+      (backgroundOpacity === 100 ? "" : `opacity(${backgroundOpacity}%) `) +
+      (backgroundBlur === 0 ? "" : `blur(${backgroundBlur}px) `) +
+      (backgroundBrightness === 100 ? "" : `brightness(${backgroundBrightness}%) `) +
+      (backgroundContrast === 100 ? "" : `contrast(${backgroundContrast}%) `) +
+      (backgroundGrayscale === 0 ? "" : `grayscale(${backgroundGrayscale}%) `) +
+      (backgroundHueRotate === 0 ? "" : `hue-rotate(${backgroundHueRotate}deg) `) +
+      (backgroundInvert === 0 ? "" : `invert(${backgroundInvert}%) `) +
+      (backgroundSaturate === 100 ? "" : `saturate(${backgroundSaturate}%) `) +
+      (backgroundSepia === 0 ? "" : `sepia(${backgroundSepia}%) `) +
+      (backgroundShowType === "float" && backgroundDropShadowEnabled
+        ? `drop-shadow(${backgroundDropShadowX}px ${backgroundDropShadowY}px ${backgroundDropShadowBlur}px ${backgroundDropShadowColor})`
+        : "")
+    ).trim();
+  }
+
+  applyBackground(id: string, updateTimestamp = true, useCrossfade = false) {
+    const background = id === uuid.NIL ? this.pluginConfig : this.getBackgroundByID(id);
+
+    if (useCrossfade) {
+      this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(/\/\*background-opacity-placeholder\*\/.*/, "/*background-opacity-placeholder*/opacity: 0;");
+
+      this.applyLayerStyle(this.crossfadeLayer, background);
+      this.crossfadeLayer.style.opacity = "0";
+
+      requestAnimationFrame(() => {
+        this.crossfadeLayer.style.opacity = "1";
+      });
+
+      if (this.transitionTimer) {
+        clearTimeout(this.transitionTimer);
+      }
+      this.transitionTimer = setTimeout(() => {
+        this.backgroundStyleElement.innerHTML = this.buildBackgroundCss(background);
+        requestAnimationFrame(() => {
+          this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(/\/\*background-opacity-placeholder\*\/.*/, "/*background-opacity-placeholder*/opacity: 1;");
+          this.crossfadeLayer.style.opacity = "0";
+        });
+      }, 1100);
+
+      if (id !== uuid.NIL) {
+        this.pluginConfig.backgroundAdvancedCurrentId = id;
+        if (updateTimestamp) {
+          this.pluginConfig.backgroundLastChangedTime = Date.now();
+        }
+      }
+      this.config.save();
+      return;
+    }
+
     this.backgroundStyleElement.innerHTML = this.backgroundStyleElement.innerHTML.replace(/\/\*background-opacity-placeholder\*\/.*/, "/*background-opacity-placeholder*/opacity: 0;");
     setTimeout(() => {
       if (id === uuid.NIL) {
@@ -189,12 +303,13 @@ export class BackgroundService {
   }
 
   enterSlideShow() {
+    const useCrossfade = this.pluginConfig.backgroundAdvancedSwitchType === "crossfade";
     const handler = () => {
       this.slideShowCurrentIndex++;
       if (this.slideShowCurrentIndex > this.slideShowList.length - 1) {
         this.slideShowCurrentIndex = 0;
       }
-      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex]);
+      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex], true, useCrossfade);
       this.backgroundTimer = setTimeout(handler, this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000);
     };
     this.leaveSlideShow();
@@ -206,7 +321,7 @@ export class BackgroundService {
     const leftTime = this.pluginConfig.backgroundAdvancedSlideshowInterval * 1000 - (Date.now() - this.pluginConfig.backgroundLastChangedTime);
     if (leftTime > 0) {
       this.logger.info(`${leftTime / 1000} second left to change background`);
-      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex], false);
+      this.applyBackground(this.slideShowList[this.slideShowCurrentIndex], false, useCrossfade);
       this.backgroundTimer = setTimeout(handler, leftTime);
     } else {
       handler();
@@ -294,7 +409,7 @@ start-page.content-tab-active::after {
     ";"
   }
   background-image: url("${encodeURI(backgroundPath.replaceAll("\\", "/"))}");
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 ${(() => {
   if (backgroundShowType === "fullscreen") {
     return `
@@ -304,9 +419,9 @@ ${(() => {
   } else if (backgroundShowType === "float") {
     return `
   background-repeat: no-repeat;
-  background-position: 
-  ${backgroundFloatXAlign === "center" ? backgroundFloatXAlign : `${backgroundFloatXAlign} ${backgroundFloatX}px`} 
-  ${backgroundFloatYAlign === "center" ? backgroundFloatYAlign : `${backgroundFloatYAlign} ${backgroundFloatY}px`}; 
+  background-position:
+  ${backgroundFloatXAlign === "center" ? backgroundFloatXAlign : `${backgroundFloatXAlign} ${backgroundFloatX}px`}
+  ${backgroundFloatYAlign === "center" ? backgroundFloatYAlign : `${backgroundFloatYAlign} ${backgroundFloatY}px`};
   background-size: ${backgroundFloatSize}px;`;
   } else {
     throw new Error("ShowType Error!");

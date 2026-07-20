@@ -75,6 +75,7 @@ export const translations: [string, BackgroundPluginTranslations][] = [
       "Background switch type": "背景切换类型",
       "When switch background": "什么时候切换背景",
       "Slideshow": "幻灯片",
+      "Crossfade": "交叉淡入淡出",
       "Slideshow interval": "幻灯片间隔",
       "Slideshow interval (second)": "幻灯片间隔（秒）",
       "Background choose type": "背景选择方式",

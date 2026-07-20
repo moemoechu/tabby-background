@@ -98,7 +98,7 @@ export type BackgroundPluginConfig = Background & {
   backgrounds: AdvancedBackground[];
   backgroundAdvancedType: "per-tab" | "global";
   backgroundAdvancedChooseType: "sequence" | "random" | "reverse";
-  backgroundAdvancedSwitchType: "slideshow" | "session";
+  backgroundAdvancedSwitchType: "slideshow" | "session" | "crossfade";
   backgroundAdvancedSlideshowInterval: number;
   backgroundAdvancedCurrentId: string;
   backgroundLastChangedTime: number;

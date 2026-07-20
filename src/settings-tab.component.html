@@ -344,10 +344,11 @@
             </div>
             <select class="form-control" [(ngModel)]="pluginConfig.backgroundAdvancedSwitchType" (ngModelChange)="apply()">
               <option [ngValue]="'slideshow'" translate>Slideshow</option>
+              <option [ngValue]="'crossfade'" translate>Crossfade</option>
               <!-- <option [ngValue]="'session'" translate>New Session</option> -->
             </select>
           </div>
-          <div class="form-line" *ngIf="pluginConfig.backgroundAdvancedSwitchType === 'slideshow'">
+          <div class="form-line" *ngIf="pluginConfig.backgroundAdvancedSwitchType === 'slideshow' || pluginConfig.backgroundAdvancedSwitchType === 'crossfade'">
             <div class="header">
               <div class="title" translate>Slideshow interval</div>
               <div class="description" translate>Slideshow interval (second)</div>
